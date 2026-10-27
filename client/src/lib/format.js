@@ -6,6 +6,18 @@ export function formatPercent(probability) {
   return `${Math.round(probability * 100)}%`;
 }
 
+const shortDate = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+// "2026-09-30T23:59:00Z" -> "30 Sept 2026". UTC so everyone sees the same date.
+export function formatDate(isoTime) {
+  return shortDate.format(new Date(isoTime));
+}
+
 const compactDollars = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
