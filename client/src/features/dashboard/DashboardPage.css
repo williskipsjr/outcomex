@@ -1,0 +1,17 @@
+.dashboard__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.dashboard__header h1 {
+  margin: 0;
+}
+
+.dashboard__count {
+  margin: 0;
+  color: var(--color-muted);
+}
