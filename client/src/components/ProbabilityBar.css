@@ -1,0 +1,49 @@
+.probability-bar__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-1);
+}
+
+.probability-bar__value {
+  font-weight: 700;
+}
+
+.probability-bar__track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+/* Full-width bar scaled down from the left: transform animates smoothly, width does not */
+.probability-bar__fill {
+  height: 100%;
+  background: var(--bar-color);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.probability-bar--you {
+  --bar-color: var(--color-you);
+}
+
+.probability-bar--crowd {
+  --bar-color: var(--color-crowd);
+}
+
+.probability-bar--ai {
+  --bar-color: var(--color-ai);
+}
+
+.probability-bar--you .probability-bar__value {
+  color: var(--color-you);
+}
+
+.probability-bar--crowd .probability-bar__value {
+  color: var(--color-crowd);
+}
+
+.probability-bar--ai .probability-bar__value {
+  color: var(--color-ai);
+}

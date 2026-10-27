@@ -1,0 +1,16 @@
+.kit-page h2 {
+  margin-top: var(--space-5);
+}
+
+.kit-page__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.kit-page__stack {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 480px;
+}

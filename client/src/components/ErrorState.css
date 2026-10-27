@@ -1,0 +1,16 @@
+.error-state {
+  padding: var(--space-4);
+  border: 1px solid var(--color-no);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.error-state__title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-2);
+}
+
+.error-state__message {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+}
