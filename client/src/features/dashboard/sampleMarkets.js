@@ -1,3 +1,5 @@
+import { simulateRequest } from "../../lib/simulateRequest.js";
+
 // TEMPORARY sample data so the dashboard can be built before the data layer
 // exists. Every market follows the Market shape in the data contract (master
 // plan A.2). Replace loadSampleMarkets with listMarkets once it lands.
@@ -120,36 +122,7 @@ const SAMPLE_MARKETS = [
   ...market,
 }));
 
-// Debug failure switch from the plan: in DevTools run
-//   localStorage.setItem("outcomex.debug.fail", "UPSTREAM_UNAVAILABLE")
-// and reload to see the error state. Remove the key to go back to normal.
-function readDebugFailure() {
-  try {
-    return localStorage.getItem("outcomex.debug.fail");
-  } catch {
-    return null;
-  }
-}
-
-// Behaves like a data-layer function: takes an AbortSignal, resolves to
-// { data, meta } after a short delay, rejects with code ABORTED when cancelled.
+// Replace with listMarkets({ limit: 100, signal }) once the data layer lands
 export function loadSampleMarkets(signal) {
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      const failCode = readDebugFailure();
-      if (failCode) {
-        reject({ code: failCode, message: "Simulated failure (outcomex.debug.fail)" });
-        return;
-      }
-      resolve({
-        data: SAMPLE_MARKETS,
-        meta: { fetchedAt: new Date().toISOString(), stale: false, cache: "miss", source: "sample" },
-      });
-    }, 600);
-
-    signal?.addEventListener("abort", () => {
-      clearTimeout(timer);
-      reject({ code: "ABORTED", message: "Request cancelled" });
-    });
-  });
+  return simulateRequest(SAMPLE_MARKETS, signal);
 }
