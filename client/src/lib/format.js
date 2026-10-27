@@ -32,3 +32,17 @@ export function formatTimeLeft(endDate, now = Date.now()) {
   const days = Math.ceil(msLeft / DAY_MS);
   return days === 1 ? "Closes tomorrow" : `Closes in ${days} days`;
 }
+
+// "Updated 30 s ago" style text for a past ISO time
+export function formatTimeAgo(isoTime, now = Date.now()) {
+  const seconds = Math.max(0, Math.round((now - new Date(isoTime).getTime()) / 1000));
+
+  if (seconds < 10) return "just now";
+  if (seconds < 60) return `${seconds} s ago`;
+
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes} min ago`;
+
+  const hours = Math.floor(minutes / 60);
+  return `${hours} h ago`;
+}
