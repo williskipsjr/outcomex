@@ -1,0 +1,7 @@
+/* auto-fill + minmax: as many 260px+ columns as fit, from 1 on a phone to
+   4 on a wide screen, without a single media query */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-3);
+}
