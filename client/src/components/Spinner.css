@@ -1,0 +1,30 @@
+.spinner {
+  display: inline-block;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-crowd);
+  border-radius: 50%;
+  animation: spinner-turn 800ms linear infinite;
+}
+
+.spinner--small {
+  width: 16px;
+  height: 16px;
+}
+
+.spinner--medium {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes spinner-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A fast-spinning circle is worse than a still one for motion-sensitive users */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
