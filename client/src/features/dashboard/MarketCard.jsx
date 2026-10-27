@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Badge from "../../components/Badge.jsx";
 import ProbabilityBar from "../../components/ProbabilityBar.jsx";
-import { formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
+import { formatDate, formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
 import "./MarketCard.css";
 
 function LockIcon() {
@@ -15,9 +15,12 @@ function LockIcon() {
   );
 }
 
-// variant comes from getCardVariant(): "blind" | "revealed" | "called"
+// variant: "blind" | "revealed" | "called" (from getCardVariant) or "practice"
 // call is the user's saved call for this market, or null
 export default function MarketCard({ market, variant, call = null }) {
+  const isPractice = variant === "practice";
+  const href = isPractice ? `/practice/${market.id}` : `/market/${market.id}`;
+
   return (
     <article className="market-card">
       <div className="market-card__top">
@@ -40,7 +43,7 @@ export default function MarketCard({ market, variant, call = null }) {
 
       <h3 className="market-card__question">
         {/* The link covers the whole card (see ::after in the CSS) */}
-        <Link to={`/market/${market.id}`} className="market-card__link">
+        <Link to={href} className="market-card__link">
           {market.question}
         </Link>
       </h3>
@@ -53,7 +56,10 @@ export default function MarketCard({ market, variant, call = null }) {
           </p>
         )}
 
-        {variant !== "blind" &&
+        {/* Practice cards never show a price or outcome: that would give the answer away */}
+        {isPractice && <p className="market-card__locked">Resolved · make your call</p>}
+
+        {(variant === "revealed" || variant === "called") &&
           (market.crowdProbability === null ? (
             <p className="market-card__locked">No price yet</p>
           ) : (
@@ -66,8 +72,17 @@ export default function MarketCard({ market, variant, call = null }) {
       </div>
 
       <footer className="market-card__meta">
-        <span className="num">{formatVolume(market.volume)} vol</span>
-        <span>{formatTimeLeft(market.endDate)}</span>
+        {isPractice ? (
+          <>
+            <span>Closed {formatDate(market.closedDate)}</span>
+            <span>As of {formatDate(market.asOfDate)}</span>
+          </>
+        ) : (
+          <>
+            <span className="num">{formatVolume(market.volume)} vol</span>
+            <span>{formatTimeLeft(market.endDate)}</span>
+          </>
+        )}
       </footer>
     </article>
   );
