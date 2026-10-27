@@ -1,0 +1,28 @@
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.category-chips__chip {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.category-chips__chip:hover {
+  color: var(--color-text);
+}
+
+/* aria-pressed is both the accessible state and the styling hook */
+.category-chips__chip[aria-pressed="true"] {
+  background: var(--color-crowd);
+  border-color: var(--color-crowd);
+  color: #ffffff;
+}
