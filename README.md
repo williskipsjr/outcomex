@@ -56,5 +56,6 @@ Other commands, all run inside `client/`:
 | Command | What it does |
 |---|---|
 | `npm run lint` | Checks the code with ESLint |
+| `npm test` | Runs the unit tests (Vitest) |
 | `npm run build` | Builds the production version into `client/dist` |
 | `npm run preview` | Serves the production build locally |
