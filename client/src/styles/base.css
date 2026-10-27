@@ -53,3 +53,24 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+/* Hidden above the page until it gets keyboard focus */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 10;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-crowd);
+  color: #ffffff;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* main is focusable only so the skip link can move focus there */
+main:focus {
+  outline: none;
+}
