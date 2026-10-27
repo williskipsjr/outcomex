@@ -7,7 +7,19 @@ import ProbabilityBar from "../../components/ProbabilityBar.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
 import Spinner from "../../components/Spinner.jsx";
 import Toggle from "../../components/Toggle.jsx";
+import MarketCard from "../dashboard/MarketCard.jsx";
+import MarketGrid from "../dashboard/MarketGrid.jsx";
 import "./KitPage.css";
+
+const SAMPLE_MARKET = {
+  id: "pm-kit-1",
+  question: "Will the Fed cut interest rates at the December 2026 meeting?",
+  category: "Economy",
+  imageUrl: null,
+  endDate: "2026-12-16T19:00:00Z",
+  crowdProbability: 0.64,
+  volume: 1823400,
+};
 
 // Development-only page that shows every shared component in one place,
 // so the team can see what exists before building something new.
@@ -55,6 +67,13 @@ export default function KitPage() {
         <Skeleton />
         <Skeleton shape="card" />
       </div>
+
+      <h2>MarketCard variants</h2>
+      <MarketGrid>
+        <MarketCard market={SAMPLE_MARKET} variant="blind" />
+        <MarketCard market={SAMPLE_MARKET} variant="revealed" />
+        <MarketCard market={SAMPLE_MARKET} variant="called" call={{ probability: 0.42 }} />
+      </MarketGrid>
 
       <h2>ErrorState and EmptyState</h2>
       <div className="kit-page__stack">
