@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import useSettings from "../features/settings/useSettings.js";
+import Toggle from "./Toggle.jsx";
 import "./NavBar.css";
 
 export default function NavBar() {
+  const { blindMode, setBlindMode, theme, setTheme } = useSettings();
+
   return (
     <header className="nav-bar">
       <Link to="/" className="nav-bar__brand">
@@ -31,6 +35,17 @@ export default function NavBar() {
           </li>
         </ul>
       </nav>
+      <div className="nav-bar__controls">
+        <Toggle label="Blind mode" checked={blindMode} onChange={setBlindMode} />
+        <label className="nav-bar__theme">
+          Theme
+          <select value={theme} onChange={(event) => setTheme(event.target.value)}>
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+      </div>
     </header>
   );
 }
