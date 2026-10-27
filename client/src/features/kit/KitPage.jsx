@@ -73,6 +73,17 @@ export default function KitPage() {
         <MarketCard market={SAMPLE_MARKET} variant="blind" />
         <MarketCard market={SAMPLE_MARKET} variant="revealed" />
         <MarketCard market={SAMPLE_MARKET} variant="called" call={{ probability: 0.42 }} />
+        <MarketCard
+          market={{
+            id: "pr-kit-1",
+            question: "Will the Fed cut interest rates at the September 2026 meeting?",
+            category: "Economy",
+            imageUrl: null,
+            asOfDate: "2026-09-09T00:00:00Z",
+            closedDate: "2026-09-16T18:00:00Z",
+          }}
+          variant="practice"
+        />
       </MarketGrid>
 
       <h2>ErrorState and EmptyState</h2>
