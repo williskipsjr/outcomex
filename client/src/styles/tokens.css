@@ -1,0 +1,69 @@
+:root {
+  /* Who said it: the same colour everywhere in the app */
+  --color-you: #f59e0b;
+  --color-crowd: #3b82f6;
+  --color-ai: #8b5cf6;
+
+  /* Outcomes only, always shown with a text label too */
+  --color-yes: #16a34a;
+  --color-no: #dc2626;
+
+  /* Neutrals, dark theme */
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-focus: #60a5fa;
+
+  /* Spacing on an 8px grid (space-1 is a half step) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* Shape */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+
+  /* Type */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+
+  /* Motion */
+  --transition: 200ms ease;
+
+  color-scheme: dark;
+}
+
+/* Light theme chosen in settings */
+:root[data-theme="light"] {
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-focus: #2563eb;
+  --shadow: 0 1px 3px rgb(15 23 42 / 0.12);
+  color-scheme: light;
+}
+
+/* Light theme from the system, unless the user chose dark */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #0f172a;
+    --color-muted: #64748b;
+    --color-focus: #2563eb;
+    --shadow: 0 1px 3px rgb(15 23 42 / 0.12);
+    color-scheme: light;
+  }
+}
