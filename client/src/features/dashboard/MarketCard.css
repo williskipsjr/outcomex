@@ -1,0 +1,94 @@
+.market-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+/* Hover lift animates transform only, which is cheap for the browser */
+.market-card:hover {
+  transform: translateY(-2px);
+}
+
+/* The focus ring goes around the whole card, not just the link text */
+.market-card:has(.market-card__link:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.market-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.market-card__image {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.market-card__image--empty {
+  display: grid;
+  place-items: center;
+  background: var(--color-border);
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.market-card__question {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.4;
+}
+
+.market-card__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.market-card__link:focus-visible {
+  outline: none;
+}
+
+/* Stretched link: an invisible layer over the card makes all of it clickable */
+.market-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.market-card__probability {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  margin-top: auto;
+}
+
+.market-card__probability .probability-bar {
+  width: 100%;
+}
+
+.market-card__locked {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.market-card__meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
