@@ -1,0 +1,23 @@
+.dashboard-controls {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.dashboard-controls__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+/* The search box takes whatever space is left, but never gets too narrow */
+.dashboard-controls__search {
+  flex: 1 1 240px;
+}
+
+.dashboard-controls__note {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
