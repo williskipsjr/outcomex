@@ -47,3 +47,10 @@
   display: grid;
   place-items: center;
 }
+
+/* Match the spinner to the button's text colour so it shows on any variant */
+.button__spinner .spinner {
+  border-color: transparent;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+}
