@@ -12,8 +12,12 @@ import KitPage from "./features/kit/KitPage.jsx";
 export default function App() {
   return (
     <>
+      {/* First thing a keyboard user reaches: jumps straight past the nav */}
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <NavBar />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/practice" element={<PracticeListPage />} />
