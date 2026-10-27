@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer.jsx";
 import NavBar from "./components/NavBar.jsx";
 import DashboardPage from "./features/dashboard/DashboardPage.jsx";
 import PracticeListPage from "./features/practice-list/PracticeListPage.jsx";
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }
