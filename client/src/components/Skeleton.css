@@ -1,0 +1,31 @@
+.skeleton {
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton--line {
+  height: 1em;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton--block {
+  height: 120px;
+}
+
+.skeleton--card {
+  height: 200px;
+  border-radius: var(--radius);
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
