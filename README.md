@@ -41,4 +41,20 @@ Course project for Full Stack Development 1, IIIT Dharwad.
 
 ## Running the project
 
-Setup instructions will be added here once the client app is scaffolded.
+You need Node.js 20 or newer.
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Then open http://localhost:5173.
+
+Other commands, all run inside `client/`:
+
+| Command | What it does |
+|---|---|
+| `npm run lint` | Checks the code with ESLint |
+| `npm run build` | Builds the production version into `client/dist` |
+| `npm run preview` | Serves the production build locally |
