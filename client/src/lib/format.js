@@ -29,7 +29,8 @@ export function formatTimeLeft(endDate, now = Date.now()) {
   if (msLeft <= 0) return "Closed";
   if (msLeft < DAY_MS) return "Closes today";
 
-  const days = Math.ceil(msLeft / DAY_MS);
+  // Whole days left: 1.5 days away is "tomorrow", not "in 2 days"
+  const days = Math.floor(msLeft / DAY_MS);
   return days === 1 ? "Closes tomorrow" : `Closes in ${days} days`;
 }
 
