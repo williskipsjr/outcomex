@@ -4,8 +4,10 @@ import Button from "../../components/Button.jsx";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import useNow from "../../hooks/useNow.js";
 import useRequest from "../../hooks/useRequest.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
+import { formatTimeAgo } from "../../lib/format.js";
 import { applyView } from "../../lib/filters.js";
 import { parseViewParams, toSearchParams } from "../../lib/viewParams.js";
 import useSettings from "../settings/useSettings.js";
@@ -19,9 +21,14 @@ import "./DashboardPage.css";
 const SKELETON_COUNT = 8;
 
 export default function DashboardPage() {
-  const { status, data: markets, error, run, retry } = useRequest();
+  const { status, data: markets, meta, error, run, retry } = useRequest();
   const { blindMode } = useSettings();
   const [searchParams, setSearchParams] = useSearchParams();
+  const now = useNow();
+
+  function loadMarkets() {
+    run((signal) => loadSampleMarkets(signal));
+  }
 
   useEffect(() => {
     run((signal) => loadSampleMarkets(signal));
@@ -115,9 +122,16 @@ export default function DashboardPage() {
       <header className="dashboard__header">
         <h1>Live markets</h1>
         {markets && (
-          <p className="dashboard__count" aria-live="polite">
-            {visibleMarkets.length} {visibleMarkets.length === 1 ? "market" : "markets"}
-          </p>
+          <div className="dashboard__status">
+            <p className="dashboard__count" aria-live="polite">
+              {visibleMarkets.length} {visibleMarkets.length === 1 ? "market" : "markets"}
+            </p>
+            {meta && <p className="dashboard__updated">Updated {formatTimeAgo(meta.fetchedAt, now)}</p>}
+            {/* Old cards stay on screen while this reloads (useRequest keeps data) */}
+            <Button variant="secondary" loading={status === "loading"} onClick={loadMarkets}>
+              Refresh
+            </Button>
+          </div>
         )}
       </header>
       <DashboardControls
