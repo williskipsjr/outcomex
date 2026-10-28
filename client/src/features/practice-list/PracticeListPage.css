@@ -15,3 +15,17 @@
   margin: 0;
   color: var(--color-muted);
 }
+
+.practice-list__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.practice-list__count {
+  margin: 0;
+  color: var(--color-muted);
+}
