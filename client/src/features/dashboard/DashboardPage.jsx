@@ -4,6 +4,7 @@ import Button from "../../components/Button.jsx";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import useAutoRefresh from "../../hooks/useAutoRefresh.js";
 import useDebouncedValue from "../../hooks/useDebouncedValue.js";
 import useNow from "../../hooks/useNow.js";
 import useRequest from "../../hooks/useRequest.js";
@@ -25,6 +26,7 @@ import TopMovers from "./TopMovers.jsx";
 import "./DashboardPage.css";
 
 const SKELETON_COUNT = 8;
+const AUTO_REFRESH_MS = 60 * 1000;
 // Search Polymarket too once the query is long enough and few loaded markets match
 const REMOTE_MIN_QUERY = 3;
 const REMOTE_MAX_LOCAL_MATCHES = 5;
@@ -42,6 +44,9 @@ export default function DashboardPage() {
   useEffect(() => {
     run((signal) => loadSampleMarkets(signal));
   }, [run]);
+
+  // Prices move: reload every minute while the tab is open (old cards stay visible)
+  useAutoRefresh(loadMarkets, AUTO_REFRESH_MS);
 
   // The URL is the only place the view lives. Everything below is derived
   // from it on every render, so nothing can get out of sync.
