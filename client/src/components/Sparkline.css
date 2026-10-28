@@ -1,0 +1,29 @@
+.sparkline {
+  display: block;
+  width: 100%;
+}
+
+.sparkline--you {
+  --spark-color: var(--color-you);
+}
+
+.sparkline--crowd {
+  --spark-color: var(--color-crowd);
+}
+
+.sparkline--ai {
+  --spark-color: var(--color-ai);
+}
+
+.sparkline__line {
+  fill: none;
+  stroke: var(--spark-color);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.sparkline__area {
+  fill: var(--spark-color);
+  opacity: 0.12;
+}
