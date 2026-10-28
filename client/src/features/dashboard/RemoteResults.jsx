@@ -15,7 +15,8 @@ export default function RemoteResults({ status, markets, error, onRetry, blindMo
         More from Polymarket
       </h2>
 
-      {status === "loading" && !markets && (
+      {/* "idle" too: for a moment before the debounced search starts */}
+      {(status === "idle" || status === "loading") && !markets && (
         <p className="remote-results__status">
           <Spinner size="small" label="Searching Polymarket" />
           Searching Polymarket…
@@ -34,7 +35,8 @@ export default function RemoteResults({ status, markets, error, onRetry, blindMo
         <p className="remote-results__status">Nothing else on Polymarket matches that.</p>
       )}
 
-      {markets && markets.length > 0 && (
+      {/* On error, hide the old results: they belong to an earlier query */}
+      {markets && markets.length > 0 && status !== "error" && (
         <MarketGrid busy={status === "loading"}>
           {markets.map((market) => {
             const call = getCall(market.id);
