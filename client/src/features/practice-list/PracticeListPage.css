@@ -78,3 +78,7 @@
   margin: 0;
   color: var(--color-muted);
 }
+
+.practice-list__browse-title {
+  margin-bottom: var(--space-3);
+}

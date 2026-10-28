@@ -111,6 +111,8 @@ export default function PracticeListPage() {
           </li>
         </ol>
       </div>
+      {/* h1 -> h2 -> card h3: keeps the heading outline in order for screen readers */}
+      <h2 className="practice-list__browse-title">Pick a market</h2>
       <div className="practice-list__filters">
         <CategoryChips selected={cat} onChange={setCategories} />
         {practiceMarkets && (
