@@ -50,10 +50,20 @@ export default function useRequest() {
     }
   }, [run]);
 
+  // Back to idle: cancel anything in flight and forget the last call.
+  // Setting the same INITIAL_STATE object again is a no-op for React, so
+  // calling reset() repeatedly doesn't cause extra renders.
+  const reset = useCallback(() => {
+    controllerRef.current?.abort();
+    controllerRef.current = null;
+    lastLoaderRef.current = null;
+    setState(INITIAL_STATE);
+  }, []);
+
   // Leaving the page cancels the request, so no state updates after unmount
   useEffect(() => {
     return () => controllerRef.current?.abort();
   }, []);
 
-  return { ...state, run, retry };
+  return { ...state, run, retry, reset };
 }
