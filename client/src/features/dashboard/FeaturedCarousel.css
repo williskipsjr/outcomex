@@ -1,0 +1,150 @@
+.featured {
+  margin-bottom: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+}
+
+.featured__slide {
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.featured__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured__category {
+  margin: 0 0 var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.featured__question {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.featured__question a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.featured__question a:hover {
+  text-decoration: underline;
+}
+
+.featured__chance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+}
+
+.featured__chance strong {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  line-height: 1;
+}
+
+.featured__change {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.featured__change--up {
+  color: var(--color-up);
+}
+
+.featured__change--down {
+  color: var(--color-down);
+}
+
+.featured__hidden {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: var(--color-muted);
+}
+
+.featured__hidden p {
+  margin: 0;
+}
+
+.featured__cta {
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: #04120d;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.featured__meta {
+  display: flex;
+  gap: var(--space-4);
+  margin: var(--space-3) 0 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.featured__image {
+  flex-shrink: 0;
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.featured__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.featured__arrow {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.featured__arrow:hover {
+  border-color: var(--color-muted);
+}
+
+.featured__position {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* On narrow screens the photo would squeeze the text, so it goes */
+@media (max-width: 720px) {
+  .featured {
+    padding: var(--space-4);
+  }
+
+  .featured__image {
+    display: none;
+  }
+}
