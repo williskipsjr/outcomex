@@ -8,12 +8,16 @@
   --color-yes: #16a34a;
   --color-no: #dc2626;
 
-  /* Neutrals, dark theme */
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-border: #334155;
-  --color-text: #f1f5f9;
-  --color-muted: #94a3b8;
+  /* Brand: the logo and "you are here" highlights. Not used for data. */
+  --color-brand: #2dd4a0;
+
+  /* Neutrals, dark theme: near-black page, slightly lighter cards */
+  --color-bg: #0b0d10;
+  --color-surface: #14171c;
+  --color-surface-raised: #1b1f26;
+  --color-border: #262b33;
+  --color-text: #f3f4f6;
+  --color-muted: #8b93a1;
   --color-focus: #60a5fa;
 
   /* Spacing on an 8px grid (space-1 is a half step) */
@@ -46,8 +50,10 @@
 
 /* Light theme chosen in settings */
 :root[data-theme="light"] {
+  --color-brand: #059669;
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
+  --color-surface-raised: #f1f5f9;
   --color-border: #e2e8f0;
   --color-text: #0f172a;
   --color-muted: #64748b;
@@ -59,8 +65,10 @@
 /* Light theme from the system, unless the user chose dark */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
+    --color-brand: #059669;
     --color-bg: #f8fafc;
     --color-surface: #ffffff;
+    --color-surface-raised: #f1f5f9;
     --color-border: #e2e8f0;
     --color-text: #0f172a;
     --color-muted: #64748b;
