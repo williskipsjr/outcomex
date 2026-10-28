@@ -54,7 +54,13 @@
 
 /* Light theme chosen in settings */
 :root[data-theme="light"] {
-  --color-brand: #059669;
+  /* Darker data colours so text in them passes 4.5:1 contrast on white */
+  --color-you: #b45309;
+  --color-crowd: #1d4ed8;
+  --color-ai: #6d28d9;
+  --color-up: #15803d;
+  --color-down: #b91c1c;
+  --color-brand: #047857;
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
   --color-surface-raised: #f1f5f9;
@@ -69,7 +75,13 @@
 /* Light theme from the system, unless the user chose dark */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --color-brand: #059669;
+    /* Darker data colours so text in them passes 4.5:1 contrast on white */
+    --color-you: #b45309;
+    --color-crowd: #1d4ed8;
+    --color-ai: #6d28d9;
+    --color-up: #15803d;
+    --color-down: #b91c1c;
+    --color-brand: #047857;
     --color-bg: #f8fafc;
     --color-surface: #ffffff;
     --color-surface-raised: #f1f5f9;
