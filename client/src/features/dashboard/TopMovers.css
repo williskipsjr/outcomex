@@ -1,0 +1,64 @@
+.top-movers {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.top-movers__title {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: var(--font-size-md);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* One row that scrolls sideways instead of wrapping */
+.top-movers__list {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.top-movers__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.top-movers__item:hover {
+  border-color: var(--color-muted);
+}
+
+.top-movers__question {
+  max-width: 220px;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.top-movers__change {
+  font-weight: 700;
+}
+
+.top-movers__change--up {
+  color: var(--color-up);
+}
+
+.top-movers__change--down {
+  color: var(--color-down);
+}

@@ -1,0 +1,7 @@
+.market-row {
+  margin-bottom: var(--space-5);
+}
+
+.market-row__title {
+  margin-bottom: var(--space-3);
+}
