@@ -3,17 +3,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-3);
+  padding: var(--space-4);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: 16px;
   background: var(--color-surface);
-  box-shadow: var(--shadow);
-  transition: transform var(--transition);
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
 }
 
 /* Hover lift animates transform only, which is cheap for the browser */
 .market-card:hover {
   transform: translateY(-2px);
+  border-color: var(--color-muted);
 }
 
 /* The focus ring goes around the whole card, not just the link text */
@@ -22,31 +24,50 @@
   outline-offset: 2px;
 }
 
-.market-card__top {
+.market-card__head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: var(--space-3);
+  align-items: flex-start;
 }
 
 .market-card__image {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
   object-fit: cover;
+  background: var(--color-surface-raised);
 }
 
 .market-card__image--empty {
   display: grid;
   place-items: center;
-  background: var(--color-border);
   color: var(--color-muted);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
   font-weight: 700;
+}
+
+.market-card__titles {
+  min-width: 0;
+}
+
+.market-card__category {
+  margin: 0 0 2px;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .market-card__question {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: var(--font-size-md);
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
 .market-card__link {
@@ -63,32 +84,76 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: var(--radius);
+  border-radius: 16px;
 }
 
-.market-card__probability {
+.market-card__body {
   display: grid;
   gap: var(--space-2);
   justify-items: start;
   margin-top: auto;
 }
 
-.market-card__probability .probability-bar {
+.market-card__body .sparkline {
   width: 100%;
 }
 
-.market-card__locked {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
+.market-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.market-card__chance {
   color: var(--color-muted);
   font-size: var(--font-size-sm);
+}
+
+.market-card__chance strong {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.market-card__change {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.market-card__change--up {
+  color: var(--color-up);
+}
+
+.market-card__change--down {
+  color: var(--color-down);
+}
+
+/* Same height as price + chart, so blind and revealed cards line up in the grid */
+.market-card__hidden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 88px;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 8px,
+    var(--color-surface-raised) 8px 16px
+  );
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
 .market-card__meta {
   display: flex;
   justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   font-size: var(--font-size-sm);
 }

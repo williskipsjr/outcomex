@@ -86,3 +86,13 @@ main {
 main:focus {
   outline: none;
 }
+
+/* Read by screen readers, invisible on screen */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
