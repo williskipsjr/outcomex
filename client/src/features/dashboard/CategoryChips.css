@@ -1,19 +1,25 @@
+/* Text tabs in a row that scrolls sideways on small screens */
 .category-chips {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-1);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border);
+  scrollbar-width: none;
 }
 
 .category-chips__chip {
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-bottom: 2px solid transparent;
   background: transparent;
   color: var(--color-muted);
   font: inherit;
-  font-size: var(--font-size-sm);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color var(--transition), color var(--transition);
+  transition:
+    color var(--transition),
+    border-color var(--transition);
 }
 
 .category-chips__chip:hover {
@@ -22,7 +28,6 @@
 
 /* aria-pressed is both the accessible state and the styling hook */
 .category-chips__chip[aria-pressed="true"] {
-  background: var(--color-crowd);
-  border-color: var(--color-crowd);
-  color: #ffffff;
+  color: var(--color-text);
+  border-bottom-color: var(--color-brand);
 }
