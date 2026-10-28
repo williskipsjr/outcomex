@@ -157,3 +157,18 @@
   color: var(--color-muted);
   font-size: var(--font-size-sm);
 }
+
+/* Practice cards: "Rewind to <date>" on top, the call to action below */
+.market-card__hidden--practice {
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.market-card__rewind {
+  color: var(--color-you);
+  font-weight: 700;
+}
+
+.market-card__meta span {
+  white-space: nowrap;
+}

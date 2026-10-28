@@ -75,8 +75,9 @@ export default function MarketCard({ market, variant, call = null }) {
         )}
 
         {isPractice && (
-          <div className="market-card__hidden">
-            <span>Resolved · make your call</span>
+          <div className="market-card__hidden market-card__hidden--practice">
+            <span className="market-card__rewind">Rewind to {formatDate(market.asOfDate)}</span>
+            <span>Make your call</span>
           </div>
         )}
 
@@ -104,7 +105,7 @@ export default function MarketCard({ market, variant, call = null }) {
         {isPractice ? (
           <>
             <span>Closed {formatDate(market.closedDate)}</span>
-            <span>As of {formatDate(market.asOfDate)}</span>
+            <span>Resolved</span>
           </>
         ) : (
           <>
