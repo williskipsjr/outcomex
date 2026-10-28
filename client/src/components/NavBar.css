@@ -74,3 +74,11 @@
   color: var(--color-text);
   font: inherit;
 }
+
+/* On phones the nav wraps onto several lines; keeping that pinned would
+   cover too much of the screen, so it scrolls away like normal content */
+@media (max-width: 720px) {
+  .nav-bar {
+    position: static;
+  }
+}
