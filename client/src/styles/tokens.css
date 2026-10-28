@@ -8,6 +8,10 @@
   --color-yes: #16a34a;
   --color-no: #dc2626;
 
+  /* Price moves (up/down arrows). Kept apart from YES/NO, which mean outcomes */
+  --color-up: #22c55e;
+  --color-down: #ef4444;
+
   /* Brand: the logo and "you are here" highlights. Not used for data. */
   --color-brand: #2dd4a0;
 
