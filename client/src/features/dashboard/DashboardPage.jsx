@@ -12,9 +12,8 @@ import { formatTimeAgo } from "../../lib/format.js";
 import { applyView } from "../../lib/filters.js";
 import { parseViewParams, toSearchParams } from "../../lib/viewParams.js";
 import useSettings from "../settings/useSettings.js";
-import { getCardVariant } from "./cardVariant.js";
 import DashboardControls from "./DashboardControls.jsx";
-import MarketCard from "./MarketCard.jsx";
+import MarketCards from "./MarketCards.jsx";
 import MarketGrid from "./MarketGrid.jsx";
 import RemoteResults from "./RemoteResults.jsx";
 import { loadSampleMarkets } from "./sampleMarkets.js";
@@ -132,17 +131,7 @@ export default function DashboardPage() {
 
     return (
       <MarketGrid busy={status === "loading"}>
-        {visibleMarkets.map((market) => {
-          const call = getCall(market.id);
-          return (
-            <MarketCard
-              key={market.id}
-              market={market}
-              call={call}
-              variant={getCardVariant({ blindMode, call })}
-            />
-          );
-        })}
+        <MarketCards markets={visibleMarkets} blindMode={blindMode} getCall={getCall} />
       </MarketGrid>
     );
   }

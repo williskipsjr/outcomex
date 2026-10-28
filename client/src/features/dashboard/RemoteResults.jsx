@@ -1,8 +1,7 @@
 import ErrorState from "../../components/ErrorState.jsx";
 import Spinner from "../../components/Spinner.jsx";
 import { getErrorMessage } from "../../lib/errorMessages.js";
-import { getCardVariant } from "./cardVariant.js";
-import MarketCard from "./MarketCard.jsx";
+import MarketCards from "./MarketCards.jsx";
 import MarketGrid from "./MarketGrid.jsx";
 import "./RemoteResults.css";
 
@@ -38,17 +37,7 @@ export default function RemoteResults({ status, markets, error, onRetry, blindMo
       {/* On error, hide the old results: they belong to an earlier query */}
       {markets && markets.length > 0 && status !== "error" && (
         <MarketGrid busy={status === "loading"}>
-          {markets.map((market) => {
-            const call = getCall(market.id);
-            return (
-              <MarketCard
-                key={market.id}
-                market={market}
-                call={call}
-                variant={getCardVariant({ blindMode, call })}
-              />
-            );
-          })}
+          <MarketCards markets={markets} blindMode={blindMode} getCall={getCall} />
         </MarketGrid>
       )}
     </section>
