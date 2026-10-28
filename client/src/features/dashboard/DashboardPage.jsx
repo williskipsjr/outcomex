@@ -10,14 +10,18 @@ import useRequest from "../../hooks/useRequest.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatTimeAgo } from "../../lib/format.js";
 import { applyView } from "../../lib/filters.js";
+import { getClosingSoon, getFeatured, getMostTraded, getTopMovers } from "../../lib/rankings.js";
 import { parseViewParams, toSearchParams } from "../../lib/viewParams.js";
 import useSettings from "../settings/useSettings.js";
 import DashboardControls from "./DashboardControls.jsx";
+import FeaturedCarousel from "./FeaturedCarousel.jsx";
 import MarketCards from "./MarketCards.jsx";
 import MarketGrid from "./MarketGrid.jsx";
+import MarketRow from "./MarketRow.jsx";
 import RemoteResults from "./RemoteResults.jsx";
 import { loadSampleMarkets } from "./sampleMarkets.js";
 import { searchSampleMarkets } from "./sampleSearch.js";
+import TopMovers from "./TopMovers.jsx";
 import "./DashboardPage.css";
 
 const SKELETON_COUNT = 8;
@@ -153,6 +157,29 @@ export default function DashboardPage() {
           </div>
         )}
       </header>
+
+      {/* Home page sections, all derived from the same loaded list */}
+      {markets && (
+        <>
+          {/* Every item here is a crowd number, so it stays hidden in blind mode */}
+          {!blindMode && <TopMovers movers={getTopMovers(markets)} />}
+          <FeaturedCarousel markets={getFeatured(markets)} blindMode={blindMode} getCall={getCall} />
+          <MarketRow
+            title="Closing soon"
+            markets={getClosingSoon(markets, 4, now)}
+            blindMode={blindMode}
+            getCall={getCall}
+          />
+          <MarketRow
+            title="Most traded"
+            markets={getMostTraded(markets)}
+            blindMode={blindMode}
+            getCall={getCall}
+          />
+          <h2 className="dashboard__browse-title">Browse markets</h2>
+        </>
+      )}
+
       <DashboardControls
         view={view}
         searchText={searchText}

@@ -27,3 +27,7 @@
 .dashboard__updated {
   font-size: var(--font-size-sm);
 }
+
+.dashboard__browse-title {
+  margin-bottom: var(--space-3);
+}
