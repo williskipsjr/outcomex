@@ -89,14 +89,27 @@ export default function PracticeListPage() {
 
   return (
     <section className="practice-list">
-      <h1>Practice</h1>
-      <div className="practice-list__intro">
-        <h2 className="practice-list__intro-title">A time machine for forecasts</h2>
-        <p>
-          These questions have already been answered. Each one takes you back to a week before it
-          closed: make your call without knowing what happened, then see the outcome, what the
-          crowd thought on that day, and your score straight away.
+      <div className="practice-list__hero">
+        <p className="practice-list__eyebrow">Practice mode</p>
+        <h1 className="practice-list__title">A time machine for forecasts</h1>
+        <p className="practice-list__lede">
+          These questions have already been answered. Go back to a week before each one closed,
+          make your call without knowing what happened, and get scored straight away.
         </p>
+        <ol className="practice-list__steps">
+          <li>
+            <span className="practice-list__step-number">1</span>
+            <span>Travel back 7 days before the market closed</span>
+          </li>
+          <li>
+            <span className="practice-list__step-number">2</span>
+            <span>Make your call: how likely was YES?</span>
+          </li>
+          <li>
+            <span className="practice-list__step-number">3</span>
+            <span>See what happened, what the crowd thought, and your score</span>
+          </li>
+        </ol>
       </div>
       <div className="practice-list__filters">
         <CategoryChips selected={cat} onChange={setCategories} />

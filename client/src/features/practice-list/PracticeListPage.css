@@ -1,19 +1,68 @@
-.practice-list__intro {
-  margin-bottom: var(--space-4);
-  padding: var(--space-3) var(--space-4);
-  border-left: 4px solid var(--color-you);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
+.practice-list__hero {
+  margin-bottom: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(245 158 11 / 0.14), transparent 55%),
+    var(--color-surface);
 }
 
-.practice-list__intro-title {
-  margin-bottom: var(--space-2);
-  font-size: var(--font-size-lg);
+/* Amber = "you" in our colour system, and practice is all about your calls */
+.practice-list__eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-you);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.practice-list__intro p {
-  margin: 0;
+.practice-list__title {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.practice-list__lede {
+  max-width: 60ch;
+  margin: 0 0 var(--space-4);
   color: var(--color-muted);
+}
+
+.practice-list__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.practice-list__steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.practice-list__step-number {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-you);
+  color: #1a1203;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .practice-list__filters {
