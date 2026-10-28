@@ -4,6 +4,7 @@ import Button from "../../components/Button.jsx";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import useDebouncedValue from "../../hooks/useDebouncedValue.js";
 import useNow from "../../hooks/useNow.js";
 import useRequest from "../../hooks/useRequest.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
@@ -15,10 +16,15 @@ import { getCardVariant } from "./cardVariant.js";
 import DashboardControls from "./DashboardControls.jsx";
 import MarketCard from "./MarketCard.jsx";
 import MarketGrid from "./MarketGrid.jsx";
+import RemoteResults from "./RemoteResults.jsx";
 import { loadSampleMarkets } from "./sampleMarkets.js";
+import { searchSampleMarkets } from "./sampleSearch.js";
 import "./DashboardPage.css";
 
 const SKELETON_COUNT = 8;
+// Search Polymarket too once the query is long enough and few loaded markets match
+const REMOTE_MIN_QUERY = 3;
+const REMOTE_MAX_LOCAL_MATCHES = 5;
 
 export default function DashboardPage() {
   const { status, data: markets, meta, error, run, retry } = useRequest();
@@ -53,6 +59,30 @@ export default function DashboardPage() {
 
   // Calls come from FE2's useCalls once it exists; until then nothing is called
   const getCall = () => null;
+
+  // Remote search: a second, separate request with its own state machine.
+  // The debounce means one request when typing stops, not one per key, and
+  // useRequest aborts the previous search, so a slow old answer can't
+  // replace a newer one (latest call wins).
+  const remote = useRequest();
+  const { run: runRemote, reset: resetRemote } = remote;
+  const debouncedQuery = useDebouncedValue(view.q, 300);
+  const shouldSearchRemote =
+    Boolean(markets) &&
+    debouncedQuery.length >= REMOTE_MIN_QUERY &&
+    visibleMarkets.length < REMOTE_MAX_LOCAL_MATCHES;
+
+  useEffect(() => {
+    if (!shouldSearchRemote) {
+      resetRemote();
+      return;
+    }
+    runRemote((signal) => searchSampleMarkets({ q: debouncedQuery, signal }));
+  }, [shouldSearchRemote, debouncedQuery, runRemote, resetRemote]);
+
+  // Don't show a market twice if it is already in the loaded list
+  const loadedIds = new Set((markets ?? []).map((market) => market.id));
+  const remoteMarkets = remote.data?.filter((market) => !loadedIds.has(market.id)) ?? null;
 
   function renderContent() {
     // First load: nothing to show yet, so show placeholders in the same grid
@@ -142,6 +172,16 @@ export default function DashboardPage() {
         onClear={clearView}
       />
       {renderContent()}
+      {shouldSearchRemote && (
+        <RemoteResults
+          status={remote.status}
+          markets={remoteMarkets}
+          error={remote.error}
+          onRetry={remote.retry}
+          blindMode={blindMode}
+          getCall={getCall}
+        />
+      )}
     </section>
   );
 }
