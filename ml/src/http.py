@@ -1,5 +1,6 @@
 """A polite JSON getter: pauses between calls and retries dropped connections."""
 
+import threading
 import time
 
 import requests
@@ -13,8 +14,15 @@ HEADERS = {
     "Accept": "application/json",
 }
 
-_session = requests.Session()
-_session.headers.update(HEADERS)
+# One session per thread: collect.py downloads histories with a few workers
+_local = threading.local()
+
+
+def _session():
+    if not hasattr(_local, "session"):
+        _local.session = requests.Session()
+        _local.session.headers.update(HEADERS)
+    return _local.session
 
 
 class HttpError(Exception):
@@ -28,7 +36,7 @@ def get_json(url, params=None, retries=5, timeout=20):
     for attempt in range(1, retries + 1):
         time.sleep(config.REQUEST_PAUSE_SECONDS)
         try:
-            response = _session.get(url, params=params, timeout=timeout)
+            response = _session().get(url, params=params, timeout=timeout)
         except requests.RequestException:
             if attempt == retries:
                 raise
