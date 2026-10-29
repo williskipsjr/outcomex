@@ -41,5 +41,6 @@ COLLECT_SINCE = "2025-07-01"  # first month collected
 PAGE_SIZE = 100  # Gamma never returns more than 100 rows per page
 PAGES_PER_MONTH = 2
 REQUEST_PAUSE_SECONDS = 0.25  # be polite: Polymarket is a free public API
+HISTORY_WORKERS = 3  # parallel downloads for price histories; each still pauses between calls
 
 SEED = 2026

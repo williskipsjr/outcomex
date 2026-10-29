@@ -10,7 +10,10 @@ interrupted run (or a rate limit) just means running it again.
 import argparse
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
+
+import requests
 
 from . import config
 from .http import HttpError, get_json
@@ -81,33 +84,40 @@ def history_candidates(rows):
         yield raw
 
 
+def download_history(raw):
+    """One CLOB call: the 14 days of prices that end at this market's as-of time."""
+    as_of = close_time(raw) - timedelta(days=config.AS_OF_DAYS)
+    start = as_of - timedelta(days=config.HISTORY_WINDOW_DAYS) + timedelta(minutes=1)
+    params = {
+        "market": yes_token_id(raw),
+        "startTs": int(start.timestamp()),
+        "endTs": int(as_of.timestamp()),
+        "fidelity": config.HISTORY_FIDELITY_MINUTES,
+    }
+    try:
+        body = get_json(f"{config.CLOB}/prices-history", params=params)
+        error = None
+    except (HttpError, requests.RequestException) as failure:
+        body, error = {"history": []}, str(failure)
+    save(
+        config.RAW_HISTORY_DIR / f"{raw['id']}.json",
+        {"marketId": str(raw["id"]), "asOf": int(as_of.timestamp()), "history": body.get("history", []), "error": error},
+    )
+    return error is None
+
+
 def collect_histories():
     rows = load_raw_markets()
     candidates = list(history_candidates(rows))
-    print(f"{len(rows)} raw markets, {len(candidates)} need a price history")
-    done = failed = 0
-    for number, raw in enumerate(candidates, start=1):
-        path = config.RAW_HISTORY_DIR / f"{raw['id']}.json"
-        if path.exists():
-            continue
-        as_of = close_time(raw) - timedelta(days=config.AS_OF_DAYS)
-        start = as_of - timedelta(days=config.HISTORY_WINDOW_DAYS) + timedelta(minutes=1)
-        params = {
-            "market": yes_token_id(raw),
-            "startTs": int(start.timestamp()),
-            "endTs": int(as_of.timestamp()),
-            "fidelity": config.HISTORY_FIDELITY_MINUTES,
-        }
-        try:
-            body = get_json(f"{config.CLOB}/prices-history", params=params)
-        except HttpError as error:
-            body = {"history": [], "error": str(error)}
-            failed += 1
-        save(path, {"marketId": str(raw["id"]), "asOf": int(as_of.timestamp()), "history": body.get("history", []), "error": body.get("error")})
-        done += 1
-        if number % 100 == 0:
-            print(f"  {number}/{len(candidates)} ({failed} failed)", flush=True)
-    print(f"downloaded {done} histories, {failed} failed")
+    todo = [raw for raw in candidates if not (config.RAW_HISTORY_DIR / f"{raw['id']}.json").exists()]
+    print(f"{len(rows)} raw markets, {len(candidates)} need a price history, {len(todo)} still to download", flush=True)
+    failed = 0
+    with ThreadPoolExecutor(max_workers=config.HISTORY_WORKERS) as pool:
+        for number, ok in enumerate(pool.map(download_history, todo), start=1):
+            failed += 0 if ok else 1
+            if number % 100 == 0:
+                print(f"  {number}/{len(todo)} ({failed} failed)", flush=True)
+    print(f"downloaded {len(todo)} histories, {failed} failed", flush=True)
 
 
 def main(argv=None):
