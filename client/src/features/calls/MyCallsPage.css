@@ -1,0 +1,165 @@
+.my-calls__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.my-calls__head h1 {
+  margin: 0;
+}
+
+.my-calls__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.my-calls__counts {
+  margin: var(--space-2) 0 var(--space-4);
+  color: var(--color-muted);
+}
+
+.my-calls__summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.my-calls__card {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--card-color);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.my-calls__card--you {
+  --card-color: var(--color-you);
+}
+
+.my-calls__card--crowd {
+  --card-color: var(--color-crowd);
+}
+
+.my-calls__card--ai {
+  --card-color: var(--color-ai);
+}
+
+.my-calls__card-label {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.my-calls__card-value {
+  margin: var(--space-1) 0;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.my-calls__card-meta,
+.my-calls__fair {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.my-calls__fair {
+  grid-column: 1 / -1;
+}
+
+.my-calls__tabs {
+  display: flex;
+  gap: var(--space-1);
+  margin: var(--space-4) 0 var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.my-calls__tab {
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.my-calls__tab[aria-pressed="true"] {
+  border-bottom-color: var(--color-brand);
+  color: var(--color-text);
+}
+
+.my-calls__table-wrap {
+  overflow-x: auto;
+}
+
+.my-calls__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.my-calls__table th,
+.my-calls__table td {
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.my-calls__table th {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.my-calls__table a {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.my-calls__sub {
+  display: block;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.my-calls__you {
+  color: var(--color-you);
+  font-weight: 700;
+}
+
+.my-calls__outcome {
+  font-weight: 700;
+}
+
+.my-calls__outcome--yes {
+  color: var(--color-yes);
+}
+
+.my-calls__outcome--no {
+  color: var(--color-no);
+}
+
+.my-calls__pending {
+  color: var(--color-muted);
+}
+
+.my-calls__none {
+  color: var(--color-muted);
+}
+
+.my-calls__empty-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
