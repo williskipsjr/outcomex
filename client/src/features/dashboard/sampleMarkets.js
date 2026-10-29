@@ -26,7 +26,7 @@ const EDGE_CASES = [
   },
 ];
 
-const SAMPLE_MARKETS = [...snapshot, ...EDGE_CASES].map((market) => ({
+export const SAMPLE_MARKETS = [...snapshot, ...EDGE_CASES].map((market) => ({
   source: "polymarket",
   status: "open",
   outcome: null,

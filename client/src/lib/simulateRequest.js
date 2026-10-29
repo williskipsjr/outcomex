@@ -6,7 +6,7 @@
 //   localStorage.setItem("outcomex.debug.fail", "UPSTREAM_UNAVAILABLE")
 // and reload to see error states. Remove the key to go back to normal.
 
-function readDebugFailure() {
+export function readDebugFailure() {
   try {
     return localStorage.getItem("outcomex.debug.fail");
   } catch {
@@ -28,6 +28,17 @@ export function simulateRequest(data, signal, { delayMs = 600 } = {}) {
       });
     }, delayMs);
 
+    signal?.addEventListener("abort", () => {
+      clearTimeout(timer);
+      reject({ code: "ABORTED", message: "Request cancelled" });
+    });
+  });
+}
+
+// Same timing and abort behaviour, but fails with the given DataError code
+export function simulateFailure(code, message, signal, { delayMs = 400 } = {}) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject({ code, message }), delayMs);
     signal?.addEventListener("abort", () => {
       clearTimeout(timer);
       reject({ code: "ABORTED", message: "Request cancelled" });

@@ -3,7 +3,7 @@ import { simulateRequest } from "../../lib/simulateRequest.js";
 // TEMPORARY stand-in for the data layer's searchMarkets({ q, limit, signal })
 // (D2 in the contract). It searches a pool of markets that are NOT in the
 // dashboard's loaded list, like Polymarket's own search would.
-const REMOTE_POOL = [
+export const REMOTE_POOL = [
   {
     id: "pm-600201",
     question: "Will spot Bitcoin ETFs see net inflows every week of November 2026?",
