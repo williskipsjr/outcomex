@@ -1,0 +1,11 @@
+{
+ "takenAt": "2026-10-29T20:01:32Z",
+ "source": "Polymarket Gamma + CLOB, through client/src/data",
+ "counts": {
+  "markets": 60,
+  "sparklines": 60,
+  "histories": 12,
+  "searchPool": 54,
+  "predictions": 20
+ }
+}

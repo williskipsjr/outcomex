@@ -1,0 +1,132 @@
+{
+ "modelVersion": "mock-0 (not a real model)",
+ "level": "model",
+ "generatedAt": "2026-10-29T20:01:32Z",
+ "metrics": {
+  "testBrier": null,
+  "crowdBrier": null,
+  "n": 0
+ },
+ "predictions": {
+  "pm-682705": {
+   "probability": 0.385,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-562802": {
+   "probability": 0.895,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-2100981": {
+   "probability": 0.987,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-562803": {
+   "probability": 0.105,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-562831": {
+   "probability": 0.125,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-561229": {
+   "probability": 0.1,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-562828": {
+   "probability": 0.635,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-630964": {
+   "probability": 0.295,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-3215007": {
+   "probability": 0.245,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-2110579": {
+   "probability": 0.067,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-3215005": {
+   "probability": 0.01,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-3501950": {
+   "probability": 0.01,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-562830": {
+   "probability": 0.265,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-630963": {
+   "probability": 0.735,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-2772194": {
+   "probability": 0.062,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-663583": {
+   "probability": 0.01,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-3215008": {
+   "probability": 0.735,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-5686980": {
+   "probability": 0.775,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-630806": {
+   "probability": 0.285,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  },
+  "pm-679060": {
+   "probability": 0.088,
+   "explanation": [
+    "Mock reason: replaced when the ML pipeline runs"
+   ]
+  }
+ }
+}
