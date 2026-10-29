@@ -1,0 +1,17 @@
+{
+  "_note": "Shared by client/src/data/normalize.test.js and ml/tests/test_polymarket.py, so the app and the ML pipeline give every market the same category. Add a case whenever you change either category map.",
+  "cases": [
+    { "tags": ["U.S. x Iran", "Geopolitics", "Politics", "Iran", "Trump", "World"], "question": "Will the U.S. invade Iran before 2027?", "expected": "Politics" },
+    { "tags": ["Geopolitics", "World", "Middle East", "Israel", "Politics"], "question": "Netanyahu out by end of 2026?", "expected": "World" },
+    { "tags": ["President", "United States", "Politics", "Elections", "US Election", "World Elections"], "question": "Will LeBron James win the 2028 US Presidential Election?", "expected": "Politics" },
+    { "tags": ["Culture", "Parent For Derivative"], "question": "Will Jesus Christ return before 2027?", "expected": "Culture" },
+    { "tags": ["Bitcoin", "Crypto Prices", "Crypto"], "question": "Will Bitcoin reach $150,000 in October?", "expected": "Crypto" },
+    { "tags": ["Fed Rates", "Economy", "Politics"], "question": "Will the Fed cut rates in December?", "expected": "Economy" },
+    { "tags": ["Aliens", "Politics", "Culture", "Science"], "question": "Will the US confirm that aliens exist?", "expected": "Tech & Science" },
+    { "tags": ["Soccer", "UCL"], "question": "Will Barcelona win the Champions League?", "expected": "Sports" },
+    { "tags": [], "question": "Will Bitcoin dip to $55,000 by December 31?", "expected": "Crypto" },
+    { "tags": [], "question": "Will the Fed cut interest rates in December?", "expected": "Economy" },
+    { "tags": [], "question": "Who will win the 2027 French presidential election?", "expected": "Politics" },
+    { "tags": [], "question": "Will it snow in Dharwad?", "expected": "Other" }
+  ]
+}
