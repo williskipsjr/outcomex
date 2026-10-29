@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "modelVersion": "fixture-0 (not a real model)",
+  "note": "Fixture written by FE so the AI row can be built. The ML engineer replaces this file.",
+  "predictions": {
+    "pm-562793": {
+      "available": true,
+      "level": "model",
+      "probability": 0.595,
+      "modelVersion": "fixture-0 (not a real model)",
+      "explanation": [
+        "Placeholder reason 1: replaced when the ML pipeline runs",
+        "Placeholder reason 2"
+      ],
+      "reason": null
+    },
+    "pm-3215008": {
+      "available": true,
+      "level": "model",
+      "probability": 0.825,
+      "modelVersion": "fixture-0 (not a real model)",
+      "explanation": [
+        "Placeholder reason 1: replaced when the ML pipeline runs",
+        "Placeholder reason 2"
+      ],
+      "reason": null
+    },
+    "pm-2431413": {
+      "available": true,
+      "level": "model",
+      "probability": 0.445,
+      "modelVersion": "fixture-0 (not a real model)",
+      "explanation": [
+        "Placeholder reason 1: replaced when the ML pipeline runs",
+        "Placeholder reason 2"
+      ],
+      "reason": null
+    },
+    "pm-4951227": {
+      "available": false,
+      "level": "signal",
+      "probability": null,
+      "modelVersion": null,
+      "explanation": [
+        "Crowd price fell 41.0 points over the last week",
+        "This week it traded between 26% and 82%"
+      ],
+      "reason": null
+    },
+    "pm-567688": {
+      "available": false,
+      "level": "signal",
+      "probability": null,
+      "modelVersion": null,
+      "explanation": [
+        "Crowd price fell 18.0 points over the last week",
+        "This week it traded between 22% and 44%"
+      ],
+      "reason": null
+    },
+    "pm-5957230": {
+      "available": false,
+      "level": "signal",
+      "probability": null,
+      "modelVersion": null,
+      "explanation": [
+        "Crowd price rose 23.0 points over the last week",
+        "This week it traded between 6% and 28%"
+      ],
+      "reason": null
+    },
+    "pm-1393324": {
+      "available": false,
+      "level": "signal",
+      "probability": null,
+      "modelVersion": null,
+      "explanation": [
+        "Crowd price rose 0.5 points over the last week",
+        "This week it traded between 55% and 64%"
+      ],
+      "reason": null
+    },
+    "pm-1235568": {
+      "available": false,
+      "level": "signal",
+      "probability": null,
+      "modelVersion": null,
+      "explanation": [
+        "Crowd price rose 26.8 points over the last week",
+        "This week it traded between 65% and 97%"
+      ],
+      "reason": null
+    }
+  }
+}
