@@ -20,7 +20,8 @@ export async function checkSources({ fetchImpl = (...args) => globalThis.fetch(.
         await fetchJson(url, { fetchImpl, retries: 0, timeoutMs: 5000, what: name });
         return { name, ok: true, detail: `Answered in ${Date.now() - started} ms` };
       } catch (error) {
-        return { name, ok: false, detail: error.message };
+        const detail = error.code === "NOT_FOUND" ? "Missing (HTTP 404)" : error.message;
+        return { name, ok: false, detail };
       }
     }),
   );
