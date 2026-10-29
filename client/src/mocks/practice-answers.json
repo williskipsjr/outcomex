@@ -1,0 +1,117 @@
+{
+ "generatedAt": "2026-10-28T12:00:00Z",
+ "answers": {
+  "pr-558938": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.182,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-07-20T01:24:43Z"
+  },
+  "pr-1198423": {
+   "outcome": "YES",
+   "crowdProbabilityAsOf": 0.195,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-02-28T09:31:17Z"
+  },
+  "pr-553866": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.22,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-06-14T06:36:06Z"
+  },
+  "pr-566189": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.001,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-03-21T23:28:27Z"
+  },
+  "pr-2063134": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.003,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-10-06T02:19:40Z"
+  },
+  "pr-2252244": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.475,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-09-16T20:02:43Z"
+  },
+  "pr-842029": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.002,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-05-17T03:32:52Z"
+  },
+  "pr-906974": {
+   "outcome": "YES",
+   "crowdProbabilityAsOf": 0.994,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-06-17T21:07:28Z"
+  },
+  "pr-1654958": {
+   "outcome": "YES",
+   "crowdProbabilityAsOf": 0.767,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-07-29T20:06:41Z"
+  },
+  "pr-1795527": {
+   "outcome": "YES",
+   "crowdProbabilityAsOf": 0.06,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-05-09T19:52:26Z"
+  },
+  "pr-1994007": {
+   "outcome": "YES",
+   "crowdProbabilityAsOf": null,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-04-21T00:28:28Z"
+  },
+  "pr-1823776": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.525,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-05-01T07:17:54Z"
+  },
+  "pr-649847": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.305,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2025-11-28T00:33:23Z"
+  },
+  "pr-2159863": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.029,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-05-23T00:41:11Z"
+  },
+  "pr-1517835": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.065,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-05-01T06:42:30Z"
+  },
+  "pr-2132768": {
+   "outcome": "NO",
+   "crowdProbabilityAsOf": 0.001,
+   "aiProbability": null,
+   "modelVersion": null,
+   "resolvedAt": "2026-06-01T06:20:59Z"
+  }
+ }
+}
