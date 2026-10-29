@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import NavBar from "./components/NavBar.jsx";
+import CallsRepairNotice from "./features/calls/CallsRepairNotice.jsx";
 import TitledPage from "./components/TitledPage.jsx";
 import DashboardPage from "./features/dashboard/DashboardPage.jsx";
 import PracticeListPage from "./features/practice-list/PracticeListPage.jsx";
@@ -19,6 +20,7 @@ export default function App() {
         Skip to content
       </a>
       <NavBar />
+      <CallsRepairNotice />
       <main id="main" tabIndex={-1}>
         <Routes>
           <Route
