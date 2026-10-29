@@ -1,0 +1,90 @@
+.call-it {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.call-it__title {
+  margin: 0;
+}
+
+.call-it__hint,
+.call-it__nudge,
+.call-it__counter {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.call-it__counter {
+  justify-self: end;
+}
+
+/* Amber = "you" everywhere in the app */
+.call-it__value {
+  margin: var(--space-2) 0;
+  color: var(--color-you);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.call-it__value span {
+  font-size: 2rem;
+}
+
+.call-it__label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.call-it__optional {
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.call-it__slider {
+  width: 100%;
+  accent-color: var(--color-you);
+}
+
+.call-it__exact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.call-it__number,
+.call-it__reason {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.call-it__number {
+  width: 5.5rem;
+}
+
+.call-it__number[aria-invalid="true"] {
+  border-color: var(--color-no);
+}
+
+.call-it__reason {
+  width: 100%;
+  resize: vertical;
+}
+
+.call-it__error {
+  margin: 0;
+  color: var(--color-no);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
