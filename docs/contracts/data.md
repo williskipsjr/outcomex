@@ -36,7 +36,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 
 | Id | Function | Purpose and source | Main user | Cache | Scope |
 |---|---|---|---|---|---|
-| D1 | `listMarkets({ limit, signal })` | Open yes/no markets, highest volume first. Gamma `/markets`. Filtering, sorting and local search happen in the UI | FE1 | 60 s | MVP |
+| D1 | `listMarkets({ limit, signal })` | Open yes/no markets, busiest in the last 24 h first, at most 3 per event. Gamma `/markets`. Filtering, sorting and local search happen in the UI | FE1 | 60 s | MVP |
 | D2 | `searchMarkets({ q, limit, signal })` | Open yes/no markets matching a query. Gamma `/public-search` | FE1 | 30 s | MVP |
 | D3 | `getMarket(id, { signal })` | One market with its description and rules. Gamma `/markets/{id}` | FE2 | 60 s | MVP |
 | D4 | `getHistory(id, range, { signal })` | Crowd probability over time. CLOB `/prices-history` on the YES token | FE2 | 5 min | MVP |
@@ -156,6 +156,7 @@ Checked against live responses on 30 Oct 2026.
 
 Behaviour of the sources that the data layer handles:
 
+- **Which markets the dashboard gets:** sorted by all-time volume, 90 of the top 100 yes/no markets on 30 Oct were Politics, almost all one-candidate rungs of 2028 election "ladders" priced under 3%. D1 therefore sorts by `volume24hr` and keeps at most 3 markets per event (`events[0].slug`). On 30 Oct that gave 62 markets across 6 categories.
 - **Unknown market id:** Gamma answers `404` for an id that doesn't exist and `422` for an id it can't parse. Both become `NOT_FOUND`.
 - **Open vs closed by id:** `/markets?id=…` only returns open markets unless `closed=true` is sent, and then it only returns closed ones. `getStatuses` makes both requests and merges them.
 - **Price history:** CLOB `/prices-history?market=<YES token id>&interval=<1d|1w|1m|max>&fidelity=<minutes>` returns `{ history: [{ t: unix seconds, p }] }`. The YES token id comes from `clobTokenIds` (another JSON string) at the `Yes` index. Fidelity: 5 min for `1d`, 60 for `1w`, 180 for `1m`, 1440 for `all`.
