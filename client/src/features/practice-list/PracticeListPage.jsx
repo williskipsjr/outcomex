@@ -7,6 +7,7 @@ import Skeleton from "../../components/Skeleton.jsx";
 import useRequest from "../../hooks/useRequest.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { DEFAULT_VIEW, parseViewParams, toSearchParams } from "../../lib/viewParams.js";
+import useCalls from "../calls/useCalls.js";
 import CategoryChips from "../dashboard/CategoryChips.jsx";
 import MarketCard from "../dashboard/MarketCard.jsx";
 import MarketGrid from "../dashboard/MarketGrid.jsx";
@@ -18,6 +19,7 @@ const SKELETON_COUNT = 6;
 export default function PracticeListPage() {
   const { status, data: practiceMarkets, error, run, retry } = useRequest();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { getCall } = useCalls();
 
   // Same URL rules as the dashboard (?cat=Crypto,World), so links can be shared
   // and junk values are ignored. Only the category part applies here.
@@ -81,7 +83,7 @@ export default function PracticeListPage() {
     return (
       <MarketGrid busy={status === "loading"}>
         {visibleMarkets.map((market) => (
-          <MarketCard key={market.id} market={market} variant="practice" />
+          <MarketCard key={market.id} market={market} variant="practice" call={getCall(market.id, "practice")} />
         ))}
       </MarketGrid>
     );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Badge from "../../components/Badge.jsx";
 import Sparkline from "../../components/Sparkline.jsx";
 import { formatDate, formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
+import { accuracyFromBrier, brierScore } from "../../lib/scoring.js";
 import { getPriceChange } from "../../lib/sparkline.js";
 import "./MarketCard.css";
 
@@ -74,7 +75,18 @@ export default function MarketCard({ market, variant, call = null }) {
           </div>
         )}
 
-        {isPractice && (
+        {/* A practice market you've done: the answer is no secret any more */}
+        {isPractice && call?.resolution && (
+          <div className="market-card__hidden market-card__hidden--practice">
+            <span className="market-card__rewind">Resolved {call.resolution.outcome}</span>
+            <span className="num">
+              Your call {formatPercent(call.probability)} · accuracy{" "}
+              {accuracyFromBrier(brierScore(call.probability, call.resolution.outcome))}
+            </span>
+          </div>
+        )}
+
+        {isPractice && !call && (
           <div className="market-card__hidden market-card__hidden--practice">
             <span className="market-card__rewind">Rewind to {formatDate(market.asOfDate)}</span>
             <span>Make your call</span>
