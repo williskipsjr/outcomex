@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import categoryCases from "./__fixtures__/category-cases.json";
 import raw from "./__fixtures__/gamma-raw.json";
 import {
   categoryOf,
@@ -112,6 +113,12 @@ describe("categoryOf", () => {
     expect(categoryOf(tags("Fed Rates", "Economy", "Politics"))).toBe("Economy");
     expect(categoryOf(tags("Aliens", "Politics", "Culture", "Science"))).toBe("Tech & Science");
     expect(categoryOf(tags("Soccer", "UCL"))).toBe("Sports");
+  });
+
+  it("matches the cases shared with the ML pipeline", () => {
+    for (const { tags: labels, question, expected } of categoryCases.cases) {
+      expect(categoryOf(tags(...labels), question), question).toBe(expected);
+    }
   });
 
   it("falls back to keywords, then Other", () => {
