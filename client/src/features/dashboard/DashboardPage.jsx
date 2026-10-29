@@ -13,6 +13,7 @@ import { formatTimeAgo } from "../../lib/format.js";
 import { applyView } from "../../lib/filters.js";
 import { getClosingSoon, getFeatured, getMostTraded, getTopMovers } from "../../lib/rankings.js";
 import { parseViewParams, toSearchParams } from "../../lib/viewParams.js";
+import useCalls from "../calls/useCalls.js";
 import useSettings from "../settings/useSettings.js";
 import DashboardControls from "./DashboardControls.jsx";
 import FeaturedCarousel from "./FeaturedCarousel.jsx";
@@ -65,8 +66,8 @@ export default function DashboardPage() {
     setSearchParams({});
   }
 
-  // Calls come from FE2's useCalls once it exists; until then nothing is called
-  const getCall = () => null;
+  // Your saved calls decide which cards show the "called" variant
+  const { getCall } = useCalls();
 
   // Remote search: a second, separate request with its own state machine.
   // The debounce means one request when typing stops, not one per key, and
