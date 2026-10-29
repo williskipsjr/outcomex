@@ -1,0 +1,436 @@
+{
+ "_note": "Trimmed real Gamma and CLOB responses saved on 30 Oct 2026, used by the normaliser tests.",
+ "openMarkets": [
+  {
+   "id": "665374",
+   "question": "Will the U.S. invade Iran before 2027?",
+   "description": "This market will resolve to \"Yes\" if the United States commences a military offensive intended to establish control over any portion of Iran by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nFor the purposes o",
+   "slug": "will-the-us-invade-iran-before-2027",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-us-invade-iran-in-2025-0Eh3J0ku_Fbj.jpg",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-the-us-invade-iran-in-2025-0Eh3J0ku_Fbj.jpg",
+   "outcomes": "[\"Yes\", \"No\"]",
+   "outcomePrices": "[\"0.195\", \"0.805\"]",
+   "clobTokenIds": "[\"55115078421062885512539156303747803058407616201213034911037320915726138659123\", \"1910830010387565971650098373488592514702818137344973088263643820608151819241\"]",
+   "volume": "75894718.63433702",
+   "volumeNum": 75894718.63433702,
+   "active": true,
+   "closed": false,
+   "endDate": "2027-01-01T04:59:00Z",
+   "startDate": "2025-11-05T17:52:17.414Z",
+   "createdAt": "2025-11-04T19:52:57.799278Z",
+   "oneWeekPriceChange": 0.03,
+   "events": [
+    {
+     "slug": "will-the-us-invade-iran-before-2027",
+     "title": "Will the U.S. invade Iran before 2027?"
+    }
+   ],
+   "tags": [
+    {
+     "label": "U.S. x Iran",
+     "slug": "trump-iran"
+    },
+    {
+     "label": "Macro Geopolitics",
+     "slug": "macro-geopolitics"
+    },
+    {
+     "label": "Military Strikes",
+     "slug": "military-strikes"
+    },
+    {
+     "label": "Politics",
+     "slug": "politics"
+    },
+    {
+     "label": "Iran",
+     "slug": "iran"
+    },
+    {
+     "label": "Trump",
+     "slug": "trump"
+    },
+    {
+     "label": "Middle East",
+     "slug": "middle-east"
+    },
+    {
+     "label": "Israel",
+     "slug": "israel"
+    },
+    {
+     "label": "Geopolitics",
+     "slug": "geopolitics"
+    },
+    {
+     "label": "World",
+     "slug": "world"
+    }
+   ]
+  },
+  {
+   "id": "703258",
+   "question": "Will Jesus Christ return before 2027?",
+   "description": "This market will resolve to \"Yes\" if The Second Coming of Jesus Christ occurs by December 31, 2026, 11:59 PM ET. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market will be a consensus of credible sources.",
+   "slug": "will-jesus-christ-return-before-2027",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-jesus-christ-return-in-2025-qulWN7QCehv8.jpg",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-jesus-christ-return-in-2025-qulWN7QCehv8.jpg",
+   "outcomes": "[\"Yes\", \"No\"]",
+   "outcomePrices": "[\"0.0135\", \"0.9865\"]",
+   "clobTokenIds": "[\"69324317355037271422943965141382095011871956039434394956830818206664869608517\", \"51797157743046504218541616681751597845468055908324407922581755135522797852101\"]",
+   "volume": "66756768.38497001",
+   "volumeNum": 66756768.38497001,
+   "active": true,
+   "closed": false,
+   "endDate": "2027-01-01T04:59:00Z",
+   "startDate": "2025-11-25T18:08:21.296Z",
+   "createdAt": "2025-11-25T15:12:00.761996Z",
+   "events": [
+    {
+     "slug": "will-jesus-christ-return-before-2027",
+     "title": "Will Jesus Christ return before 2027?"
+    }
+   ],
+   "tags": [
+    {
+     "label": "Culture",
+     "slug": "pop-culture"
+    },
+    {
+     "label": "Parent For Derivative",
+     "slug": "parent-for-derivative"
+    }
+   ]
+  },
+  {
+   "id": "561251",
+   "question": "Will LeBron James win the 2028 US Presidential Election?",
+   "description": "The 2028 US Presidential Election is scheduled to take place on November 7, 2028.\n\nThis market will resolve to the person who wins the 2028 US Presidential Election.\n\nThe resolution source for this market is the Associated Press, Fox News, ",
+   "slug": "will-lebron-james-win-the-2028-us-presidential-election",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Lebron_James.png",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Lebron_James.png",
+   "outcomes": "[\"Yes\", \"No\"]",
+   "outcomePrices": "[\"0.0005\", \"0.9995\"]",
+   "clobTokenIds": "[\"39223330966352513418907732239455948906399882924787587183466504819170775983376\", \"50862799703982327636174441241062907649998751737045006653560124656563256528691\"]",
+   "volume": "54891306.09873299",
+   "volumeNum": 54891306.09873299,
+   "active": true,
+   "closed": false,
+   "endDate": "2028-11-08T04:59:00Z",
+   "startDate": "2025-07-11T19:06:10.755Z",
+   "createdAt": "2025-07-08T19:06:10.305398Z",
+   "events": [
+    {
+     "slug": "presidential-election-winner-2028",
+     "title": "Presidential Election Winner 2028"
+    }
+   ],
+   "tags": [
+    {
+     "label": "President",
+     "slug": "president"
+    },
+    {
+     "label": "United States",
+     "slug": "united-states"
+    },
+    {
+     "label": "Politics",
+     "slug": "politics"
+    },
+    {
+     "label": "Elections",
+     "slug": "elections"
+    },
+    {
+     "label": "US Election",
+     "slug": "us-presidential-election"
+    },
+    {
+     "label": "World Elections",
+     "slug": "world-elections"
+    },
+    {
+     "label": "Global Elections",
+     "slug": "global-elections"
+    },
+    {
+     "label": "Earn 3.25%",
+     "slug": "earn-4"
+    },
+    {
+     "label": "Main Election",
+     "slug": "main-election"
+    }
+   ]
+  }
+ ],
+ "closedMarket": {
+  "id": "6138223",
+  "question": "Will Zach Bauchou lead the 2026 VidantaWorld Mexico Open following the first round?",
+  "description": "This market will resolve according to the player that finishes Round 1 of the main tournament at the 2026 VidantaWorld Mexico Open with the lowest cumulative score to par.\n\nIn the event of a tie, this market will resolve in favor of the pla",
+  "slug": "2026-vidantaworld-mexico-open-first-round-leader-zach-bauchou",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/pga-c332ca3e93.png",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/pga-c332ca3e93.png",
+  "outcomes": "[\"Yes\", \"No\"]",
+  "outcomePrices": "[\"0\", \"1\"]",
+  "clobTokenIds": "[\"12919543248098554374176404250427886354506636665161369876518757644175573047589\", \"51708621358562440889399346405889291704155338896672208154533732360778980999982\"]",
+  "volume": "6.25",
+  "volumeNum": 6.25,
+  "active": true,
+  "closed": true,
+  "endDate": "2026-11-01T00:00:00Z",
+  "startDate": "2026-10-24T16:05:08Z",
+  "createdAt": "2026-10-24T16:01:29.197942Z",
+  "closedTime": "2026-10-29 19:47:10.221006+00",
+  "events": [
+   {
+    "slug": "2026-vidantaworld-mexico-open-first-round-leader",
+    "title": "PGA Tour: VidantaWorld Mexico Open First Round Leader"
+   }
+  ],
+  "umaResolutionStatus": "resolved"
+ },
+ "search": {
+  "events": [
+   {
+    "slug": "what-price-will-bitcoin-hit-in-october-2026",
+    "title": "What price will Bitcoin hit in October?",
+    "tags": [
+     {
+      "label": "Bitcoin",
+      "slug": "bitcoin"
+     },
+     {
+      "label": "Monthly",
+      "slug": "monthly"
+     },
+     {
+      "label": "Hit Price",
+      "slug": "hit-price"
+     },
+     {
+      "label": "Crypto",
+      "slug": "crypto"
+     },
+     {
+      "label": "Crypto Prices",
+      "slug": "crypto-prices"
+     },
+     {
+      "label": "Recurring",
+      "slug": "recurring"
+     }
+    ],
+    "markets": [
+     {
+      "id": "5170727",
+      "question": "Will Bitcoin reach $150,000 in October?",
+      "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater tha",
+      "slug": "will-bitcoin-reach-150k-in-october-2026",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+      "outcomes": "[\"Yes\", \"No\"]",
+      "outcomePrices": "[\"0.0005\", \"0.9995\"]",
+      "clobTokenIds": "[\"41251280258301071693658139147514794627654924789315378408251020029063087170571\", \"18946945419036263501473552001965174247715815951889020612528712712030944987021\"]",
+      "volume": "654498.270596",
+      "volumeNum": 654498.270596,
+      "active": true,
+      "closed": false,
+      "endDate": "2026-11-01T04:00:00Z",
+      "startDate": "2026-10-01T05:07:13Z",
+      "createdAt": "2026-10-01T05:07:00.8326Z",
+      "oneWeekPriceChange": -0.0005
+     },
+     {
+      "id": "5170728",
+      "question": "Will Bitcoin reach $105,000 in October?",
+      "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater tha",
+      "slug": "will-bitcoin-reach-105k-in-october-2026",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+      "outcomes": "[\"Yes\", \"No\"]",
+      "outcomePrices": "[\"0.0005\", \"0.9995\"]",
+      "clobTokenIds": "[\"4740472048452665591406095189402741578301463781498291737546052273061813393204\", \"16527037854599683549374763903447148990646302259213949285121667240035518912888\"]",
+      "volume": "842825.753061",
+      "volumeNum": 842825.753061,
+      "active": true,
+      "closed": false,
+      "endDate": "2026-11-01T04:00:00Z",
+      "startDate": "2026-10-01T05:07:13Z",
+      "createdAt": "2026-10-01T05:07:00.991436Z",
+      "oneWeekPriceChange": -0.006
+     }
+    ]
+   }
+  ],
+  "pagination": {
+   "hasMore": true,
+   "totalResults": 149831
+  }
+ },
+ "history": {
+  "history": [
+   {
+    "t": 1792699220,
+    "p": 0.165
+   },
+   {
+    "t": 1792702813,
+    "p": 0.165
+   },
+   {
+    "t": 1792706421,
+    "p": 0.165
+   },
+   {
+    "t": 1792710030,
+    "p": 0.165
+   },
+   {
+    "t": 1792713636,
+    "p": 0.165
+   },
+   {
+    "t": 1792717220,
+    "p": 0.165
+   },
+   {
+    "t": 1792720813,
+    "p": 0.165
+   },
+   {
+    "t": 1792724420,
+    "p": 0.165
+   },
+   {
+    "t": 1792728019,
+    "p": 0.165
+   },
+   {
+    "t": 1792731619,
+    "p": 0.165
+   },
+   {
+    "t": 1792735219,
+    "p": 0.165
+   },
+   {
+    "t": 1792738819,
+    "p": 0.165
+   },
+   {
+    "t": 1792742419,
+    "p": 0.165
+   },
+   {
+    "t": 1792746025,
+    "p": 0.165
+   },
+   {
+    "t": 1792749620,
+    "p": 0.165
+   },
+   {
+    "t": 1792753220,
+    "p": 0.165
+   },
+   {
+    "t": 1792756825,
+    "p": 0.165
+   },
+   {
+    "t": 1792760425,
+    "p": 0.165
+   },
+   {
+    "t": 1792764020,
+    "p": 0.165
+   },
+   {
+    "t": 1792767641,
+    "p": 0.165
+   },
+   {
+    "t": 1792771220,
+    "p": 0.165
+   },
+   {
+    "t": 1792774846,
+    "p": 0.165
+   },
+   {
+    "t": 1792778436,
+    "p": 0.175
+   },
+   {
+    "t": 1792782043,
+    "p": 0.175
+   },
+   {
+    "t": 1792785656,
+    "p": 0.175
+   },
+   {
+    "t": 1792789221,
+    "p": 0.175
+   },
+   {
+    "t": 1792792821,
+    "p": 0.175
+   },
+   {
+    "t": 1792800036,
+    "p": 0.175
+   },
+   {
+    "t": 1792807233,
+    "p": 0.175
+   },
+   {
+    "t": 1792810820,
+    "p": 0.18
+   },
+   {
+    "t": 1792818031,
+    "p": 0.175
+   },
+   {
+    "t": 1792821619,
+    "p": 0.175
+   },
+   {
+    "t": 1792825219,
+    "p": 0.185
+   },
+   {
+    "t": 1792828819,
+    "p": 0.185
+   },
+   {
+    "t": 1792832419,
+    "p": 0.185
+   },
+   {
+    "t": 1792836019,
+    "p": 0.185
+   },
+   {
+    "t": 1792839631,
+    "p": 0.185
+   },
+   {
+    "t": 1792846821,
+    "p": 0.185
+   },
+   {
+    "t": 1792850421,
+    "p": 0.185
+   },
+   {
+    "t": 1792854020,
+    "p": 0.185
+   }
+  ]
+ }
+}
