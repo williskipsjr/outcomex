@@ -1,0 +1,49 @@
+.practice-detail__rewind {
+  margin: var(--space-3) 0 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--color-you);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-muted);
+}
+
+/* A big stamp: the outcome in words AND colour (never colour alone) */
+.practice-detail__stamp {
+  justify-self: start;
+  margin: 0;
+  padding: var(--space-1) var(--space-4);
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+}
+
+.practice-detail__stamp--yes {
+  color: var(--color-yes);
+}
+
+.practice-detail__stamp--no {
+  color: var(--color-no);
+}
+
+.practice-detail__error {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-no);
+  border-radius: 12px;
+}
+
+.practice-detail__error p {
+  margin: 0;
+}
+
+.practice-detail__next {
+  color: var(--color-you);
+  font-weight: 700;
+}
