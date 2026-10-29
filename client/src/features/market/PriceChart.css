@@ -1,0 +1,134 @@
+.price-chart {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.price-chart__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.price-chart__title {
+  margin: 0;
+}
+
+.price-chart__ranges {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.price-chart__range {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.price-chart__range[aria-pressed="true"] {
+  border-color: var(--color-crowd);
+  color: var(--color-text);
+}
+
+.price-chart__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* While another range loads, the old chart stays but fades */
+.price-chart__svg[data-busy="true"] {
+  opacity: 0.5;
+}
+
+.price-chart__grid {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.price-chart__axis {
+  fill: var(--color-muted);
+  font-size: 11px;
+}
+
+.price-chart__crowd {
+  fill: none;
+  stroke: var(--color-crowd);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.price-chart__you {
+  stroke: var(--color-you);
+  stroke-width: 2;
+  stroke-dasharray: 8 5;
+}
+
+.price-chart__ai {
+  stroke: var(--color-ai);
+  stroke-width: 2;
+  stroke-dasharray: 2 4;
+}
+
+.price-chart__message {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+  margin: 0;
+  padding: var(--space-4) 0;
+  color: var(--color-muted);
+}
+
+.price-chart__message p {
+  margin: 0;
+}
+
+.price-chart__legend {
+  display: flex;
+  gap: var(--space-4);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.price-chart__key::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  margin-right: var(--space-2);
+  vertical-align: middle;
+  border-top: 2px solid var(--key-color);
+}
+
+.price-chart__key--crowd {
+  --key-color: var(--color-crowd);
+}
+
+.price-chart__key--you {
+  --key-color: var(--color-you);
+}
+
+.price-chart__key--you::before {
+  border-top-style: dashed;
+}
+
+.price-chart__key--ai {
+  --key-color: var(--color-ai);
+}
+
+.price-chart__key--ai::before {
+  border-top-style: dotted;
+}
