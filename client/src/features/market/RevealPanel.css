@@ -1,0 +1,63 @@
+.reveal {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.reveal__title {
+  margin: 0;
+}
+
+/* Rows slide in one after another. transform + opacity only, so it's cheap;
+   base.css turns animations off for users who prefer reduced motion. */
+.reveal__row {
+  display: grid;
+  gap: var(--space-1);
+  animation: reveal-in 300ms ease both;
+  animation-delay: calc(var(--i) * 150ms);
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.reveal__score,
+.reveal__meta {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.reveal__ai-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.reveal__ai-note--stack {
+  display: grid;
+}
+
+.reveal__reasons {
+  margin: 0;
+  padding-left: var(--space-4);
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+
+.reveal__sentence {
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-weight: 600;
+}
