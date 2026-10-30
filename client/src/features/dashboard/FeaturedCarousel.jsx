@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Sparkline from "../../components/Sparkline.jsx";
 import { formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
-import { getPriceChange } from "../../lib/sparkline.js";
+import { getMarketChange } from "../../lib/sparkline.js";
 import "./FeaturedCarousel.css";
 
 // The big hero at the top of the dashboard: one market at a time, with
@@ -15,7 +15,7 @@ export default function FeaturedCarousel({ markets, blindMode, getCall }) {
   // Derived, so the index stays valid even if the list gets shorter
   const current = markets[index % markets.length];
   const showsCrowd = !blindMode || getCall(current.id) !== null;
-  const change = getPriceChange(current.sparkline);
+  const change = getMarketChange(current);
 
   function step(direction) {
     // + markets.length keeps the result positive when going back from 0
