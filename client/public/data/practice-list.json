@@ -1,0 +1,150 @@
+{
+ "generatedAt": "2026-10-28T12:00:00Z",
+ "asOfOffsetDays": 7,
+ "items": [
+  {
+   "id": "pr-558938",
+   "question": "Will Argentina win the 2026 FIFA World Cup?",
+   "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/world-cup-winner-argentina-flag-20260603-192743.png",
+   "asOfDate": "2026-07-13T01:24:43Z",
+   "closedDate": "2026-07-20T01:24:43Z"
+  },
+  {
+   "id": "pr-1198423",
+   "question": "US strikes Iran by February 28, 2026?",
+   "description": "This market will resolve to \"Yes\" if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate between the time of this market's creation and the listed date (ET). Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, a qualifying \"strike\" is defined as the use of aerial bombs, drones or missiles (including cruise or ballistic missiles) launched by US military forces that impact Iranian ground territory or any official Iranian embassy or consulate (e.g., if a weapons depot on Iranian soil is hit by an US missile, this market will resolve to \"Yes\").\n\nMissiles or drones which are intercepted and surface-to-air missile strikes will not be sufficient for a \"Yes\" resolution regardless of whether they land on Iranian territory or cause damage.\n\nActions such as artillery fire, small arms fire, FPV or ATGM strikes directly, ground incursions, naval shelling, cyberattacks, or other operations conducted by US ground operatives will not qualify.\n\nThe resolution source will be a consensus of credible reporting.",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-strikes-iran-by-october-3-2sVnIHq3sjqF.jpg",
+   "asOfDate": "2026-02-21T09:31:17Z",
+   "closedDate": "2026-02-28T09:31:17Z"
+  },
+  {
+   "id": "pr-553866",
+   "question": "Will the San Antonio Spurs win the 2026 NBA Finals?",
+   "description": "This market will resolve to “Yes” if the San Antonio Spurs win the 2026 NBA Finals. Otherwise, this market will resolve to “No”.\n\nThis market will resolve to “No” if it becomes impossible for this team to win the 2026 NBA Finals based off the rules of the NBA.\n\nThe resolution source for this market will be information from the NBA.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/nba-finals-points-leader-7g2ZEZvMXxLb.jpg",
+   "asOfDate": "2026-06-07T06:36:06Z",
+   "closedDate": "2026-06-14T06:36:06Z"
+  },
+  {
+   "id": "pr-566189",
+   "question": "Will Chelsea win the 2025–26 English Premier League?",
+   "description": "This is a polymarket on whether the listed club will win the 2025–26 English Premier League.\n\nThis market will resolve to \"Yes\" if the listed club is officially crowned the winner of the 2025–26 English Premier League. Otherwise, it will resolve to \"No\".\n\nIf at any point it becomes impossible for the listed club to win the league (e.g. they are mathematically eliminated), the market will resolve to \"No\".\n\nIf the 2025–26 English Premier League season is canceled or not completed by October 1, 2026, this market will resolve to \"Other\".\n\nThe primary resolution source will be official information from the English Premier League. A consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-chelsea-win-the-202526-english-premier-league-pZV3BcmAKk11.jpg",
+   "asOfDate": "2026-03-14T23:28:27Z",
+   "closedDate": "2026-03-21T23:28:27Z"
+  },
+  {
+   "id": "pr-2063134",
+   "question": "Will Adanech Abiebie be the next Prime Minister of Ethiopia?",
+   "description": "General elections are scheduled to be held in Ethiopia on June 1, 2026.\n\nThis market will resolve to the next individual who officially assumes the office of Prime Minister of Ethiopia following the 2026 General elections.\n\nTo count for resolution, the individual must be officially appointed and sworn in as Prime Minister of Ethiopia. Any interim or caretaker Prime Minister will not count toward the resolution of this market.\n\nIf no such Prime Minister takes office by December 31, 2028, 11:59 PM ET, this market will resolve to “Other”.\n\nThe primary resolution source for this market will be official information from the Government of Ethiopia; however, a consensus of credible reporting may also be used.",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-adanech-abiebie-be-the-next-prime-minister-of-ethiopia-7nUlSNmvB5IN.png",
+   "asOfDate": "2026-09-29T02:19:40Z",
+   "closedDate": "2026-10-06T02:19:40Z"
+  },
+  {
+   "id": "pr-2252244",
+   "question": "Will there be no change in Fed interest rates after the September 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's September 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for September 15-16, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their September meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-09-09T20:02:43Z",
+   "closedDate": "2026-09-16T20:02:43Z"
+  },
+  {
+   "id": "pr-842029",
+   "question": "Will Poland win Eurovision 2026?",
+   "description": "This market will resolve to the country whose candidate for Eurovision 2026 wins.\n\nIf at any point it is impossible for the listed candidate to win Eurovision 2026 based on the rules of the competition (i.e. they are eliminated), this market may immediately resolve to \"No\".\n\nIf no winner is announced by July 31, 2026, 11:59 PM ET, this market will resolve \"Other\". All ties will be broken according to EBU's official Eurovision rules.\n\nThe primary resolution source for this market will be official information from Eurovision (https://eurovision.tv/), including live footage of Eurovision 2026, however a consensus of credible reporting will suffice.",
+   "category": "Culture",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-poland-win-eurovision-2026-Sf88eDID9h5x.png",
+   "asOfDate": "2026-05-10T03:32:52Z",
+   "closedDate": "2026-05-17T03:32:52Z"
+  },
+  {
+   "id": "pr-906974",
+   "question": "Will there be no change in Fed interest rates after the June 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's June 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for June 16-17, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their June meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-06-10T21:07:28Z",
+   "closedDate": "2026-06-17T21:07:28Z"
+  },
+  {
+   "id": "pr-1654958",
+   "question": "Will there be no change in Fed interest rates after the July 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's July 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for July 28-29, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their July meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-07-22T20:06:41Z",
+   "closedDate": "2026-07-29T20:06:41Z"
+  },
+  {
+   "id": "pr-1795527",
+   "question": "Russia x Ukraine ceasefire by May 31, 2026?",
+   "description": "This market will resolve to \"Yes\" if there is an official ceasefire agreement, defined as a publicly announced and mutually agreed halt in military engagement, between Russia and Ukraine by May 31, 2026, 11:59 PM ET.\n\nIf the agreement is officially reached before the resolution date, this market will resolve to \"Yes,\" regardless of whether the ceasefire officially starts afterward.\n\nOnly ceasefires which constitute a general pause in the conflict will qualify. Ceasefires which only apply to energy infrastructure, the Black Sea, or other similar agreements will not qualify.\n\nAny form of informal agreement will not be considered an official ceasefire. Humanitarian pauses will not count toward the resolution of this market.\n\nA peace deal or political framework will qualify if it includes a publicly announced and mutually agreed halt in military engagement, effective on a specific date. Frameworks or agreements that outline terms for a future peace but do not include an explicit, dated commitment to stop fighting will not count.\n\nThis market's resolution will be based on official announcements from both Russia and Ukraine; however, a wide consensus of credible media reporting stating an official ceasefire agreement between Russia and Ukraine has been reached will suffice.",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/russia-x-ukraine-ceasefire-before-july-GSNGh26whPic.jpg",
+   "asOfDate": "2026-05-02T19:52:26Z",
+   "closedDate": "2026-05-09T19:52:26Z"
+  },
+  {
+   "id": "pr-1994007",
+   "question": "Israel x Hezbollah ceasefire by April 18, 2026?",
+   "description": "This market will resolve to “Yes” if there is an official ceasefire agreement, defined as a publicly announced and mutually agreed halt in direct military engagement, between Israel and Hezbollah by the listed date, 11:59 PM ET.\n\nIf the agreement is officially reached before the resolution date, this market will resolve to “Yes,” regardless of whether the ceasefire officially takes effect after the resolution date.\n\nAny form of informal understanding, backchannel communication, de-escalation without an announced agreement, or unilateral pause in hostilities will not be considered an official ceasefire. Humanitarian pauses, limited operational pauses, or temporary tactical stand-downs will not count toward the resolution of this market.\n\nA broader peace deal, normalization agreement, or political framework will qualify only if it includes a publicly announced and mutually agreed halt in military engagement between the Israel and Hezbollah, effective on a specified date, or otherwise confirmed by an overwhelming consensus of credible reporting. Agreements that outline future negotiations or de-escalation measures without an explicit, dated commitment to stop fighting will not qualify.\n\nThis market’s resolution will be based on official statements from the Israeli Government and Hezbollah. However, a wide consensus of credible media reporting confirming that an official ceasefire agreement has been reached will suffice.",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/israel+lebanon+dove+flags.png",
+   "asOfDate": "2026-04-14T00:28:28Z",
+   "closedDate": "2026-04-21T00:28:28Z"
+  },
+  {
+   "id": "pr-1823776",
+   "question": "Will Bitcoin reach $80,000 in April?",
+   "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No.\"\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
+   "category": "Crypto",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+   "asOfDate": "2026-04-24T07:17:54Z",
+   "closedDate": "2026-05-01T07:17:54Z"
+  },
+  {
+   "id": "pr-649847",
+   "question": "Monad market cap (FDV) >$4B one day after launch?",
+   "description": "This market will resolve to \"Yes\" if the Fully Diluted Valuation of Monad's token is greater than $4,000,000,000 1 day after launch. Otherwise, the market will resolve to \"No.\"\n\nFor the purposes of this market \"locked\" tokens or non-swappable tokens will not be considered a launch.\n\n\"1 day after launch\" is defined as 24 hours after launch. The resolution source for this market is the most liquid price source available. If Monad doesn't launch a token by June 30, 2026, 11:59 PM ET, this market will resolve to \"No.\"",
+   "category": "Crypto",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/monad-market-cap-fdv-one-day-after-launch-x1c2OPi_BSut.jpg",
+   "asOfDate": "2025-11-21T00:33:23Z",
+   "closedDate": "2025-11-28T00:33:23Z"
+  },
+  {
+   "id": "pr-2159863",
+   "question": "Will Trump say \"Iran\" during events with Xi Jinping?",
+   "description": "Donald Trump is scheduled to meet with Xi Jinping from May 14 to May 15, 2026 (https://www.cnn.com/2026/05/04/china/china-us-talks-iran-intl-hnk). \n\nThis market will resolve to \"Yes\" if Donald Trump says the listed term during his appearance at events featuring Xi Jinping from May 14 through May 15, 2026 (Beijing Time). Otherwise, the market will resolve to \"No\".\n\nPlural and possessive forms of the listed term will count toward the resolution of this market regardless of context; however, other forms will NOT count.\n\nInstances where the term is used in a compound word will count regardless of context (e.g. joyful is not a compound word for \"joy,\" however \"killjoy\" is a compounding of the words \"kill\" and \"joy\").\n\nIf this market requires a specified number of mentions of a person’s first or last name, a full-name mention will count as one mention (e.g., if a market is about “Joe / Biden 5+ times,” a mention of “Joe Biden” will count once).\n\nAI-generated audio or video will not count toward this market's resolution.\n\nThis market is explicitly about events featuring both Donald Trump and Xi Jinping from May 14 through May 15, 2026 (Beijing Time). All such events featuring both on these dates count. Speeches, events, or comments which feature one named individual but not the other, will not qualify toward this market's resolution. If the events contain a Q&A, it will count toward the resolution of this market.\n\nIf this visit is definitively cancelled, or otherwise is not aired by May 31, 2026, 11:59 PM ET, this market will resolve to \"No\".\n\nThe resolution source will be video of the events. Only remarks which are broadcast or streamed live will count toward this market's resolution.",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/what-will-trump-say-during-bilateral-events-with-xi-jinping-TsWC6jBEZ6CO.jpg",
+   "asOfDate": "2026-05-16T00:41:11Z",
+   "closedDate": "2026-05-23T00:41:11Z"
+  },
+  {
+   "id": "pr-1517835",
+   "question": "Trump announces end of military operations against Iran by April 30th?",
+   "description": "This market will resolve to \"Yes\" if President Trump, the US government, or the military publicly and officially announce that their military operations against Iran, initiated on February 28, 2026, have concluded by the listed date (ET). Otherwise, this market will resolve to “No”.\n\nQualifying statements must clearly indicate that the operation has ended. Informal announcements, statements from unnamed sources or leaks will not qualify. \n\nWritten public statements from Donald Trump (e.g. posts from his personal Truth Social account), will count. Videos posted on his social media accounts will also qualify for a \"Yes\" resolution.\n\nThe primary resolution source for this market will be official statements from the US government and/or its official representatives; however, a consensus of credible reporting may also be used.",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/trump-announces-end-of-military-operations-against-iran-before-july-KQddUiSdAUpe.jpg",
+   "asOfDate": "2026-04-24T06:42:30Z",
+   "closedDate": "2026-05-01T06:42:30Z"
+  },
+  {
+   "id": "pr-2132768",
+   "question": "Will Bitcoin reach $150,000 in May?",
+   "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No.\"\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
+   "category": "Crypto",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+   "asOfDate": "2026-05-25T06:20:59Z",
+   "closedDate": "2026-06-01T06:20:59Z"
+  }
+ ]
+}
