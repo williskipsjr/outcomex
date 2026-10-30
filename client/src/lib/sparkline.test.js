@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getPriceChange, toSparklinePoints } from "./sparkline.js";
+import { getMarketChange, getPriceChange, toSparklinePoints } from "./sparkline.js";
 
 describe("toSparklinePoints", () => {
   it("needs at least two prices", () => {
@@ -34,5 +34,17 @@ describe("getPriceChange", () => {
   it("returns null without enough history", () => {
     expect(getPriceChange([0.5])).toBeNull();
     expect(getPriceChange(undefined)).toBeNull();
+  });
+});
+
+describe("getMarketChange", () => {
+  it("prefers Gamma's weekChange, in points", () => {
+    expect(getMarketChange({ weekChange: 0.031, sparkline: [0.5, 0.9] })).toBe(3.1);
+    expect(getMarketChange({ weekChange: -0.2 })).toBe(-20);
+  });
+
+  it("falls back to the sparkline when weekChange is missing", () => {
+    expect(getMarketChange({ weekChange: null, sparkline: [0.4, 0.45] })).toBe(5);
+    expect(getMarketChange({ sparkline: null })).toBeNull();
   });
 });

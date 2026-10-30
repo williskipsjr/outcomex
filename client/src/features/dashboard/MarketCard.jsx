@@ -3,7 +3,7 @@ import Badge from "../../components/Badge.jsx";
 import Sparkline from "../../components/Sparkline.jsx";
 import { formatDate, formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
 import { accuracyFromBrier, brierScore } from "../../lib/scoring.js";
-import { getPriceChange } from "../../lib/sparkline.js";
+import { getMarketChange } from "../../lib/sparkline.js";
 import "./MarketCard.css";
 
 function LockIcon() {
@@ -102,7 +102,7 @@ export default function MarketCard({ market, variant, call = null }) {
                 <span className="market-card__chance">
                   <strong className="num">{formatPercent(market.crowdProbability)}</strong> chance
                 </span>
-                <PriceChange change={getPriceChange(market.sparkline)} />
+                <PriceChange change={getMarketChange(market)} />
               </div>
               <Sparkline prices={market.sparkline} who="crowd" />
             </>
