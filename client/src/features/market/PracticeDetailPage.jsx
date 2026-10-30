@@ -5,6 +5,7 @@ import Button from "../../components/Button.jsx";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import { getPractice, revealPractice } from "../../data/index.js";
 import useDocumentTitle from "../../hooks/useDocumentTitle.js";
 import useRequest from "../../hooks/useRequest.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
@@ -12,7 +13,6 @@ import { formatDate } from "../../lib/format.js";
 import useCalls from "../calls/useCalls.js";
 import CallItForm from "./CallItForm.jsx";
 import RevealPanel from "./RevealPanel.jsx";
-import { getSamplePractice, revealSamplePractice } from "./sampleMarketData.js";
 import "./MarketDetailPage.css";
 import "./PracticeDetailPage.css";
 
@@ -29,7 +29,7 @@ export default function PracticeDetailPage() {
   const controllerRef = useRef(null);
 
   useEffect(() => {
-    run((signal) => getSamplePractice(id, { signal }));
+    run((signal) => getPractice(id, { signal }));
   }, [id, run]);
 
   // Leaving the page cancels a reveal that is still loading
@@ -51,7 +51,7 @@ export default function PracticeDetailPage() {
 
     try {
       // The answer is only fetched now, after you've committed
-      const { data } = await revealSamplePractice(id, probability, { signal: controller.signal });
+      const { data } = await revealPractice(id, probability, { signal: controller.signal });
       // Saved only after a successful reveal, so a failure never leaves a half-saved call
       const result = makeCall({
         marketId: id,
