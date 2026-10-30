@@ -4,6 +4,7 @@ import Button from "../../components/Button.jsx";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import { getSparklines, listMarkets, searchMarkets } from "../../data/index.js";
 import useAutoRefresh from "../../hooks/useAutoRefresh.js";
 import useDebouncedValue from "../../hooks/useDebouncedValue.js";
 import useNow from "../../hooks/useNow.js";
@@ -21,8 +22,6 @@ import MarketCards from "./MarketCards.jsx";
 import MarketGrid from "./MarketGrid.jsx";
 import MarketRow from "./MarketRow.jsx";
 import RemoteResults from "./RemoteResults.jsx";
-import { loadSampleMarkets } from "./sampleMarkets.js";
-import { searchSampleMarkets } from "./sampleSearch.js";
 import TopMovers from "./TopMovers.jsx";
 import "./DashboardPage.css";
 
@@ -31,23 +30,44 @@ const AUTO_REFRESH_MS = 60 * 1000;
 // Search Polymarket too once the query is long enough and few loaded markets match
 const REMOTE_MIN_QUERY = 3;
 const REMOTE_MAX_LOCAL_MATCHES = 5;
+// getSparklines takes at most 50 ids; the first 50 (highest volume) get a chart
+const SPARKLINE_LIMIT = 50;
 
 export default function DashboardPage() {
-  const { status, data: markets, meta, error, run, retry } = useRequest();
+  const { status, data: loadedMarkets, meta, error, run, retry } = useRequest();
   const { blindMode } = useSettings();
   const [searchParams, setSearchParams] = useSearchParams();
   const now = useNow();
 
   function loadMarkets() {
-    run((signal) => loadSampleMarkets(signal));
+    run((signal) => listMarkets({ limit: 100, signal }));
   }
 
   useEffect(() => {
-    run((signal) => loadSampleMarkets(signal));
+    run((signal) => listMarkets({ limit: 100, signal }));
   }, [run]);
 
   // Prices move: reload every minute while the tab is open (old cards stay visible)
   useAutoRefresh(loadMarkets, AUTO_REFRESH_MS);
+
+  // Card charts need one Polymarket call per market, so the data layer gives
+  // them separately (D11, cached 5 min). A failure here is quiet: the cards
+  // still show the percentage and the weekly change, just without a chart.
+  const sparklines = useRequest();
+  const { run: runSparklines } = sparklines;
+  // A string, so the effect only re-runs when the set of ids really changes
+  const chartIds = (loadedMarkets ?? []).slice(0, SPARKLINE_LIMIT).map((market) => market.id).join(",");
+
+  useEffect(() => {
+    if (chartIds === "") return;
+    runSparklines((signal) => getSparklines(chartIds.split(","), { signal }));
+  }, [chartIds, runSparklines]);
+
+  // Derived: the loaded markets with their charts filled in where available
+  const markets =
+    loadedMarkets?.map((market) =>
+      sparklines.data?.[market.id] ? { ...market, sparkline: sparklines.data[market.id] } : market,
+    ) ?? null;
 
   // The URL is the only place the view lives. Everything below is derived
   // from it on every render, so nothing can get out of sync.
@@ -86,7 +106,7 @@ export default function DashboardPage() {
       resetRemote();
       return;
     }
-    runRemote((signal) => searchSampleMarkets({ q: debouncedQuery, signal }));
+    runRemote((signal) => searchMarkets({ q: debouncedQuery, limit: 10, signal }));
   }, [shouldSearchRemote, debouncedQuery, runRemote, resetRemote]);
 
   // Don't show a market twice if it is already in the loaded list
