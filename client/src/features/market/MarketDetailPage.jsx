@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Badge from "../../components/Badge.jsx";
+import { getMarket, getPrediction } from "../../data/index.js";
 import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
@@ -13,7 +14,6 @@ import useSettings from "../settings/useSettings.js";
 import CallItForm from "./CallItForm.jsx";
 import PriceChart from "./PriceChart.jsx";
 import RevealPanel from "./RevealPanel.jsx";
-import { getSampleMarket, getSamplePrediction } from "./sampleMarketData.js";
 import "./MarketDetailPage.css";
 
 export default function MarketDetailPage() {
@@ -30,8 +30,8 @@ export default function MarketDetailPage() {
   const { run: runPrediction } = prediction;
 
   useEffect(() => {
-    runMarket((signal) => getSampleMarket(id, { signal }));
-    runPrediction((signal) => getSamplePrediction(id, { signal }));
+    runMarket((signal) => getMarket(id, { signal }));
+    runPrediction((signal) => getPrediction(id, { signal }));
   }, [id, runMarket, runPrediction]);
 
   // useRequest keeps old data while loading; when moving to another market

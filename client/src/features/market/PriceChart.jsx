@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
+import { getHistory } from "../../data/index.js";
 import useRequest from "../../hooks/useRequest.js";
 import { chartGeometry, summarizeSeries, toPolyline } from "../../lib/chart.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatDate, formatPercent } from "../../lib/format.js";
-import { getSampleHistory } from "./sampleMarketData.js";
 import "./PriceChart.css";
 
 const RANGES = [
@@ -26,7 +26,7 @@ export default function PriceChart({ marketId, yourCall = null, aiProbability = 
   // Each range click starts a new request; useRequest aborts the previous one,
   // so clicking 1D, 1M, All fast always ends on All (latest call wins)
   useEffect(() => {
-    run((signal) => getSampleHistory(marketId, range, { signal }));
+    run((signal) => getHistory(marketId, range, { signal }));
   }, [marketId, range, run]);
 
   const points = data?.points ?? [];
