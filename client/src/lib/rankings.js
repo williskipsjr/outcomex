@@ -1,4 +1,4 @@
-import { getPriceChange } from "./sparkline.js";
+import { getMarketChange } from "./sparkline.js";
 
 // Pick markets for the home page sections. All pure: they take the loaded
 // markets and return a new, shorter array, never changing the input.
@@ -25,10 +25,10 @@ export function getMostTraded(markets, count = 4) {
   return markets.toSorted((a, b) => b.volume - a.volume).slice(0, count);
 }
 
-// Biggest price moves over the sparkline's week, up or down
+// Biggest price moves over the last week, up or down
 export function getTopMovers(markets, count = 6) {
   return markets
-    .map((market) => ({ market, change: getPriceChange(market.sparkline) }))
+    .map((market) => ({ market, change: getMarketChange(market) }))
     .filter(({ change }) => change !== null && change !== 0)
     .toSorted((a, b) => Math.abs(b.change) - Math.abs(a.change))
     .slice(0, count);

@@ -30,3 +30,12 @@ export function getPriceChange(prices) {
   const change = (prices[prices.length - 1] - prices[0]) * 100;
   return Math.round(change * 10) / 10;
 }
+
+// The week's change for a market, in points. Prefers Gamma's weekChange
+// (free with the market list); falls back to the sparkline when it's missing.
+export function getMarketChange(market) {
+  if (typeof market.weekChange === "number") {
+    return Math.round(market.weekChange * 1000) / 10;
+  }
+  return getPriceChange(market.sparkline);
+}
