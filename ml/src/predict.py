@@ -16,6 +16,12 @@ happens to show, even as its list shifts during the day.
 Which model: exactly the one gate G2 evaluated (src/model.py), so the number
 on screen matches the published track record. Features are computed "as of
 now" from the last 14 days of prices, the same way as in training.
+
+Only markets like the ones the model was tested on get a number: training and
+testing always happened 7 days before a market's scheduled end, so only
+markets whose scheduled end is 1-21 days away are scored (pre-registered for
+G2 run 2, docs/ml/evaluation.md). A market that ends in two years is a
+different kind of question, and the model has no track record there.
 """
 
 import argparse
@@ -105,7 +111,17 @@ def features_now(raw, now):
     return {"id": f"pm-{raw['id']}", "category": category_of(raw.get("tags"), raw.get("question")), **values}
 
 
+def in_horizon(raw, now):
+    """Scheduled end between SCORE_MIN_DAYS and SCORE_MAX_DAYS from now."""
+    end = to_utc(raw.get("endDate"))
+    if end is None:
+        return False
+    days = (end.timestamp() - now) / DAY
+    return config.SCORE_MIN_DAYS <= days <= config.SCORE_MAX_DAYS
+
+
 def score(model, raws, now):
+    raws = [raw for raw in raws if in_horizon(raw, now)]
     with ThreadPoolExecutor(max_workers=config.HISTORY_WORKERS) as pool:
         rows = [row for row in pool.map(lambda raw: features_now(raw, now), raws) if row]
     if not rows:
@@ -170,7 +186,11 @@ def main(argv=None):
     write_json(config.OUTPUT_DIR / "predictions.json", file)
     write_json(config.OUTPUT_DIR / "model.json", {**info, "generatedAt": generated_at})
 
-    print(f"scored {len(predictions)} of {len(raws)} open yes/no markets with {info['version']} (level {file['level']})")
+    in_range = sum(in_horizon(raw, now) for raw in raws)
+    print(
+        f"scored {len(predictions)} of {len(raws)} open yes/no markets with {info['version']} (level {file['level']}); "
+        f"{in_range} end within {config.SCORE_MIN_DAYS}-{config.SCORE_MAX_DAYS} days, the rest show NOT_SCORED"
+    )
 
     if args.mocks:
         mock_markets = json.loads((config.REPO_DIR / "client" / "src" / "mocks" / "markets.json").read_text(encoding="utf-8"))

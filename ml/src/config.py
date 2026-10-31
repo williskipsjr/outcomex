@@ -45,4 +45,9 @@ PAGES_PER_MONTH = 2
 REQUEST_PAUSE_SECONDS = 0.25  # be polite: Polymarket is a free public API
 HISTORY_WORKERS = 3  # parallel downloads for price histories; each still pauses between calls
 
+# Live predictions only for markets like the ones the model was tested on
+# (always 7 days before the scheduled end): scheduled end 1-21 days away
+SCORE_MIN_DAYS = 1
+SCORE_MAX_DAYS = 21
+
 SEED = 2026
