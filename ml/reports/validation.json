@@ -75,8 +75,8 @@
     }
   },
   "lowest_brier": "lr_full",
-  "chosen": "lr_crowd",
-  "chosen_C": 0.3,
+  "chosen": "lr_full",
+  "chosen_C": 1.0,
   "cv_tuning_brier_by_C": {
     "lr_crowd": {
       "0.01": 0.08457,
@@ -474,5 +474,9 @@
       }
     ]
   },
-  "override": null
+  "override": {
+    "rule_chose": "lr_crowd",
+    "chosen": "lr_full",
+    "reason": "Chosen by the project owner before the test run: lr_full is best on every validation metric (Brier 0.163 vs crowd 0.175) and in grouped cross-validation inside train; its lead over lr_crowd (-0.014, 95% CI [-0.031, +0.004]) is not significant on 124 mostly-Sports markets, but it learned an interpretable effect (Sports longshots overpriced) that makes the AI number informative."
+  }
 }
