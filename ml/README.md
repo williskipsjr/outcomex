@@ -25,7 +25,7 @@ Run everything from `ml/`. Each step is a script; notebooks are only for explori
 | 1b. Collect prices | `python -m src.collect histories` | `data/raw/history/` (14 days of hourly YES prices ending at each as-of time) | Done |
 | 2. Clean + G1 numbers | `python -m src.clean` | `data/interim/markets.csv`, `reports/funnel.json`, `reports/label-check.csv` | Done. G1 passed: 30 of 30 labels correct |
 | 3. Baselines | `python -m src.baselines` | `reports/baselines.json` | Done (ML-04) |
-| 4. Features | `python -m src.features` | `data/interim/features.csv` | ML-05 |
+| 4. Features | `python -m src.features` | `data/interim/features.csv`, `reports/features.json` | Done (ML-05): 7 price features + category, all at as-of |
 | 5. Train + evaluate (G2) | `python -m src.train` | `reports/evaluation.json`, figures | ML-06 |
 | 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v0 done: 50 questions, 48% YES, all 50 approved by hand. Not installed in the app yet |
 | 7. Predictions | `python -m src.predict` | `output/predictions.json` | ML-07 |
@@ -43,6 +43,7 @@ Tests: `python -m unittest discover -s tests`
 | Label | YES if the final YES price ≥ 0.99, NO if ≤ 0.01, otherwise dropped | Ambiguous and 50/50 resolutions can't be scored |
 | Minimum volume | $5,000 | Thin markets are noise |
 | Minimum lifetime | 14 days | The market must exist well before its as-of time |
+| Features | crowd price (and its log-odds), 1-day and 7-day move, 14-day volatility and range, hours since the last trade, category | All computed from prices at or before as-of. Total volume and "days until the scheduled end" are left out: both carry information from after as-of |
 | Price history window | the 14 days ending at as-of | CLOB allows at most 14 days per request, and we never download a price from after as-of, so features cannot leak the future |
 | Groups | Polymarket event slug | All markets of one event ("by June / July / August") go to the same split |
 | Split | by time over groups: oldest ~70% train, next ~15% validation, newest ~15% test | The test set is used once, at G2 |
