@@ -50,7 +50,7 @@ describe("mock data layer", () => {
 
   it("reveals a practice market", async () => {
     const { data: items } = await mock.listPractice();
-    expect(items.length).toBe(16);
+    expect(items.length).toBeGreaterThanOrEqual(50);
     expect(items[0]).not.toHaveProperty("outcome");
     const { data } = await mock.revealPractice(items[0].id, 0.3);
     expect(["YES", "NO"]).toContain(data.outcome);
