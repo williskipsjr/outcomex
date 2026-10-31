@@ -6,8 +6,8 @@ import * as sources from "./sources.js";
 // The only door between the React app and the outside world. Components and
 // hooks import from here and never call fetch themselves.
 //
-//   npm run dev                          real Polymarket data
-//   VITE_USE_MOCKS=true npm run dev      fixtures from src/mocks (works offline)
+//   npm run dev          real Polymarket data
+//   npm run dev:mock     fixtures from src/mocks (works offline; see .env.mock)
 //
 // The contract for everything exported here is docs/contracts/data.md.
 

@@ -19,7 +19,7 @@ Every function resolves to `{ data, meta }` or rejects with a `DataError` whose 
 
 | File | What it does |
 |---|---|
-| `index.js` | Exports every function; picks real or mock with `VITE_USE_MOCKS` |
+| `index.js` | Exports every function; picks real or mock with `VITE_USE_MOCKS` (`npm run dev:mock`) |
 | `polymarket.js` | D1 `listMarkets`, D2 `searchMarkets`, D3 `getMarket`, D4 `getHistory`, D9 `getStatuses`, D11 `getSparklines` |
 | `files.js` | D5 `getPrediction`, D6 `listPractice`, D7 `getPractice`, D8 `revealPractice`, over the ML files in `public/data` |
 | `sources.js` | D10 `checkSources` for the About page |
@@ -42,10 +42,10 @@ Every function resolves to `{ data, meta }` or rejects with a `DataError` whose 
 ## Mock mode and the failure switch
 
 ```bash
-VITE_USE_MOCKS=true npm run dev
+npm run dev:mock
 ```
 
-On Windows PowerShell: `$env:VITE_USE_MOCKS="true"; npm run dev`.
+It works the same on every OS: Vite's `--mode mock` loads `client/.env.mock`, which sets `VITE_USE_MOCKS=true`. `npm run build:mock` builds the offline demo version the same way.
 
 Then, in DevTools:
 
