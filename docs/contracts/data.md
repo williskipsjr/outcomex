@@ -21,7 +21,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 - Times are ISO-8601 UTC strings without fractions, e.g. `2026-12-31T23:59:00Z`.
 - Probabilities are decimals from 0 to 1. The UI turns them into percentages.
 - Market ids are the Polymarket id with a source prefix: `pm-665374`. Practice ids use `pr-`.
-- `VITE_USE_MOCKS=true` makes every function return fixtures from `client/src/mocks` instead (§7).
+- `VITE_USE_MOCKS=true` (`npm run dev:mock`) makes every function return fixtures from `client/src/mocks` instead (§7).
 
 `meta` on every success:
 
@@ -192,7 +192,7 @@ The answers file is public: anyone can read it in DevTools. Loading it only afte
 
 ## 7. Mock mode and the failure switch
 
-- `VITE_USE_MOCKS=true npm run dev` makes `index.js` export the fixture versions from `mock.js`. Each waits a random 300–900 ms.
+- `npm run dev:mock` (which sets `VITE_USE_MOCKS=true` through `client/.env.mock`) makes `index.js` export the fixture versions from `mock.js`. Each waits a random 300–900 ms.
 - Failure switch, in DevTools: `localStorage.setItem("outcomex.debug.fail", "<value>")`, then reload or retry.
   - A code on its own (`RATE_LIMITED`) makes every mock function fail with it.
   - A list of groups (`markets,history`) makes only those fail, with `UPSTREAM_UNAVAILABLE`.
