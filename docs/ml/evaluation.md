@@ -1,12 +1,34 @@
 # ML evaluation and gate G2 (ML-06)
 
-**Status: this G2 result is INVALID, because the evaluation was not leak-free (found 31 Oct 2026, the same day).** Nothing from it may be shown in the app. See "The leak" at the end; the dataset is being rebuilt with an outcome-free as-of time, and G2 will be run again on it.
+**Status: run 2 is pre-registered; its results are pending.** Run 1 (30–31 Oct) is invalid because its as-of time leaked the outcome (see [Run 1](#run-1-invalid) below).
 
-*The sections below document the invalid run as it happened.*
+## Run 2: what changed and what was fixed in advance
 
-Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`. To reproduce them, follow `ml/README.md`.
+Written and committed **before** any run 2 number was computed.
 
-## Setup
+**What changed (only this):**
+- **As-of = scheduled end − 7 days.** The scheduled end (`endDate`) is known in advance, so the as-of time can't depend on the outcome.
+- Markets that had already closed by their as-of time are dropped; they weren't open to forecast.
+- The split and ordering use the scheduled end too.
+- Everything else is unchanged: the data and labels (G1 stands, 30 of 30 labels correct), the features, the four candidate models, the C grid, the metrics and the G2 criteria.
+
+**Fixed in advance:**
+1. **The model is chosen by the pre-set rule in `ml/src/train.py`, with no human override.** The rule: lowest validation Brier, then the simplest model not significantly worse than it. Run 1's override was a human choice made after seeing validation numbers, and since the test split has now been seen once, run 2 removes every human choice.
+2. **The chosen model is refitted on train + validation and scored once on the test split.** That result decides G2, whatever it is.
+3. **Re-using the test markets is acknowledged.** The test split is again the newest ~15% of event groups, which overlaps run 1's test split. That is defensible only because the as-of definition changes every input, and because no choice in run 2 depends on a human.
+4. **Live predictions only go to markets like the ones the model was tested on**, whatever the result. Training and testing always happened 7 days before a market's scheduled end, so `predict.py` only scores live markets whose scheduled end is 1–21 days away. Every other market shows "AI not available" (`NOT_SCORED`).
+
+Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`.
+
+## Run 2 results
+
+*Pending.*
+
+## Run 1 (invalid)
+
+Run 1's reports are archived in `ml/reports/run1-invalid/`.
+
+### Setup
 
 - **Data:** 1,218 resolved yes/no markets that passed G1 ([feasibility.md](feasibility.md)).
 - **Split:** by time over event groups. A group never spans two splits.
@@ -26,7 +48,7 @@ Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`.
 
   Total volume and "days until the scheduled end" are excluded because both carry information from after the as-of time.
 
-## Candidates, simplest first
+### Candidates, simplest first
 
 | Model | What it is |
 |---|---|
@@ -39,7 +61,7 @@ Regularisation (C) is tuned by 5-fold cross-validation inside train, with folds 
 
 **The pre-set choice rule:** take the model with the lowest validation Brier, then step back to the simplest model that is not significantly worse than it (its bootstrap 95% interval for the difference contains 0).
 
-## Validation results (124 markets)
+### Validation results (124 markets)
 
 | | Brier | Log loss | ECE | Minus crowd (95% interval) |
 |---|---|---|---|---|
@@ -55,7 +77,7 @@ Regularisation (C) is tuned by 5-fold cross-validation inside train, with folds 
 - **Caveat:** 96 of the 124 validation markets are Sports, so the validation gain mostly measures that one effect.
 - **Gradient boosting** is worse than the plain logistic models and badly calibrated (ECE 0.135), so it is out.
 
-## Decision before the test run
+### Decision before the test run
 
 The rule chose `lr_crowd`. **The project owner overrode it to `lr_full` before the test split was touched** (commit `ad2975f`). The reason, as stored in `ml/reports/validation.json`:
 
@@ -63,7 +85,7 @@ The rule chose `lr_crowd`. **The project owner overrode it to `lr_full` before t
 
 `lr_full` (C = 1.0) was then refitted on train + validation (1,004 markets) and scored once on the test split.
 
-## Test results (214 markets, run once)
+### Test results (214 markets, run once)
 
 | | Brier | Log loss | ECE |
 |---|---|---|---|
@@ -87,7 +109,7 @@ Per category (Brier, model vs crowd):
 
 The Sports adjustment that helped on validation broke even on test. The model lost most ground on Economy and World.
 
-## Gate G2
+### Gate G2
 
 | Criterion (master plan §9.2) | Result | Pass |
 |---|---|---|
@@ -103,7 +125,7 @@ How to read this honestly:
 - It passes, but narrowly, and the calibration check only had one well-filled bucket. In the 90–100% bucket (18 markets) the model said 97% while 72% resolved YES. That bucket is too small for the rule, but worth knowing.
 - **This is not a model that beats the crowd.** It follows the role guide's second row: "a calibrated adjustment of the crowd. It does not beat the crowd; here is its track record."
 
-## What we claim, and what we don't
+### What we claim, and what we don't
 
 For the About page and the demo:
 
@@ -111,13 +133,13 @@ For the About page and the demo:
 
 We never call it a prediction of the future, and never call it financial advice.
 
-## Next
+### Next
 
 - **ML-07 `predictions.json`:** use exactly the evaluated model (`lr_full`, trained on train + validation), so the number on screen matches the published track record.
 - **Practice files:** add the model's out-of-sample AI numbers to `practice-answers.json` for the test-split questions.
 - **ML-08:** model card, built from this report.
 
-## The leak (found after the test run)
+### The leak (found after the test run)
 
 Building `predictions.json` showed the model pushing almost every mid-priced live market sharply *up*, including both sides of the same race. For example, "Republicans win Nevada" went from 22% to about 60% and "Democrats win Nevada" from 78% to about 95%.
 

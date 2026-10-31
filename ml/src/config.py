@@ -17,7 +17,9 @@ GAMMA = "https://gamma-api.polymarket.com"
 CLOB = "https://clob.polymarket.com"
 
 # The "time machine": every feature and the crowd baseline are taken this
-# many days before the market closed (master plan §6.4)
+# many days before the market's SCHEDULED end (master plan §6.4). Not the
+# actual close: that is earlier when a market resolves YES early, which
+# leaked the outcome (G2 run 1, docs/ml/evaluation.md).
 AS_OF_DAYS = 7
 
 # CLOB refuses a startTs/endTs window longer than 14 days, which is also

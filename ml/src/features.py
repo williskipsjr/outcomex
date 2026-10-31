@@ -11,9 +11,9 @@ suite checks it.
 
 Deliberately NOT used:
   - total volume: Gamma's number includes trading after as-of
-  - days until the scheduled end date: as-of is anchored to when the market
-    actually closed, so "how far is the scheduled end" would reveal an early
-    close, which the model couldn't have known
+  - days until the scheduled end: as-of is always scheduled end - 7 days, so
+    it would be the same for every market (and when as-of was anchored on the
+    actual close, it leaked the outcome; see docs/ml/evaluation.md)
   - anything from the question text or description (kept for later, if ever)
 """
 

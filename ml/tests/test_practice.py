@@ -13,6 +13,7 @@ def market(i, y, group=None, crowd=0.4, split="test", category="Sports", volume=
         "group": group or f"g{i}",
         "as_of": "2026-07-13T00:00:00Z",
         "close": f"2026-07-{10 + i % 18:02d}T00:00:00Z",
+        "closed_at": f"2026-07-{10 + i % 18:02d}T06:00:00Z",
         "outcome": "YES" if y else "NO",
         "y": y,
         "crowd_as_of": crowd,
@@ -77,6 +78,9 @@ class Files(unittest.TestCase):
         self.assertEqual(practice_list["items"][1]["imageUrl"], "https://x/2.png")
         self.assertEqual(practice_answers["answers"]["pr-1"]["outcome"], "YES")
         self.assertIsNone(practice_answers["answers"]["pr-1"]["aiProbability"])
+        # closedDate is the scheduled end; resolvedAt (only shown after the call) is the actual close
+        self.assertEqual(practice_list["items"][0]["closedDate"], chosen.iloc[0]["close"])
+        self.assertEqual(practice_answers["answers"]["pr-1"]["resolvedAt"], chosen.iloc[0]["closed_at"])
 
 
 if __name__ == "__main__":
