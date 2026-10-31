@@ -1,0 +1,96 @@
+{
+  "rows": 1218,
+  "missing_history": 0,
+  "crowd_mismatch_with_clean_step": 0,
+  "features": [
+    "crowd",
+    "crowd_logit",
+    "move_1d",
+    "move_7d",
+    "volatility_14d",
+    "range_14d",
+    "hours_since_trade",
+    "category (one-hot in the model)"
+  ],
+  "train_describe": {
+    "crowd": {
+      "count": 880.0,
+      "mean": 0.1572,
+      "std": 0.2797,
+      "min": 0.0005,
+      "25%": 0.0015,
+      "50%": 0.0122,
+      "75%": 0.1441,
+      "max": 0.997
+    },
+    "crowd_logit": {
+      "count": 880.0,
+      "mean": -2.928,
+      "std": 2.3282,
+      "min": -4.5951,
+      "25%": -4.5951,
+      "50%": -4.3901,
+      "75%": -1.7814,
+      "max": 4.5951
+    },
+    "move_1d": {
+      "count": 880.0,
+      "mean": -0.0042,
+      "std": 0.0616,
+      "min": -0.421,
+      "25%": -0.004,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 0.904
+    },
+    "move_7d": {
+      "count": 880.0,
+      "mean": -0.0034,
+      "std": 0.1254,
+      "min": -0.8585,
+      "25%": -0.01,
+      "50%": -0.001,
+      "75%": 0.001,
+      "max": 0.872
+    },
+    "volatility_14d": {
+      "count": 880.0,
+      "mean": 0.0251,
+      "std": 0.0385,
+      "min": 0.0,
+      "25%": 0.0005,
+      "50%": 0.0049,
+      "75%": 0.0349,
+      "max": 0.2421
+    },
+    "range_14d": {
+      "count": 880.0,
+      "mean": 0.1515,
+      "std": 0.2169,
+      "min": 0.0,
+      "25%": 0.003,
+      "50%": 0.0352,
+      "75%": 0.2424,
+      "max": 0.991
+    },
+    "hours_since_trade": {
+      "count": 880.0,
+      "mean": 0.6493,
+      "std": 1.385,
+      "min": 0.0017,
+      "25%": 0.2226,
+      "50%": 0.4375,
+      "75%": 0.6975,
+      "max": 15.0278
+    }
+  },
+  "train_correlation_with_outcome": {
+    "crowd": 0.769,
+    "crowd_logit": 0.761,
+    "move_1d": 0.132,
+    "move_7d": 0.269,
+    "volatility_14d": 0.352,
+    "range_14d": 0.367,
+    "hours_since_trade": 0.018
+  }
+}
