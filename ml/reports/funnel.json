@@ -1,0 +1,79 @@
+{
+  "funnel": [
+    {
+      "step": "closed markets downloaded (volume >= $5000)",
+      "rows": 3171
+    },
+    {
+      "step": "outcomes exactly Yes / No",
+      "rows": 1767
+    },
+    {
+      "step": "clean label (final YES price >= 0.99 or <= 0.01)",
+      "rows": 1766
+    },
+    {
+      "step": "still open at as-of (didn't close before scheduled end - 7 days)",
+      "rows": 1381
+    },
+    {
+      "step": "scheduled to run for at least 14 days",
+      "rows": 834
+    },
+    {
+      "step": "crowd price within 24 h before as-of",
+      "rows": 830
+    }
+  ],
+  "dropped_for_missing_as_of_price": {
+    "('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))": 2,
+    "no price before as-of": 1,
+    "last price older than 24 h": 1
+  },
+  "g1": {
+    "usable_markets": 830,
+    "usable_markets_pass": true,
+    "as_of_price_coverage": 0.995,
+    "as_of_price_coverage_pass": true,
+    "markets_in_newest_15pct_of_groups": 117,
+    "test_set_size_pass": true,
+    "groups": 378,
+    "largest_group": 32,
+    "label_check": "30 of 30 correct (checked by hand on 31 Oct 2026; labels don't depend on the as-of time)"
+  },
+  "yes_share": 0.214,
+  "categories": {
+    "World": 224,
+    "Sports": 155,
+    "Crypto": 149,
+    "Economy": 126,
+    "Politics": 97,
+    "Culture": 53,
+    "Tech & Science": 25,
+    "Other": 1
+  },
+  "close_range": [
+    "2025-07-01T04:00:00Z",
+    "2026-10-31T23:55:00Z"
+  ],
+  "by_month": {
+    "2025-07": 50,
+    "2025-08": 28,
+    "2025-09": 57,
+    "2025-10": 34,
+    "2025-11": 61,
+    "2025-12": 86,
+    "2026-01": 53,
+    "2026-02": 41,
+    "2026-03": 68,
+    "2026-04": 74,
+    "2026-05": 65,
+    "2026-06": 114,
+    "2026-07": 20,
+    "2026-08": 25,
+    "2026-09": 23,
+    "2026-10": 31
+  },
+  "crowd_brier_at_as_of": 0.0893,
+  "coin_flip_brier": 0.25
+}

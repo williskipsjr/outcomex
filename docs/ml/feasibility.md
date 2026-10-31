@@ -2,7 +2,7 @@
 
 **Status: G1 passed, 31 Oct 2026.** Every automatic check passes, and the hand check found 0 wrong labels out of 30. The PM records the decision in a decision record.
 
-> **Note (31 Oct 2026):** the as-of time used here (*actual* close − 7 days) turned out to leak the outcome; see [evaluation.md](evaluation.md#the-leak-found-after-the-test-run). The labels and G1 stand, but the as-of prices, baselines and practice files are being rebuilt with as-of = *scheduled* end − 7 days.
+> **Updated 1 Nov 2026.** Run 1 used as-of = *actual* close − 7 days, which leaked the outcome ([evaluation.md](evaluation.md#the-leak-found-after-the-test-run)). The numbers below are from the rebuilt dataset, with as-of = **scheduled end** − 7 days. G1 still passes on every criterion, and the labels (and so the hand check) are unchanged.
 
 All numbers come from `ml/reports/funnel.json` and `ml/reports/baselines.json`. To reproduce them, follow `ml/README.md`.
 
@@ -10,8 +10,8 @@ All numbers come from `ml/reports/funnel.json` and `ml/reports/baselines.json`. 
 
 - **Markets:** for every month from Jul 2025 to Oct 2026, the 200 highest-volume closed markets with at least $5,000 of volume (Gamma `/markets`, `closed=true`, ordered by `volumeNum`).
 - **Prices:** for each candidate, the hourly YES price over the 14 days that end at its as-of time, from CLOB `/prices-history` with `startTs`/`endTs`. CLOB allows at most 14 days per request, and that is exactly the look-back the features need. Because nothing after as-of was downloaded, no feature can leak the future.
-- **As-of time:** close − 7 days. Close is Gamma's `closedTime` (when trading actually stopped), else `endDate`.
-- **Downloads:** 3,171 markets and 1,766 price histories, with 0 failed requests.
+- **As-of time:** scheduled end (`endDate`) − 7 days. Markets that had already closed by then (Gamma `closedTime`) are dropped, because they weren't open to forecast.
+- **Downloads:** 3,171 markets and 1,381 price windows. 4 requests failed after retries, because of this network's dropped connections.
 
 Why not "newest closed markets first": that query returned 2,100 markets that all closed in the previous 24 hours, mostly small sports games. That is useless for a time-based split.
 
@@ -22,8 +22,9 @@ Why not "newest closed markets first": that query returned 2,100 markets that al
 | Closed markets downloaded (volume ≥ $5,000) | 3,171 |
 | Outcomes exactly Yes / No | 1,767 |
 | Clean label (final YES price ≥ 0.99 or ≤ 0.01) | 1,766 |
-| Open for at least 14 days | 1,219 |
-| Crowd price within 24 h before as-of | **1,218** |
+| Still open at as-of (didn't close before scheduled end − 7 days) | 1,381 |
+| Scheduled to run at least 14 days | 834 |
+| Crowd price within 24 h before as-of | **830** |
 
 Almost all of the drop at step 2 is multi-outcome markets (team vs team, ranges). Only one yes/no market had an ambiguous final price.
 
@@ -31,18 +32,18 @@ Almost all of the drop at step 2 is multi-outcome markets (team vs team, ranges)
 
 | Question | Result | Threshold | Pass |
 |---|---|---|---|
-| How many usable markets? | 1,218 | ≥ 300 | ✅ |
+| How many usable markets? | 830 | ≥ 300 | ✅ |
 | Are the labels right? | 30 random markets checked by hand against Polymarket: **0 wrong** (`ml/reports/label-check.csv`) | ≤ 1 wrong | ✅ |
-| Do we have a price at the as-of time? | 99.9% of usable markets (1,218 of 1,219) | ≥ 80% | ✅ |
-| Is there enough time range? | Closes from Feb 2025 to Oct 2026; the newest 15% of groups hold 214 markets | test set ≥ 60 | ✅ |
-| Are related markets grouped? | 472 event groups, the largest has 49 markets; a group never spans two splits | groups exist | ✅ |
-| Category mix | Sports 362 · World 304 · Crypto 159 · Economy 139 · Politics 137 · Culture 79 · Tech & Science 37 · Other 1 | report only | — |
+| Do we have a price at the as-of time? | 99.5% of usable markets (830 of 834) | ≥ 80% | ✅ |
+| Is there enough time range? | Scheduled ends from Jul 2025 to Oct 2026; the newest 15% of groups hold 117 markets | test set ≥ 60 | ✅ |
+| Are related markets grouped? | 378 event groups, the largest has 32 markets; a group never spans two splits | groups exist | ✅ |
+| Category mix | World 224 · Sports 155 · Crypto 149 · Economy 126 · Politics 97 · Culture 53 · Tech & Science 25 · Other 1 | report only | — |
 
 Other facts that matter for the model and for Practice mode:
 
-- **Only 21.8% resolved YES.** Practice files must be balanced by hand, or "always say NO" scores well.
-- **The crowd is strong 7 days out:** its Brier score at as-of is 0.077 over all 1,218 markets. Many markets are already near 0 or 1 a week before they close.
-- **Sports and World make up 55% of the data.** Tech & Science has only 37 markets, so per-category results there will be noisy.
+- **Only 21.4% resolved YES.** Practice files must be balanced by hand, or "always say NO" scores well.
+- **The crowd is strong 7 days out:** its Brier score at as-of is 0.089 over all 830 markets. Many markets are already near 0 or 1 a week before they close.
+- **World and Sports make up 46% of the data.** Tech & Science has only 25 markets, so per-category results there will be noisy.
 
 ## How the hand check works
 
@@ -50,17 +51,17 @@ Open `ml/reports/label-check.csv`. For each row, open the Polymarket link, check
 
 ## Baselines (ML-04, validation split)
 
-Split by time over event groups: train 880 markets (330 groups), validation 124 (71 groups), test 214 (71 groups). The test split is untouched until G2.
+Split by scheduled end over event groups: train 634 markets (264 groups), validation 79 (57 groups), test 117 (57 groups).
 
 | Baseline | Brier | Log loss | ECE |
 |---|---|---|---|
-| B0 · always 50% | 0.250 | 0.693 | 0.073 |
-| B1 · crowd at as-of | **0.175** | 0.511 | 0.074 |
-| B2 · category base rate | 0.321 | 0.917 | 0.259 |
+| B0 · always 50% | 0.250 | 0.693 | 0.032 |
+| B1 · crowd at as-of | **0.196** | 0.573 | 0.087 |
+| B2 · category base rate | 0.298 | 0.797 | 0.238 |
 
-- Crowd minus coin flip: −0.075, 95% interval [−0.110, −0.038]. The crowd is clearly better.
-- Crowd minus category rate: −0.146, 95% interval [−0.211, −0.079]. Question type alone carries almost no signal.
-- The validation period is harder than the dataset as a whole: 0.175 here, against 0.077 overall. G2 compares the model with the crowd on the same test markets, so that is fair, but the absolute numbers will vary between periods.
+- Crowd minus coin flip: −0.054, 95% interval [−0.095, −0.009]. The crowd is clearly better.
+- Crowd minus category rate: −0.102, 95% interval [−0.165, −0.036]. Question type alone carries almost no signal.
+- The validation period is harder than the dataset as a whole: 0.196 here, against 0.089 overall. G2 compares the model with the crowd on the same test markets, so that is fair, but the absolute numbers will vary between periods.
 
 ## Recommendation
 

@@ -26,7 +26,7 @@ Run everything from `ml/`. Each step is a script; notebooks are only for explori
 | 2. Clean + G1 numbers | `python -m src.clean` | `data/interim/markets.csv`, `reports/funnel.json`, `reports/label-check.csv` | Done. G1 passed: 30 of 30 labels correct |
 | 3. Baselines | `python -m src.baselines` | `reports/baselines.json` | Done (ML-04) |
 | 4. Features | `python -m src.features` | `data/interim/features.csv`, `reports/features.json` | Done (ML-05): 7 price features + category, all at as-of |
-| 5. Train + evaluate (G2) | `python -m src.train`, then `--test` once | `reports/validation.json`, `reports/evaluation.json`, `reports/figures/` | G2 run 1 INVALID: the as-of time leaked the outcome (see docs/ml/evaluation.md). Rebuilding |
+| 5. Train + evaluate (G2) | `python -m src.train`, then `--test` once | `reports/validation.json`, `reports/evaluation.json`, `reports/figures/` | Done (ML-06). G2 run 2: Level A, a recalibrated crowd (test Brier 0.0891 vs crowd 0.0890). Run 1 invalid (leak) |
 | 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v0 done: 50 questions, 48% YES, all 50 approved by hand. Not installed in the app yet |
 | 7. Predictions | `python -m src.predict` (`--mocks`, `--install`) | `output/predictions.json`, `output/model.json` | Script ready (ML-07); waits for a valid G2 |
 
@@ -38,15 +38,15 @@ Tests: `python -m unittest discover -s tests`
 
 | Choice | Value | Why |
 |---|---|---|
-| As-of time | close − 7 days (**being changed to scheduled end − 7 days**: anchoring on the actual close leaked the outcome) | Practice mode "travels back" to this moment, and every feature is computed at it |
-| Close time | Gamma `closedTime`, else `endDate` | When trading actually stopped; many markets resolve early |
+| As-of time | **scheduled end** − 7 days | Known in advance, so it can't depend on the outcome. (Run 1 used the *actual* close, which leaked the outcome: YES markets often close early.) Practice mode "travels back" to this moment, and every feature is computed at it |
+| Still open at as-of | Gamma `closedTime` (else `endDate`) must be after as-of | A market that already resolved can't be forecast. The actual close is used for nothing else |
 | Label | YES if the final YES price ≥ 0.99, NO if ≤ 0.01, otherwise dropped | Ambiguous and 50/50 resolutions can't be scored |
 | Minimum volume | $5,000 | Thin markets are noise |
-| Minimum lifetime | 14 days | The market must exist well before its as-of time |
+| Minimum lifetime | 14 days from start to scheduled end | The market must exist well before its as-of time |
 | Features | crowd price (and its log-odds), 1-day and 7-day move, 14-day volatility and range, hours since the last trade, category | All computed from prices at or before as-of. Total volume and "days until the scheduled end" are left out: both carry information from after as-of |
 | Price history window | the 14 days ending at as-of | CLOB allows at most 14 days per request, and we never download a price from after as-of, so features cannot leak the future |
 | Groups | Polymarket event slug | All markets of one event ("by June / July / August") go to the same split |
-| Split | by time over groups: oldest ~70% train, next ~15% validation, newest ~15% test | The test set is used once, at G2 |
+| Split | by scheduled end, over groups: oldest ~70% train, next ~15% validation, newest ~15% test | The test set is used once per G2 run |
 | Categories | `src/polymarket.py`, identical to `client/src/data/normalize.js` | Checked by shared test cases in `client/src/data/__fixtures__/category-cases.json` |
 
 ## Scoring

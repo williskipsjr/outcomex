@@ -1,6 +1,6 @@
 # ML evaluation and gate G2 (ML-06)
 
-**Status: run 2 is pre-registered; its results are pending.** Run 1 (30–31 Oct) is invalid because its as-of time leaked the outcome (see [Run 1](#run-1-invalid) below).
+**Status: G2 decided by run 2, 1 Nov 2026: Level A.** The AI is a recalibrated crowd: on 117 held-out markets it scored the same as the crowd (Brier 0.0891 vs 0.0890), no better and no worse. Run 1 (30–31 Oct) is invalid because its as-of time leaked the outcome (see [Run 1](#run-1-invalid) below). The PM records the decision in a decision record.
 
 ## Run 2: what changed and what was fixed in advance
 
@@ -22,7 +22,74 @@ Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`.
 
 ## Run 2 results
 
-*Pending.*
+### Data
+
+| Step | Markets |
+|---|---|
+| Clean yes/no labels | 1,766 |
+| Still open at as-of (scheduled end − 7 days) | 1,381 |
+| Scheduled to run at least 14 days | 834 |
+| Crowd price within 24 h before as-of | **830** |
+
+The split: train 634 (264 event groups), validation 79 (57), test 117 (57).
+
+**The leak is gone.** On train + validation, markets priced 5–95% at as-of resolved YES 43% of the time against a crowd price of 39%, and the price bands sit close to the diagonal, some above and some below. Run 1's early closers showed 59% against 38%.
+
+### Validation (79 markets)
+
+| | Brier | Log loss | ECE | Minus crowd (95% interval) |
+|---|---|---|---|---|
+| Crowd | 0.1957 | 0.573 | 0.087 | — |
+| `lr_crowd` (C = 0.3) | 0.1940 | 0.568 | 0.070 | −0.002 [−0.007, +0.003] |
+| `lr_price` (C = 0.3) | 0.1930 | 0.565 | 0.078 | −0.003 [−0.008, +0.003] |
+| `lr_full` (C = 0.3) | 0.1981 | 0.573 | 0.096 | +0.002 [−0.006, +0.011] |
+| `hgb` | 0.2347 | 0.655 | 0.162 | +0.039 [−0.002, +0.078] |
+
+None of the models is significantly different from the crowd. `lr_price` has the lowest Brier, but not significantly lower than `lr_crowd`, so **the rule chose `lr_crowd`, with no override.**
+
+Without the leak, the Sports and category effects that `lr_full` showed in run 1 are gone; category now makes the model slightly worse.
+
+### Test (117 markets, run once)
+
+| | Brier | Log loss | ECE |
+|---|---|---|---|
+| Always 50% | 0.250 | 0.693 | 0.321 |
+| Crowd at as-of | 0.0890 | 0.272 | 0.077 |
+| **`lr_crowd`**, refitted on train + validation | **0.0891** | 0.278 | 0.080 |
+
+- **Model minus crowd:** +0.0001, 95% interval [−0.0042, +0.0038]. No difference.
+- **Per category** (model vs crowd): Economy 0.030 vs 0.024 (n = 38); World 0.133 vs 0.140 (34); Sports 0.116 vs 0.116 (26); Politics 0.115 vs 0.113 (10); Crypto 0.086 vs 0.081 (7); Tech & Science 0.000 vs 0.000 (2).
+
+**What the model does:** AI log-odds = 0.12 + 0.86 × the crowd's log-odds. It gently pulls extreme prices toward the middle:
+
+| Crowd | 2% | 10% | 30% | 50% | 70% | 90% | 98% |
+|---|---|---|---|---|---|---|---|
+| AI | 4% | 15% | 35% | 53% | 70% | 88% | 97% |
+
+### Gate G2
+
+| Criterion (master plan §9.2) | Result | Pass |
+|---|---|---|
+| Leak-free, time-based test set | As-of = scheduled end − 7 days; prices only up to as-of; event groups never span splits; test used once in run 2 | ✅ |
+| Model Brier below always-50% (0.25) | 0.0891 | ✅ |
+| No more than 0.01 worse than the crowd | +0.0001 | ✅ |
+| Calibrated within ±0.10 in buckets with at least 20 markets | One such bucket (0–10%, n = 66): forecast 0.029, actual 0.000 | ✅, on one bucket only |
+
+**Decision: Level A.** The app shows the AI probability with its track record. Honestly read, this is the role guide's second row: "a calibrated adjustment of the crowd. It does not beat the crowd; here is its track record." The crowd is hard to beat a week before close, and our price-only features don't beat it.
+
+### What we claim
+
+For the About page and the demo:
+
+> On 117 held-out markets, scored a week before their scheduled end, our AI and the crowd both scored a Brier score of 0.089 (always saying 50% scores 0.25). The AI is the crowd's price, gently recalibrated: it pulls very confident prices slightly toward the middle. It is as accurate as the crowd, not more. It only gives a number for markets that end within 21 days, because that's the only kind of market it was tested on.
+
+We never call it a prediction of the future, and never call it financial advice.
+
+### Next
+
+- **ML-07:** `predictions.json` from exactly this model, only for live markets 1–21 days from their scheduled end.
+- **Practice v1:** the out-of-sample AI numbers for test-split questions.
+- **ML-08:** the model card.
 
 ## Run 1 (invalid)
 
