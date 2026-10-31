@@ -1,6 +1,6 @@
 # ML feasibility report and gate G1 (ML-01)
 
-**Status: draft, 30 Oct 2026.** Every automatic G1 check passes. The decision waits on one manual step: the 30-label hand check in `ml/reports/label-check.csv`. Due Sun 1 Nov; the PM records the decision.
+**Status: G1 passed, 31 Oct 2026.** Every automatic check passes, and the hand check found 0 wrong labels out of 30. The PM records the decision in a decision record.
 
 All numbers come from `ml/reports/funnel.json` and `ml/reports/baselines.json`. To reproduce them, follow `ml/README.md`.
 
@@ -30,7 +30,7 @@ Almost all of the drop at step 2 is multi-outcome markets (team vs team, ranges)
 | Question | Result | Threshold | Pass |
 |---|---|---|---|
 | How many usable markets? | 1,218 | ≥ 300 | ✅ |
-| Are the labels right? | 30 random markets in `ml/reports/label-check.csv` | ≤ 1 wrong | ⏳ hand check pending |
+| Are the labels right? | 30 random markets checked by hand against Polymarket: **0 wrong** (`ml/reports/label-check.csv`) | ≤ 1 wrong | ✅ |
 | Do we have a price at the as-of time? | 99.9% of usable markets (1,218 of 1,219) | ≥ 80% | ✅ |
 | Is there enough time range? | Closes from Feb 2025 to Oct 2026; the newest 15% of groups hold 214 markets | test set ≥ 60 | ✅ |
 | Are related markets grouped? | 472 event groups, the largest has 49 markets; a group never spans two splits | groups exist | ✅ |
@@ -62,4 +62,4 @@ Split by time over event groups: train 880 markets (330 groups), validation 124 
 
 ## Recommendation
 
-**G1: pass, once the hand check shows at most 1 wrong label.** Move on to features and the model (ML-05, ML-06). Given how strong the crowd is, the realistic goal for G2 is the master plan's Level A wording: "a calibrated adjustment of the crowd, not better than it".
+**G1: passed** (all automatic checks, and 30 of 30 labels correct). Move on to features and the model (ML-05, ML-06). Given how strong the crowd is, the realistic goal for G2 is the master plan's Level A wording: "a calibrated adjustment of the crowd, not better than it".

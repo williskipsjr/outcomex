@@ -23,11 +23,11 @@ Run everything from `ml/`. Each step is a script; notebooks are only for explori
 |---|---|---|---|
 | 1a. Collect markets | `python -m src.collect markets` | `data/raw/markets/` (the 200 highest-volume closed markets of each month since Jul 2025) | Done |
 | 1b. Collect prices | `python -m src.collect histories` | `data/raw/history/` (14 days of hourly YES prices ending at each as-of time) | Done |
-| 2. Clean + G1 numbers | `python -m src.clean` | `data/interim/markets.csv`, `reports/funnel.json`, `reports/label-check.csv` | Done |
+| 2. Clean + G1 numbers | `python -m src.clean` | `data/interim/markets.csv`, `reports/funnel.json`, `reports/label-check.csv` | Done. G1 passed: 30 of 30 labels correct |
 | 3. Baselines | `python -m src.baselines` | `reports/baselines.json` | Done (ML-04) |
 | 4. Features | `python -m src.features` | `data/interim/features.csv` | ML-05 |
 | 5. Train + evaluate (G2) | `python -m src.train` | `reports/evaluation.json`, figures | ML-06 |
-| 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v0 done: 50 questions, 48% YES. Not installed in the app yet |
+| 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v0 done: 50 questions, 48% YES, all 50 approved by hand. Not installed in the app yet |
 | 7. Predictions | `python -m src.predict` | `output/predictions.json` | ML-07 |
 
 `data/` is git-ignored and never committed. Both collect steps skip files that are already on disk, so a run that was interrupted (or rate-limited) just continues where it stopped. Collecting from scratch takes about 10 minutes, because the scripts pause between requests to be polite to a free API.
