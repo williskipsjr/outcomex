@@ -1,8 +1,8 @@
 # ML evaluation and gate G2 (ML-06)
 
-**Status: validation done. The one-time test evaluation has not been run yet.**
+**Status: G2 decided, 31 Oct 2026: Level A, by a narrow margin.** The model is within 0.01 of the crowd on the test split but not better than it. The PM records the decision in a decision record.
 
-Numbers come from `ml/reports/validation.json` (and, once the test run happens, `ml/reports/evaluation.json`). To reproduce them, follow `ml/README.md`.
+Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`. To reproduce them, follow `ml/README.md`.
 
 ## Setup
 
@@ -55,20 +55,62 @@ Regularisation (C) is tuned by 5-fold cross-validation inside train, with folds 
 
 ## Decision before the test run
 
-⏳ **Choose which model goes to the test split, and record it before running it:**
+The rule chose `lr_crowd`. **The project owner overrode it to `lr_full` before the test split was touched** (commit `ad2975f`). The reason, as stored in `ml/reports/validation.json`:
 
-- **Keep the rule:** `python -m src.train --test` evaluates `lr_crowd`. That almost certainly gives Level A, but the AI number will sit very close to the crowd's.
-- **Override to `lr_full`:**
+> lr_full is best on every validation metric (Brier 0.163 vs crowd 0.175) and in grouped cross-validation inside train; its lead over lr_crowd is not significant on 124 mostly-Sports markets, but it learned an interpretable effect (Sports longshots overpriced) that makes the AI number informative.
 
-  ```bash
-  python -m src.train --choose lr_full --reason "..."
-  python -m src.train --test
-  ```
+`lr_full` (C = 1.0) was then refitted on train + validation (1,004 markets) and scored once on the test split.
 
-  The reason is stored next to the choice in `ml/reports/validation.json` and in the test report.
+## Test results (214 markets, run once)
 
-The test split is evaluated exactly once. `--test` refuses to run again once `ml/reports/evaluation.json` exists.
+| | Brier | Log loss | ECE |
+|---|---|---|---|
+| Always 50% | 0.250 | 0.693 | 0.336 |
+| **Crowd at as-of** | **0.0578** | **0.180** | **0.053** |
+| `lr_full` | 0.0673 | 0.231 | 0.076 |
 
-## Test results and the G2 decision
+- **Model minus crowd:** +0.0095, 95% interval [−0.0007, +0.0209]. The model is slightly worse than the crowd. The difference is not statistically significant, but it leans worse.
+- **The test period was easy for the crowd:** Brier 0.058 here, against 0.175 on validation. 144 of the 214 test markets were priced under 10% a week out and nearly all resolved NO.
 
-*Pending the one-time test run.*
+Per category (Brier, model vs crowd):
+
+| Category | n | Model | Crowd |
+|---|---|---|---|
+| Sports | 86 | 0.0655 | 0.0652 |
+| World | 70 | 0.0665 | 0.0582 |
+| Economy | 38 | 0.0566 | 0.0281 |
+| Politics | 11 | 0.1132 | 0.0978 |
+| Crypto | 7 | 0.1036 | 0.0773 |
+| Tech & Science | 2 | 0.0004 | 0.0001 |
+
+The Sports adjustment that helped on validation broke even on test. The model lost most ground on Economy and World.
+
+## Gate G2
+
+| Criterion (master plan §9.2) | Result | Pass |
+|---|---|---|
+| Leak-free, time-based test set | As-of features only; event groups never span splits; test used once | ✅ |
+| Model Brier below always-50% (0.25) | 0.0673 | ✅ |
+| No more than 0.01 worse than the crowd | +0.0095 | ✅ (by 0.0005) |
+| Calibrated within ±0.10 in buckets with at least 20 markets | Only one bucket has 20+ markets (0–10%, n = 144): forecast 0.021, actual 0.007 | ✅, but on one bucket only |
+
+**Decision: Level A.** The app shows the AI probability with its track record.
+
+How to read this honestly:
+
+- It passes, but narrowly, and the calibration check only had one well-filled bucket. In the 90–100% bucket (18 markets) the model said 97% while 72% resolved YES. That bucket is too small for the rule, but worth knowing.
+- **This is not a model that beats the crowd.** It follows the role guide's second row: "a calibrated adjustment of the crowd. It does not beat the crowd; here is its track record."
+
+## What we claim, and what we don't
+
+For the About page and the demo:
+
+> On 214 held-out markets that closed between Apr and Oct 2026, our AI scored a Brier score of 0.067; the crowd scored 0.058 and always saying 50% scores 0.25. The AI starts from the crowd's price and adjusts it for the kind of question and how the price has been moving. It is about as accurate as the crowd, not better.
+
+We never call it a prediction of the future, and never call it financial advice.
+
+## Next
+
+- **ML-07 `predictions.json`:** use exactly the evaluated model (`lr_full`, trained on train + validation), so the number on screen matches the published track record.
+- **Practice files:** add the model's out-of-sample AI numbers to `practice-answers.json` for the test-split questions.
+- **ML-08:** model card, built from this report.
