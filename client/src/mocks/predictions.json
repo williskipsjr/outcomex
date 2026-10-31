@@ -1,131 +1,143 @@
 {
- "modelVersion": "mock-0 (not a real model)",
+ "modelVersion": "lr-crowd-2026-11-01",
  "level": "model",
- "generatedAt": "2026-10-29T20:01:32Z",
+ "generatedAt": "2026-10-31T20:10:08Z",
  "metrics": {
-  "testBrier": null,
-  "crowdBrier": null,
-  "n": 0
+  "testBrier": 0.0891,
+  "crowdBrier": 0.089,
+  "n": 117
  },
  "predictions": {
-  "pm-682705": {
-   "probability": 0.385,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
   "pm-562802": {
-   "probability": 0.895,
+   "probability": 0.9286,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-2100981": {
-   "probability": 0.987,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI lowers the crowd's price from 94% to 93%",
+    "Markets priced around 94% have resolved YES less often than that"
    ]
   },
   "pm-562803": {
-   "probability": 0.105,
+   "probability": 0.0887,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 6% to 9%",
+    "Markets priced around 6% have resolved YES more often than that"
    ]
   },
   "pm-562831": {
-   "probability": 0.125,
+   "probability": 0.0751,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-561229": {
-   "probability": 0.1,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 4% to 8%",
+    "Markets priced around 4% have resolved YES more often than that"
    ]
   },
   "pm-562828": {
-   "probability": 0.635,
+   "probability": 0.7043,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI agrees with the crowd's price (70%)"
    ]
   },
   "pm-630964": {
-   "probability": 0.295,
+   "probability": 0.3471,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-3215007": {
-   "probability": 0.245,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-2110579": {
-   "probability": 0.067,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-3215005": {
-   "probability": 0.01,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-3501950": {
-   "probability": 0.01,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 30% to 35%",
+    "Markets priced around 30% have resolved YES more often than that"
    ]
   },
   "pm-562830": {
-   "probability": 0.265,
+   "probability": 0.2895,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 24% to 29%",
+    "Markets priced around 24% have resolved YES more often than that"
    ]
   },
   "pm-630963": {
-   "probability": 0.735,
+   "probability": 0.7043,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-2772194": {
-   "probability": 0.062,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-663583": {
-   "probability": 0.01,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
-   ]
-  },
-  "pm-3215008": {
-   "probability": 0.735,
-   "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI agrees with the crowd's price (70%)"
    ]
   },
   "pm-5686980": {
-   "probability": 0.775,
+   "probability": 0.7129,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI agrees with the crowd's price (72%)"
    ]
   },
   "pm-630806": {
-   "probability": 0.285,
+   "probability": 0.2493,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 20% to 25%",
+    "Markets priced around 20% have resolved YES more often than that"
    ]
   },
-  "pm-679060": {
-   "probability": 0.088,
+  "pm-562794": {
+   "probability": 0.3377,
    "explanation": [
-    "Mock reason: replaced when the ML pipeline runs"
+    "The AI raises the crowd's price from 28% to 34%",
+    "Markets priced around 28% have resolved YES more often than that"
+   ]
+  },
+  "pm-562793": {
+   "probability": 0.7129,
+   "explanation": [
+    "The AI agrees with the crowd's price (72%)"
+   ]
+  },
+  "pm-629691": {
+   "probability": 0.6807,
+   "explanation": [
+    "The AI agrees with the crowd's price (68%)"
+   ]
+  },
+  "pm-630805": {
+   "probability": 0.7922,
+   "explanation": [
+    "The AI lowers the crowd's price from 80% to 79%"
+   ]
+  },
+  "pm-648383": {
+   "probability": 0.3187,
+   "explanation": [
+    "The AI raises the crowd's price from 26% to 32%",
+    "Markets priced around 26% have resolved YES more often than that"
+   ]
+  },
+  "pm-5447182": {
+   "probability": 0.8817,
+   "explanation": [
+    "The AI lowers the crowd's price from 90% to 88%",
+    "Markets priced around 90% have resolved YES less often than that"
+   ]
+  },
+  "pm-628940": {
+   "probability": 0.0289,
+   "explanation": [
+    "The AI raises the crowd's price from 1% to 3%",
+    "Markets priced around 1% have resolved YES more often than that"
+   ]
+  },
+  "pm-628941": {
+   "probability": 0.975,
+   "explanation": [
+    "The AI agrees with the crowd's price (98%)"
+   ]
+  },
+  "pm-943539": {
+   "probability": 0.2018,
+   "explanation": [
+    "The AI raises the crowd's price from 15% to 20%",
+    "Markets priced around 15% have resolved YES more often than that"
+   ]
+  },
+  "pm-634976": {
+   "probability": 0.7216,
+   "explanation": [
+    "The AI agrees with the crowd's price (72%)"
+   ]
+  },
+  "pm-629690": {
+   "probability": 0.3657,
+   "explanation": [
+    "The AI raises the crowd's price from 32% to 37%",
+    "Markets priced around 32% have resolved YES more often than that"
    ]
   }
  }

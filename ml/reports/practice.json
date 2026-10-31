@@ -1,0 +1,30 @@
+{
+ "generatedAt": "2026-10-31T20:09:20Z",
+ "items": 39,
+ "yes": 16,
+ "yes_share": 0.41,
+ "categories": {
+  "Sports": 14,
+  "Economy": 10,
+  "World": 9,
+  "Crypto": 3,
+  "Politics": 3
+ },
+ "ai_numbers": 39,
+ "model_version": "lr-crowd-2026-11-01",
+ "events": 25,
+ "test_split_markets": 117,
+ "candidates_after_filters": 46,
+ "rules": {
+  "split": "test only",
+  "crowd_as_of_range": [
+   0.05,
+   0.95
+  ],
+  "max_per_event": 2,
+  "yes_share_range": [
+   0.4,
+   0.6
+  ]
+ }
+}

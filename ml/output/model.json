@@ -1,0 +1,19 @@
+{
+ "name": "lr_crowd",
+ "C": 0.3,
+ "version": "lr-crowd-2026-11-01",
+ "trained_on_markets": 713,
+ "level": "A",
+ "metrics": {
+  "testBrier": 0.0891,
+  "crowdBrier": 0.089,
+  "n": 117
+ },
+ "coefficients": {
+  "intercept": -2.067,
+  "coefficients": {
+   "crowd_logit": 2.0354
+  }
+ },
+ "generatedAt": "2026-10-31T20:10:08Z"
+}

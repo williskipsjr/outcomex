@@ -8,8 +8,8 @@ Only ship --install together with the frontend's practice swap: today's
 sample code in the app still reads the old practice-answers.json shape.
 
 Rules (ML role guide §7):
-  - Questions come from the TEST split only, so the AI numbers added after
-    gate G2 are genuinely out-of-sample.
+  - Questions come from the TEST split only, so their AI numbers (from the
+    G2-evaluated model, trained on train + validation) are out-of-sample.
   - Roughly balanced YES / NO. Only ~22% of all markets resolved YES, so
     without balancing "always say NO" would score well.
   - No market the crowd had already settled a week out (price under 5% or
@@ -96,7 +96,9 @@ def practice_id(market_id):
     return f"pr-{market_id}"
 
 
-def build_files(chosen, raw_by_id, generated_at):
+def build_files(chosen, raw_by_id, generated_at, ai=None, model_version=None):
+    """ai: {market id: out-of-sample AI probability}, or None before G2 / at Level B or C."""
+    ai = ai or {}
     items, answers = [], {}
     for row in chosen.itertuples():
         raw = raw_by_id.get(str(row.id), {})
@@ -118,8 +120,9 @@ def build_files(chosen, raw_by_id, generated_at):
         answers[practice_id(row.id)] = {
             "outcome": row.outcome,
             "crowdProbabilityAsOf": round(float(row.crowd_as_of), 4),
-            "aiProbability": None,  # filled in after gate G2, from a model that never saw the test split
-            "modelVersion": None,
+            # From the G2-evaluated model, which never trained on the test split
+            "aiProbability": ai.get(row.id),
+            "modelVersion": model_version if row.id in ai else None,
             "resolvedAt": row.closed_at,  # only revealed after the call
         }
     practice_list = {"generatedAt": generated_at, "asOfOffsetDays": config.AS_OF_DAYS, "items": items}
@@ -138,6 +141,22 @@ def check_files(practice_list, practice_answers):
     for answer in practice_answers["answers"].values():
         assert answer["outcome"] in ("YES", "NO")
         assert 0 <= answer["crowdProbabilityAsOf"] <= 1
+        if answer["aiProbability"] is not None:
+            assert 0.01 <= answer["aiProbability"] <= 0.99 and answer["modelVersion"]
+
+
+def out_of_sample_ai(chosen):
+    """AI numbers from the G2-evaluated model (trained on train + validation)
+    for the chosen test-split markets. Only at Level A; otherwise none."""
+    from .model import final_model, predict_rows
+
+    model, info = final_model()
+    if info["level"] != "A":
+        return {}, None
+    features = pd.read_csv(config.INTERIM_DIR / "features.csv")
+    rows = features[features["id"].isin(chosen["id"]) & (features["split"] == "test")]
+    probabilities = predict_rows(model, rows)
+    return {int(i): round(float(p), 4) for i, p in zip(rows["id"], probabilities)}, info["version"]
 
 
 def write_json(path, value):
@@ -157,14 +176,16 @@ def main(argv=None):
     pool = candidates(table, descriptions)
     chosen = select_practice(pool)
 
+    ai, model_version = out_of_sample_ai(chosen)
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    practice_list, practice_answers = build_files(chosen, raw_by_id, generated_at)
+    practice_list, practice_answers = build_files(chosen, raw_by_id, generated_at, ai, model_version)
     check_files(practice_list, practice_answers)
 
     write_json(config.OUTPUT_DIR / "practice-list.json", practice_list)
     write_json(config.OUTPUT_DIR / "practice-answers.json", practice_answers)
 
     review = chosen[["id", "question", "category", "group", "outcome", "crowd_as_of", "close"]].copy()
+    review["ai"] = review["id"].map(ai)
     review["practice_id"] = review["id"].map(practice_id)
     review["ok_to_ship (y/n)"] = ""
     review.to_csv(config.REPORTS_DIR / "practice-review.csv", index=False)
@@ -175,6 +196,8 @@ def main(argv=None):
         "yes": int(chosen["y"].sum()),
         "yes_share": round(float(chosen["y"].mean()), 3),
         "categories": chosen["category"].value_counts().to_dict(),
+        "ai_numbers": len(ai),
+        "model_version": model_version,
         "events": int(chosen["group"].nunique()),
         "test_split_markets": int((table["split"] == "test").sum()),
         "candidates_after_filters": len(pool),
@@ -193,7 +216,7 @@ def main(argv=None):
                 shutil.copyfile(config.OUTPUT_DIR / name, target / name)
             print("copied into", target.relative_to(config.REPO_DIR))
 
-    print(json.dumps({k: summary[k] for k in ["items", "yes", "yes_share", "events", "categories", "candidates_after_filters"]}, indent=1))
+    print(json.dumps({k: summary[k] for k in ["items", "yes", "yes_share", "events", "categories", "candidates_after_filters", "ai_numbers"]}, indent=1))
     print("review the questions in", (config.REPORTS_DIR / "practice-review.csv").relative_to(config.ML_DIR))
 
 

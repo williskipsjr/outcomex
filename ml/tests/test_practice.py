@@ -78,6 +78,9 @@ class Files(unittest.TestCase):
         self.assertEqual(practice_list["items"][1]["imageUrl"], "https://x/2.png")
         self.assertEqual(practice_answers["answers"]["pr-1"]["outcome"], "YES")
         self.assertIsNone(practice_answers["answers"]["pr-1"]["aiProbability"])
+        with_ai = build_files(chosen, raw, "2026-11-01T00:00:00Z", {1: 0.27}, "lr-test")[1]["answers"]
+        self.assertEqual((with_ai["pr-1"]["aiProbability"], with_ai["pr-1"]["modelVersion"]), (0.27, "lr-test"))
+        self.assertEqual((with_ai["pr-2"]["aiProbability"], with_ai["pr-2"]["modelVersion"]), (None, None))
         # closedDate is the scheduled end; resolvedAt (only shown after the call) is the actual close
         self.assertEqual(practice_list["items"][0]["closedDate"], chosen.iloc[0]["close"])
         self.assertEqual(practice_answers["answers"]["pr-1"]["resolvedAt"], chosen.iloc[0]["closed_at"])
