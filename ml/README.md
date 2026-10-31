@@ -26,9 +26,9 @@ Run everything from `ml/`. Each step is a script; notebooks are only for explori
 | 2. Clean + G1 numbers | `python -m src.clean` | `data/interim/markets.csv`, `reports/funnel.json`, `reports/label-check.csv` | Done. G1 passed: 30 of 30 labels correct |
 | 3. Baselines | `python -m src.baselines` | `reports/baselines.json` | Done (ML-04) |
 | 4. Features | `python -m src.features` | `data/interim/features.csv`, `reports/features.json` | Done (ML-05): 7 price features + category, all at as-of |
-| 5. Train + evaluate (G2) | `python -m src.train`, then `--test` once | `reports/validation.json`, `reports/evaluation.json`, `reports/figures/` | Done (ML-06). G2: Level A, narrowly (test Brier 0.067 vs crowd 0.058) |
+| 5. Train + evaluate (G2) | `python -m src.train`, then `--test` once | `reports/validation.json`, `reports/evaluation.json`, `reports/figures/` | G2 run 1 INVALID: the as-of time leaked the outcome (see docs/ml/evaluation.md). Rebuilding |
 | 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v0 done: 50 questions, 48% YES, all 50 approved by hand. Not installed in the app yet |
-| 7. Predictions | `python -m src.predict` | `output/predictions.json` | ML-07 |
+| 7. Predictions | `python -m src.predict` (`--mocks`, `--install`) | `output/predictions.json`, `output/model.json` | Script ready (ML-07); waits for a valid G2 |
 
 `data/` is git-ignored and never committed. Both collect steps skip files that are already on disk, so a run that was interrupted (or rate-limited) just continues where it stopped. Collecting from scratch takes about 10 minutes, because the scripts pause between requests to be polite to a free API.
 
@@ -38,7 +38,7 @@ Tests: `python -m unittest discover -s tests`
 
 | Choice | Value | Why |
 |---|---|---|
-| As-of time | close − 7 days | Practice mode "travels back" to this moment, and every feature is computed at it |
+| As-of time | close − 7 days (**being changed to scheduled end − 7 days**: anchoring on the actual close leaked the outcome) | Practice mode "travels back" to this moment, and every feature is computed at it |
 | Close time | Gamma `closedTime`, else `endDate` | When trading actually stopped; many markets resolve early |
 | Label | YES if the final YES price ≥ 0.99, NO if ≤ 0.01, otherwise dropped | Ambiguous and 50/50 resolutions can't be scored |
 | Minimum volume | $5,000 | Thin markets are noise |
