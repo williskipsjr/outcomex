@@ -1,6 +1,8 @@
 # ML evaluation and gate G2 (ML-06)
 
-**Status: G2 decided, 31 Oct 2026: Level A, by a narrow margin.** The model is within 0.01 of the crowd on the test split but not better than it. The PM records the decision in a decision record.
+**Status: this G2 result is INVALID, because the evaluation was not leak-free (found 31 Oct 2026, the same day).** Nothing from it may be shown in the app. See "The leak" at the end; the dataset is being rebuilt with an outcome-free as-of time, and G2 will be run again on it.
+
+*The sections below document the invalid run as it happened.*
 
 Numbers come from `ml/reports/validation.json` and `ml/reports/evaluation.json`. To reproduce them, follow `ml/README.md`.
 
@@ -114,3 +116,26 @@ We never call it a prediction of the future, and never call it financial advice.
 - **ML-07 `predictions.json`:** use exactly the evaluated model (`lr_full`, trained on train + validation), so the number on screen matches the published track record.
 - **Practice files:** add the model's out-of-sample AI numbers to `practice-answers.json` for the test-split questions.
 - **ML-08:** model card, built from this report.
+
+## The leak (found after the test run)
+
+Building `predictions.json` showed the model pushing almost every mid-priced live market sharply *up*, including both sides of the same race. For example, "Republicans win Nevada" went from 22% to about 60% and "Democrats win Nevada" from 78% to about 95%.
+
+**The cause is the as-of definition: close − 7 days, where "close" was when the market actually closed.**
+- A "by date" market that resolves YES closes the moment the event happens. Seven days earlier, its price is often still in the middle.
+- A market that resolves NO runs to its scheduled end, by which time its price has usually sunk.
+
+So, among markets that were mid-priced at as-of, YES is over-represented, and only because the as-of time itself depends on the outcome. On train + validation:
+
+| Markets priced 5–95% at as-of | Markets | Crowd said | Resolved YES |
+|---|---|---|---|
+| Closed on schedule | 320 | 42% | 44% |
+| Closed early | 128 | 38% | 59% |
+
+When the as-of time doesn't depend on the outcome, the crowd is well calibrated. The model learned the leak: its "recalibration" of the crowd adds up to +1.4 on the log-odds scale to mid-range prices. A live market's future close time is unknown, so that adjustment is wrong live.
+
+An earlier check (early closers have the same overall YES rate, 22%) missed this, because the effect only appears once you condition on the price.
+
+**By the master plan's rule (§9.2), an evaluation that isn't leak-free means Level C, so this run doesn't count.**
+
+**The fix:** define as-of as **scheduled end − 7 days** (`endDate`), which is known in advance, and drop markets that had already closed before their as-of time. Then rebuild the price windows, features, baselines, validation and a fresh, single G2 test run, with the choice rule fixed before anything is looked at.

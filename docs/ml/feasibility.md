@@ -2,6 +2,8 @@
 
 **Status: G1 passed, 31 Oct 2026.** Every automatic check passes, and the hand check found 0 wrong labels out of 30. The PM records the decision in a decision record.
 
+> **Note (31 Oct 2026):** the as-of time used here (*actual* close − 7 days) turned out to leak the outcome; see [evaluation.md](evaluation.md#the-leak-found-after-the-test-run). The labels and G1 stand, but the as-of prices, baselines and practice files are being rebuilt with as-of = *scheduled* end − 7 days.
+
 All numbers come from `ml/reports/funnel.json` and `ml/reports/baselines.json`. To reproduce them, follow `ml/README.md`.
 
 ## What was collected
