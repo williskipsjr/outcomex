@@ -110,6 +110,8 @@ def build_files(chosen, raw_by_id, generated_at):
                 "category": row.category,
                 "imageUrl": image,
                 "asOfDate": row.as_of,
+                # The SCHEDULED end: showing the actual close would hint at the answer
+                # (a "by date" market that closed early usually resolved YES)
                 "closedDate": row.close,
             }
         )
@@ -118,7 +120,7 @@ def build_files(chosen, raw_by_id, generated_at):
             "crowdProbabilityAsOf": round(float(row.crowd_as_of), 4),
             "aiProbability": None,  # filled in after gate G2, from a model that never saw the test split
             "modelVersion": None,
-            "resolvedAt": row.close,
+            "resolvedAt": row.closed_at,  # only revealed after the call
         }
     practice_list = {"generatedAt": generated_at, "asOfOffsetDays": config.AS_OF_DAYS, "items": items}
     practice_answers = {"generatedAt": generated_at, "answers": answers}

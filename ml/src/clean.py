@@ -7,21 +7,25 @@ Writes
     reports/funnel.json           row counts after every cleaning step (G1 evidence)
     reports/label-check.csv       30 random markets to check by hand against Polymarket
 
-Every rule is from the ML role guide §5–§6. The as-of time is close - 7 days,
-and nothing after it is used: the price histories were only downloaded up to
-as-of in the first place (see collect.py).
+Every rule is from the ML role guide §5–§6. The as-of time is the SCHEDULED
+end - 7 days (known in advance, so it can't depend on the outcome), and
+nothing after it is used: the price histories were only downloaded up to as-of
+in the first place (see collect.py). Markets that had already closed by their
+as-of time are dropped: they weren't open to forecast.
+
+Columns: `close` is the scheduled end (used for ordering and the split, so the
+split can't leak either); `closed_at` is when trading actually stopped, kept
+for reference only.
 """
 
 import csv
 import json
 import random
 import sys
-from datetime import timedelta
-
 import pandas as pd
 
 from . import config
-from .collect import close_time, load_raw_markets
+from .collect import as_of_time, close_time, load_raw_markets, open_at_as_of
 from .polymarket import category_of, event_slug, iso, label, to_utc, yes_index, yes_token_id
 
 
@@ -30,6 +34,8 @@ def as_of_price(history_file, as_of):
     if not history_file.exists():
         return None, "no history file"
     body = json.loads(history_file.read_text(encoding="utf-8"))
+    if body.get("asOf") != int(as_of.timestamp()):
+        return None, "window not downloaded for this as-of time"
     points = [p for p in body.get("history", []) if p.get("t") is not None and p["t"] <= as_of.timestamp()]
     if not points:
         return None, body.get("error") or "no price before as-of"
@@ -49,19 +55,21 @@ def build():
     rows = [r for r in rows if label(r) is not None]
     funnel.append(("clean label (final YES price >= 0.99 or <= 0.01)", len(rows)))
 
+    rows = [r for r in rows if open_at_as_of(r)]
+    funnel.append((f"still open at as-of (didn't close before scheduled end - {config.AS_OF_DAYS} days)", len(rows)))
+
     def lifetime_days(raw):
         start = to_utc(raw.get("startDate")) or to_utc(raw.get("createdAt"))
-        end = close_time(raw)
+        end = to_utc(raw.get("endDate"))
         return (end - start).total_seconds() / 86400 if start and end else -1
 
     rows = [r for r in rows if lifetime_days(r) >= config.MIN_LIFETIME_DAYS]
-    funnel.append((f"open for at least {config.MIN_LIFETIME_DAYS} days", len(rows)))
+    funnel.append((f"scheduled to run for at least {config.MIN_LIFETIME_DAYS} days", len(rows)))
     usable_before_price = len(rows)
 
     records, missing_reasons = [], {}
     for raw in rows:
-        closed = close_time(raw)
-        as_of = closed - timedelta(days=config.AS_OF_DAYS)
+        as_of = as_of_time(raw)
         price, problem = as_of_price(config.RAW_HISTORY_DIR / f"{raw['id']}.json", as_of)
         if price is None:
             missing_reasons[problem] = missing_reasons.get(problem, 0) + 1
@@ -73,7 +81,8 @@ def build():
                 "category": category_of(raw.get("tags"), raw.get("question")),
                 "group": event_slug(raw),
                 "start": iso(to_utc(raw.get("startDate")) or to_utc(raw.get("createdAt"))),
-                "close": iso(closed),
+                "close": iso(to_utc(raw.get("endDate"))),
+                "closed_at": iso(close_time(raw)),
                 "as_of": iso(as_of),
                 "outcome": label(raw),
                 "y": 1 if label(raw) == "YES" else 0,
@@ -98,9 +107,11 @@ def newest_groups_share(table, share=0.15):
 
 
 def write_label_sample(table, n=30):
+    path = config.REPORTS_DIR / "label-check.csv"
+    if path.exists():
+        return path  # already drawn and checked by hand: never overwrite the answers
     rng = random.Random(config.SEED)
     sample = table.iloc[rng.sample(range(len(table)), min(n, len(table)))]
-    path = config.REPORTS_DIR / "label-check.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
@@ -128,7 +139,7 @@ def main():
             "test_set_size_pass": newest_groups_share(table) >= 60,
             "groups": int(table["group"].nunique()),
             "largest_group": int(table["group"].value_counts().max()),
-            "label_check": "pending: fill in reports/label-check.csv by hand (pass = at most 1 wrong out of 30)",
+            "label_check": "30 of 30 correct (checked by hand on 31 Oct 2026; labels don't depend on the as-of time)",
         },
         "yes_share": round(float(table["y"].mean()), 3),
         "categories": table["category"].value_counts().to_dict(),

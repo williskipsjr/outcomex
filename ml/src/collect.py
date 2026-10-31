@@ -3,8 +3,9 @@
     python -m src.collect markets     # top closed markets per month -> data/raw/markets/
     python -m src.collect histories   # 14 days of prices before each as-of time -> data/raw/history/
 
-Both steps are resumable: files already on disk are skipped, so an
-interrupted run (or a rate limit) just means running it again.
+Both steps are resumable: files already on disk are skipped (a price window
+only counts if it ends at the market's current as-of time), so an interrupted
+run (or a rate limit) just means running it again.
 """
 
 import argparse
@@ -70,23 +71,52 @@ def load_raw_markets():
 
 
 def close_time(raw):
-    """When trading actually stopped: closedTime if Gamma has it, else endDate."""
+    """When trading actually stopped: closedTime if Gamma has it, else endDate.
+    Used only to check that a market was still open at its as-of time."""
     return to_utc(raw.get("closedTime")) or to_utc(raw.get("endDate"))
 
 
+def as_of_time(raw):
+    """Scheduled end - 7 days. The scheduled end is known in advance, so the
+    as-of time can't depend on the outcome. (Anchoring on the actual close did:
+    YES markets often close early, the moment the event happens. That leaked
+    the outcome into G2 run 1; see docs/ml/evaluation.md.)"""
+    end = to_utc(raw.get("endDate"))
+    return end - timedelta(days=config.AS_OF_DAYS) if end else None
+
+
+def open_at_as_of(raw):
+    """Still trading at its as-of time: it didn't close before scheduled end - 7 days."""
+    as_of, closed = as_of_time(raw), close_time(raw)
+    return as_of is not None and closed is not None and closed > as_of
+
+
 def history_candidates(rows):
-    """Markets worth one CLOB call: clean yes/no label and a known close time."""
+    """Markets worth one CLOB call: clean yes/no label, still open at as-of."""
     for raw in rows:
         if yes_index(raw) == -1 or label(raw) is None or not yes_token_id(raw):
             continue
-        if close_time(raw) is None:
+        if not open_at_as_of(raw):
             continue
         yield raw
 
 
+def history_path(raw):
+    return config.RAW_HISTORY_DIR / f"{raw['id']}.json"
+
+
+def has_current_history(raw):
+    """A saved window counts only if it ends at this market's current as-of time."""
+    path = history_path(raw)
+    if not path.exists():
+        return False
+    saved = json.loads(path.read_text(encoding="utf-8"))
+    return saved.get("asOf") == int(as_of_time(raw).timestamp())
+
+
 def download_history(raw):
     """One CLOB call: the 14 days of prices that end at this market's as-of time."""
-    as_of = close_time(raw) - timedelta(days=config.AS_OF_DAYS)
+    as_of = as_of_time(raw)
     start = as_of - timedelta(days=config.HISTORY_WINDOW_DAYS) + timedelta(minutes=1)
     params = {
         "market": yes_token_id(raw),
@@ -100,7 +130,7 @@ def download_history(raw):
     except (HttpError, requests.RequestException) as failure:
         body, error = {"history": []}, str(failure)
     save(
-        config.RAW_HISTORY_DIR / f"{raw['id']}.json",
+        history_path(raw),
         {"marketId": str(raw["id"]), "asOf": int(as_of.timestamp()), "history": body.get("history", []), "error": error},
     )
     return error is None
@@ -109,7 +139,7 @@ def download_history(raw):
 def collect_histories():
     rows = load_raw_markets()
     candidates = list(history_candidates(rows))
-    todo = [raw for raw in candidates if not (config.RAW_HISTORY_DIR / f"{raw['id']}.json").exists()]
+    todo = [raw for raw in candidates if not has_current_history(raw)]
     print(f"{len(rows)} raw markets, {len(candidates)} need a price history, {len(todo)} still to download", flush=True)
     failed = 0
     with ThreadPoolExecutor(max_workers=config.HISTORY_WORKERS) as pool:
