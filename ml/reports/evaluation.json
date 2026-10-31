@@ -1,0 +1,243 @@
+{
+  "model": "lr_full",
+  "C": 1.0,
+  "chosen_by": {
+    "rule_chose": "lr_crowd",
+    "chosen": "lr_full",
+    "reason": "Chosen by the project owner before the test run: lr_full is best on every validation metric (Brier 0.163 vs crowd 0.175) and in grouped cross-validation inside train; its lead over lr_crowd (-0.014, 95% CI [-0.031, +0.004]) is not significant on 124 mostly-Sports markets, but it learned an interpretable effect (Sports longshots overpriced) that makes the AI number informative."
+  },
+  "trained_on": "train + validation",
+  "test": {
+    "model": {
+      "n": 214,
+      "brier": 0.0673,
+      "log_loss": 0.231,
+      "ece": 0.0757
+    },
+    "crowd": {
+      "n": 214,
+      "brier": 0.0578,
+      "log_loss": 0.1799,
+      "ece": 0.0533
+    },
+    "coin_flip": {
+      "n": 214,
+      "brier": 0.25,
+      "log_loss": 0.6931,
+      "ece": 0.3364
+    }
+  },
+  "model_minus_crowd": {
+    "difference": 0.0095,
+    "ci95": [
+      -0.0007,
+      0.0209
+    ],
+    "no_difference": true
+  },
+  "calibration": {
+    "model": [
+      {
+        "from": 0.0,
+        "to": 0.1,
+        "count": 144,
+        "mean_forecast": 0.020696182396980636,
+        "yes_rate": 0.006944444444444444
+      },
+      {
+        "from": 0.1,
+        "to": 0.2,
+        "count": 11,
+        "mean_forecast": 0.14135665735666386,
+        "yes_rate": 0.2727272727272727
+      },
+      {
+        "from": 0.2,
+        "to": 0.3,
+        "count": 8,
+        "mean_forecast": 0.24666626063739416,
+        "yes_rate": 0.125
+      },
+      {
+        "from": 0.3,
+        "to": 0.4,
+        "count": 7,
+        "mean_forecast": 0.3289852092764018,
+        "yes_rate": 0.0
+      },
+      {
+        "from": 0.4,
+        "to": 0.5,
+        "count": 6,
+        "mean_forecast": 0.43478305700348363,
+        "yes_rate": 0.16666666666666666
+      },
+      {
+        "from": 0.5,
+        "to": 0.6,
+        "count": 4,
+        "mean_forecast": 0.5352116257023019,
+        "yes_rate": 0.75
+      },
+      {
+        "from": 0.6,
+        "to": 0.7,
+        "count": 4,
+        "mean_forecast": 0.6453306924737701,
+        "yes_rate": 1.0
+      },
+      {
+        "from": 0.7,
+        "to": 0.8,
+        "count": 5,
+        "mean_forecast": 0.7640777802320519,
+        "yes_rate": 0.8
+      },
+      {
+        "from": 0.8,
+        "to": 0.9,
+        "count": 7,
+        "mean_forecast": 0.8496380935210469,
+        "yes_rate": 0.7142857142857143
+      },
+      {
+        "from": 0.9,
+        "to": 1.0,
+        "count": 18,
+        "mean_forecast": 0.9717567320728838,
+        "yes_rate": 0.7222222222222222
+      }
+    ],
+    "crowd": [
+      {
+        "from": 0.0,
+        "to": 0.1,
+        "count": 150,
+        "mean_forecast": 0.016183333333333334,
+        "yes_rate": 0.006666666666666667
+      },
+      {
+        "from": 0.1,
+        "to": 0.2,
+        "count": 8,
+        "mean_forecast": 0.152625,
+        "yes_rate": 0.0
+      },
+      {
+        "from": 0.2,
+        "to": 0.3,
+        "count": 11,
+        "mean_forecast": 0.24399999999999997,
+        "yes_rate": 0.45454545454545453
+      },
+      {
+        "from": 0.3,
+        "to": 0.4,
+        "count": 8,
+        "mean_forecast": 0.3401875,
+        "yes_rate": 0.25
+      },
+      {
+        "from": 0.4,
+        "to": 0.5,
+        "count": 4,
+        "mean_forecast": 0.47662499999999997,
+        "yes_rate": 0.25
+      },
+      {
+        "from": 0.5,
+        "to": 0.6,
+        "count": 6,
+        "mean_forecast": 0.5708333333333333,
+        "yes_rate": 0.8333333333333334
+      },
+      {
+        "from": 0.6,
+        "to": 0.7,
+        "count": 3,
+        "mean_forecast": 0.6641666666666667,
+        "yes_rate": 0.3333333333333333
+      },
+      {
+        "from": 0.7,
+        "to": 0.8,
+        "count": 9,
+        "mean_forecast": 0.7631111111111112,
+        "yes_rate": 0.6666666666666666
+      },
+      {
+        "from": 0.8,
+        "to": 0.9,
+        "count": 5,
+        "mean_forecast": 0.8457000000000001,
+        "yes_rate": 1.0
+      },
+      {
+        "from": 0.9,
+        "to": 1.0,
+        "count": 10,
+        "mean_forecast": 0.9615500000000001,
+        "yes_rate": 0.9
+      }
+    ]
+  },
+  "per_category": {
+    "Crypto": {
+      "n": 7,
+      "model": 0.1036,
+      "crowd": 0.0773
+    },
+    "Economy": {
+      "n": 38,
+      "model": 0.0566,
+      "crowd": 0.0281
+    },
+    "Politics": {
+      "n": 11,
+      "model": 0.1132,
+      "crowd": 0.0978
+    },
+    "Sports": {
+      "n": 86,
+      "model": 0.0655,
+      "crowd": 0.0652
+    },
+    "Tech & Science": {
+      "n": 2,
+      "model": 0.0004,
+      "crowd": 0.0001
+    },
+    "World": {
+      "n": 70,
+      "model": 0.0665,
+      "crowd": 0.0582
+    }
+  },
+  "g2": {
+    "leak_free": true,
+    "brier_below_coin_flip": true,
+    "within_0.01_of_crowd": true,
+    "calibrated_within_0.10": true,
+    "calibration_buckets_checked": 1,
+    "level": "A"
+  },
+  "coefficients": {
+    "intercept": -1.9559,
+    "coefficients": {
+      "crowd_logit": 2.805,
+      "move_1d": 0.0806,
+      "move_7d": 0.0269,
+      "volatility_14d": -0.6689,
+      "range_14d": 0.4628,
+      "hours_since_trade": -0.0218,
+      "category_Politics": 0.5574,
+      "category_Sports": -1.272,
+      "category_Crypto": -0.2944,
+      "category_Economy": 0.4377,
+      "category_Tech & Science": 0.1961,
+      "category_World": 0.2791,
+      "category_Culture": -0.9151,
+      "category_Other": 0.9301
+    }
+  }
+}
