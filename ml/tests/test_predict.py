@@ -1,10 +1,11 @@
 import unittest
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
 
 from src.model import explain, gap_parts, percent
-from src.predict import build_file, check_file, is_scorable
+from src.predict import build_file, check_file, in_horizon, is_scorable
 from src.train import fit
 
 
@@ -65,6 +66,17 @@ class PredictionsFile(unittest.TestCase):
         for bad in [{"pm-x": {"probability": 0.3, "explanation": []}}, {"pm-1": {"probability": 1.0, "explanation": []}}, {"pm-1": {"probability": 0.3, "explanation": ["1", "2", "3", "4"]}}]:
             with self.assertRaises(AssertionError):
                 check_file(build_file(self.info, bad, "2026-10-31T00:00:00Z"))
+
+    def test_only_markets_1_to_21_days_from_their_scheduled_end(self):
+        now = 1_790_000_000
+        def at(days):
+            end = datetime.fromtimestamp(now + days * 86400, timezone.utc)
+            return {"endDate": end.strftime("%Y-%m-%dT%H:%M:%SZ")}
+        self.assertTrue(in_horizon(at(7), now))
+        self.assertTrue(in_horizon(at(1.5), now))
+        self.assertFalse(in_horizon(at(0.5), now))
+        self.assertFalse(in_horizon(at(60), now))
+        self.assertFalse(in_horizon({"endDate": None}, now))
 
     def test_scorable_matches_the_apps_rules(self):
         base = {"outcomes": '["Yes","No"]', "clobTokenIds": '["1","2"]', "question": "Q?", "endDate": "2026-11-05T00:00:00Z", "active": True, "closed": False}
