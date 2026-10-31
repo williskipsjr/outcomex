@@ -33,6 +33,18 @@ describe("listMarkets", () => {
     expect(calls[0]).toContain("closed=false");
   });
 
+  it("reads 5 pages of 100, because Gamma never returns more per request", async () => {
+    const { api, calls } = fakePolymarket([
+      ["offset=0", () => ok([iran])],
+      ["offset=300", () => ok([jesus, iran])],
+      ["/markets?", () => ok([])],
+    ]);
+    const { data } = await api.listMarkets();
+    expect(data.map((m) => m.id)).toEqual(["pm-665374", "pm-703258"]);
+    expect(calls.map((url) => new URL(url).searchParams.get("offset"))).toEqual(["0", "100", "200", "300", "400"]);
+    expect(calls.every((url) => url.includes("limit=100"))).toBe(true);
+  });
+
   it("keeps at most 3 markets per event", async () => {
     const ladder = Array.from({ length: 6 }, (_, i) => ({ ...iran, id: String(100 + i), events: [{ slug: "nominee-2028" }] }));
     const { api, calls } = fakePolymarket([["/markets?", () => ok([...ladder, jesus])]]);
@@ -46,7 +58,7 @@ describe("listMarkets", () => {
     await api.listMarkets();
     const second = await api.listMarkets();
     expect(second.meta.cache).toBe("hit");
-    expect(calls.length).toBe(1);
+    expect(calls.length).toBe(5); // the 5 pages of the first call; none for the second
   });
 
   it("rejects a response that isn't a list", async () => {

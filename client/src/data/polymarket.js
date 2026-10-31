@@ -35,6 +35,10 @@ const HISTORY_PARAMS = {
 // per candidate. Without a cap they would fill the whole dashboard.
 export const MAX_PER_EVENT = 3;
 
+// Gamma never returns more than 100 rows per request, whatever `limit` says
+const GAMMA_PAGE_SIZE = 100;
+const LIST_PAGES = 5;
+
 const SPARKLINE_CONCURRENCY = 4;
 const source = "polymarket";
 
@@ -85,18 +89,28 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
       async (sharedSignal) => {
         // The busiest markets of the last 24 h, not of all time: all-time
         // volume is dominated by long-running, near-certain election markets.
-        // We ask for 500 rows because the per-event cap and the yes/no filter
-        // drop many of them.
-        const params = new URLSearchParams({
-          active: "true",
-          closed: "false",
-          archived: "false",
-          order: "volume24hr",
-          ascending: "false",
-          include_tag: "true",
-          limit: "500",
-        });
-        const rawList = expectArray(await get(`${GAMMA}/markets?${params}`, sharedSignal), "listMarkets");
+        // We read 500 rows because the per-event cap and the yes/no filter
+        // drop many of them. Gamma returns at most 100 rows per request, so
+        // that is 5 pages, fetched in parallel.
+        const pages = await Promise.all(
+          Array.from({ length: LIST_PAGES }, (_, page) => {
+            const params = new URLSearchParams({
+              active: "true",
+              closed: "false",
+              archived: "false",
+              order: "volume24hr",
+              ascending: "false",
+              include_tag: "true",
+              limit: String(GAMMA_PAGE_SIZE),
+              offset: String(page * GAMMA_PAGE_SIZE),
+            });
+            return get(`${GAMMA}/markets?${params}`, sharedSignal);
+          }),
+        );
+        const seen = new Set();
+        const rawList = pages
+          .flatMap((page) => expectArray(page, "listMarkets"))
+          .filter((raw) => !seen.has(raw.id) && seen.add(raw.id));
         learnTokens(rawList);
 
         const perEvent = new Map();
