@@ -18,7 +18,7 @@ from . import config
 from .train import describe_model, fit, predict
 
 # Bump when the model is retrained. It is shown in the app and in the reports.
-MODEL_VERSION = "lr-full-2026-10-31"
+MODEL_VERSION = "lr-crowd-2026-11-01"
 
 # Reasons smaller than this (in log-odds) aren't worth a sentence
 MIN_EFFECT = 0.10
