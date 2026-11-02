@@ -158,7 +158,7 @@ Checked against live responses on 30 Oct 2026.
 Behaviour of the sources that the data layer handles:
 
 - **Which markets the dashboard gets:** sorted by all-time volume, 90 of the top 100 yes/no markets on 30 Oct were Politics, almost all one-candidate rungs of 2028 election "ladders" priced under 3%. D1 therefore sorts by `volume24hr` and keeps at most 3 markets per event (`events[0].slug`).
-- **Gamma returns at most 100 rows per request**, whatever `limit` asks for. D1 reads 5 pages of 100 (`offset` 0–400) in parallel; on 31 Oct that gave 200 markets across 7 categories.
+- **Gamma returns at most 100 rows per request**, whatever `limit` asks for. D1 reads 5 pages of 100 (`offset` 0–400) in parallel; on 31 Oct that gave 200 markets across 7 categories. It keeps whichever pages arrive and only fails if none do.
 - **Unknown market id:** Gamma answers `404` for an id that doesn't exist and `422` for an id it can't parse. Both become `NOT_FOUND`.
 - **Open vs closed by id:** `/markets?id=…` only returns open markets unless `closed=true` is sent, and then it only returns closed ones. `getStatuses` makes both requests and merges them.
 - **Price history:** CLOB `/prices-history?market=<YES token id>&interval=<1d|1w|1m|max>&fidelity=<minutes>` returns `{ history: [{ t: unix seconds, p }] }`. The YES token id comes from `clobTokenIds` (another JSON string) at the `Yes` index. Fidelity: 5 min for `1d`, 60 for `1w`, 180 for `1m`, 1440 for `all`.

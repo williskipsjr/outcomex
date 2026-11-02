@@ -94,8 +94,9 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
         // volume is dominated by long-running, near-certain election markets.
         // We read 500 rows because the per-event cap and the yes/no filter
         // drop many of them. Gamma returns at most 100 rows per request, so
-        // that is 5 pages, fetched in parallel.
-        const pages = await Promise.all(
+        // that is 5 pages, fetched in parallel. One slow page must not sink the
+        // whole dashboard: keep the pages that arrive, and only fail if none do.
+        const results = await Promise.allSettled(
           Array.from({ length: LIST_PAGES }, (_, page) => {
             const params = new URLSearchParams({
               active: "true",
@@ -110,6 +111,8 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
             return get(`${GAMMA}/markets?${params}`, sharedSignal);
           }),
         );
+        const pages = results.filter((result) => result.status === "fulfilled").map((result) => result.value);
+        if (pages.length === 0) throw results[0].reason;
         const seen = new Set();
         const rawList = pages
           .flatMap((page) => expectArray(page, "listMarkets"))

@@ -45,6 +45,24 @@ describe("listMarkets", () => {
     expect(calls.every((url) => url.includes("limit=100"))).toBe(true);
   });
 
+  it("keeps the pages that arrive when some of them fail", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const { api } = fakePolymarket([
+      ["offset=0", () => ok([iran])],
+      ["offset=100", () => status(500)],
+      ["offset=200", () => ok([jesus])],
+      ["/markets?", () => status(500)],
+    ]);
+    const { data } = await api.listMarkets();
+    expect(data.map((m) => m.id)).toEqual(["pm-665374", "pm-703258"]);
+  });
+
+  it("fails only when every page fails", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const { api } = fakePolymarket([["/markets?", () => status(429)]]);
+    await expect(api.listMarkets()).rejects.toMatchObject({ code: "RATE_LIMITED" });
+  });
+
   it("keeps at most 3 markets per event", async () => {
     const ladder = Array.from({ length: 6 }, (_, i) => ({ ...iran, id: String(100 + i), events: [{ slug: "nominee-2028" }] }));
     const { api, calls } = fakePolymarket([["/markets?", () => ok([...ladder, jesus])]]);
