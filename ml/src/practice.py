@@ -159,6 +159,15 @@ def out_of_sample_ai(chosen):
     return {int(i): round(float(p), 4) for i, p in zip(rows["id"], probabilities)}, info["version"]
 
 
+def earlier_reviews():
+    """Answers already given by hand, so regenerating the files never wipes them."""
+    path = config.REPORTS_DIR / "practice-review.csv"
+    if not path.exists():
+        return {}
+    earlier = pd.read_csv(path, encoding="utf-8-sig", dtype=str, keep_default_na=False)
+    return {int(row["id"]): row["ok_to_ship (y/n)"] for _, row in earlier.iterrows()}
+
+
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -187,7 +196,7 @@ def main(argv=None):
     review = chosen[["id", "question", "category", "group", "outcome", "crowd_as_of", "close"]].copy()
     review["ai"] = review["id"].map(ai)
     review["practice_id"] = review["id"].map(practice_id)
-    review["ok_to_ship (y/n)"] = ""
+    review["ok_to_ship (y/n)"] = review["id"].map(earlier_reviews()).fillna("")
     review.to_csv(config.REPORTS_DIR / "practice-review.csv", index=False)
 
     summary = {

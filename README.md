@@ -55,6 +55,7 @@ Other commands, all run inside `client/`:
 
 | Command | What it does |
 |---|---|
+| `npm run dev:mock` | Runs the app on saved data, with no internet (see `client/src/data/README.md`) |
 | `npm run lint` | Checks the code with ESLint |
 | `npm test` | Runs the unit tests (Vitest) |
 | `npm run build` | Builds the production version into `client/dist` |
