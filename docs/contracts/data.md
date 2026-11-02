@@ -1,6 +1,6 @@
 # OutcomeX data contract
 
-**Version 1.1** · owned by the Backend / Data Engineer · file contracts (§6) co-owned with the AI/ML Engineer
+**Version 1.2** · owned by the Backend / Data Engineer · file contracts (§6) co-owned with the AI/ML Engineer
 
 This is the agreement between the React app and the data layer in `client/src/data`. The frontends build against it, the data layer returns exactly these shapes from real sources and from mock fixtures, and the ML pipeline writes the static files in §6. If this file and the code disagree, this file wins and the code is a bug.
 
@@ -13,6 +13,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 | 1.0 | 30 Oct 2026 | First version, from master plan Appendix A, checked against live Gamma and CLOB responses | — |
 | 1.0 | 30 Oct 2026 | Added optional `Market.weekChange` and `Market.sparkline`, and function D11 `getSparklines` | The dashboard cards already show a weekly change and a mini chart (Kalshi-style redesign). Gamma gives the change for free; the chart needs one CLOB call per market, so it is a separate, cached function the page calls only for cards it shows |
 | 1.1 | 2 Nov 2026 | `asOfDate` is 7 days before the *scheduled* end, and `closedDate` is the scheduled end. D1's cache is 50 s | Anchoring on the actual close leaked the outcome (`docs/ml/evaluation.md`). A 60 s cache meant the dashboard's 60 s refresh often did nothing |
+| 1.2 | 2 Nov 2026 | Added `resolvedAt` to D9 | So a resolved live call records when the market actually closed, not when we happened to check |
 
 ## 1. Conventions
 
@@ -61,7 +62,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 | D6 `listPractice` | `limit` 1–200, default all; `category` optional, one of the 8 | `PracticeMarket[]` | `VALIDATION_ERROR`, `INVALID_DATA`, `UPSTREAM_UNAVAILABLE` |
 | D7 `getPractice` | `id` matches `pr-<digits>` | `PracticeMarket` | `VALIDATION_ERROR`, `NOT_FOUND`, `INVALID_DATA` |
 | D8 `revealPractice` | `id` as above; `probability` a finite **number** 0.01–0.99 | `Reveal` | `VALIDATION_ERROR` (before anything is loaded), `NOT_FOUND`, `INVALID_DATA`, `UPSTREAM_UNAVAILABLE` |
-| D9 `getStatuses` | 1–50 valid market ids | `[{ id, status, outcome }]`; unknown ids are left out | `VALIDATION_ERROR`, `UPSTREAM_*` |
+| D9 `getStatuses` | 1–50 valid market ids | `[{ id, status, outcome, resolvedAt }]`, where `resolvedAt` is when trading stopped, or `null` if it's still open; unknown ids are left out | `VALIDATION_ERROR`, `UPSTREAM_*` |
 | D10 `checkSources` | — | `[{ name, ok, detail }]` | never rejects |
 | D11 `getSparklines` | 1–50 valid market ids | `{ "<marketId>": number[] }`; a market whose history failed is left out | `VALIDATION_ERROR`, `ABORTED` |
 
