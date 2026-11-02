@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createCall, parseStoredCalls, validateNewCall } from "./callsStorage.js";
+import { createCall, parseStoredCalls, pendingLiveMarketIds, validateNewCall } from "./callsStorage.js";
 
 const good = { marketId: "pm-1", mode: "live", probability: 0.62 };
 
@@ -74,5 +74,23 @@ describe("createCall", () => {
       revealed: { crowdProbability: 0.55, aiProbability: null, at: "2026-11-10T09:01:00.000Z" },
       resolution: null,
     });
+  });
+});
+
+describe("pendingLiveMarketIds", () => {
+  const call = (marketId, mode, resolution = null) => ({ marketId, mode, resolution });
+
+  it("lists live calls with no result, once each", () => {
+    const calls = [
+      call("pm-1", "live"),
+      call("pm-2", "live", { outcome: "YES" }),
+      call("pr-3", "practice"),
+      call("pm-1", "live"),
+    ];
+    expect(pendingLiveMarketIds(calls)).toEqual(["pm-1"]);
+  });
+
+  it("leaves out ids the data layer would reject", () => {
+    expect(pendingLiveMarketIds([call("pm-edge-1", "live"), call("pm-9", "live")])).toEqual(["pm-9"]);
   });
 });
