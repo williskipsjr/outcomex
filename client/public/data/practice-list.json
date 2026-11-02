@@ -1,78 +1,87 @@
 {
- "generatedAt": "2026-10-28T12:00:00Z",
+ "generatedAt": "2026-11-02T17:13:21Z",
  "asOfOffsetDays": 7,
  "items": [
+  {
+   "id": "pr-1897442",
+   "question": "Will Argentina win on 2026-06-27?",
+   "description": "In the upcoming game, scheduled for June 27, 2026\nIf Argentina wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, a consensus of credible reporting may be used instead.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/soccer ball-bba4025f77.png",
+   "asOfDate": "2026-06-21T02:00:00Z",
+   "closedDate": "2026-06-28T02:00:00Z"
+  },
+  {
+   "id": "pr-1897444",
+   "question": "Will Algeria vs. Austria end in a draw?",
+   "description": "In the upcoming game, scheduled for June 27, 2026\nIf the game ends in a draw, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve to \"Yes\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, a consensus of credible reporting may be used instead.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/soccer ball-bba4025f77.png",
+   "asOfDate": "2026-06-21T02:00:00Z",
+   "closedDate": "2026-06-28T02:00:00Z"
+  },
+  {
+   "id": "pr-1897445",
+   "question": "Will Austria win on 2026-06-27?",
+   "description": "In the upcoming game, scheduled for June 27, 2026\nIf Austria wins, this market will resolve to \"Yes\".\nOtherwise, this market will resolve to \"No\".\nIf the game is postponed, this market will remain open until the game has been completed.\nIf the game is canceled entirely, with no make-up game, this market will resolve \"No\".\nThis market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.\n\nThe primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers. However, if the governing body or event organizers have not published final match statistics within 2 hours after the event's conclusion, a consensus of credible reporting may be used instead.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/soccer ball-bba4025f77.png",
+   "asOfDate": "2026-06-21T02:00:00Z",
+   "closedDate": "2026-06-28T02:00:00Z"
+  },
+  {
+   "id": "pr-1971905",
+   "question": "Strait of Hormuz traffic returns to normal by end of June?",
+   "description": "This market will resolve to “Yes” if IMF Portwatch publishes a 7-day moving average of transit calls (“Arrivals of Ships”) for the Strait of Hormuz equal to or above 60 for any date between market creation and June 30, 2026. Otherwise, this market will resolve to “No”.\n\nDaily transit calls include container, dry bulk, roll-on/roll-off, general cargo, and tanker ships. Ships not reported by IMF Portwatch will not be considered.\n\nThis market will resolve as soon as IMF Portwatch publishes a 7-day moving average of transit calls equal to or above the specified level, or once data has been published for the final date in the specified period and no such value has been published. If no data has been published for the final date of the specified period within 14 calendar days (ET) after the end of that period, this market will resolve based on data published up to that point.\n\nRevisions to previously published data points made within this market’s timeframe will be considered. However, they will not disqualify a previously published data point from qualifying. Revisions to previously published data points after data is published for June 30, 2026, however, will not be considered.\n\nIn case of obvious data integrity issues (i.e., erroneous data), the market may remain open until the end of the third calendar day (ET) after the date on which such data is first released to allow for corrections. Data integrity issues refer only to clerical or other similar errors in the underlying data, and do not include cases where IMF Portwatch differs from alternative sources.\n\nThe resolution source for this market will be IMF Portwatch, specifically the transit calls data published for the Strait of Hormuz at https://portwatch.imf.org/pages/cb5856222a5b4105adc6ee7e880a1730, both in the chart and through downloadable files.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-ships-transit-the-strait-of-hormuz-on-any-day-in-march-ERARnetK0FJm.jpg",
+   "asOfDate": "2026-06-23T00:00:00Z",
+   "closedDate": "2026-06-30T00:00:00Z"
+  },
+  {
+   "id": "pr-558934",
+   "question": "Will Spain win the 2026 FIFA World Cup?",
+   "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/world-cup-winner-spain-flag-20260603-192743.png",
+   "asOfDate": "2026-07-13T00:00:00Z",
+   "closedDate": "2026-07-20T00:00:00Z"
+  },
   {
    "id": "pr-558938",
    "question": "Will Argentina win the 2026 FIFA World Cup?",
    "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
    "category": "Sports",
    "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/world-cup-winner-argentina-flag-20260603-192743.png",
-   "asOfDate": "2026-07-13T01:24:43Z",
-   "closedDate": "2026-07-20T01:24:43Z"
+   "asOfDate": "2026-07-13T00:00:00Z",
+   "closedDate": "2026-07-20T00:00:00Z"
   },
   {
-   "id": "pr-1198423",
-   "question": "US strikes Iran by February 28, 2026?",
-   "description": "This market will resolve to \"Yes\" if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate between the time of this market's creation and the listed date (ET). Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, a qualifying \"strike\" is defined as the use of aerial bombs, drones or missiles (including cruise or ballistic missiles) launched by US military forces that impact Iranian ground territory or any official Iranian embassy or consulate (e.g., if a weapons depot on Iranian soil is hit by an US missile, this market will resolve to \"Yes\").\n\nMissiles or drones which are intercepted and surface-to-air missile strikes will not be sufficient for a \"Yes\" resolution regardless of whether they land on Iranian territory or cause damage.\n\nActions such as artillery fire, small arms fire, FPV or ATGM strikes directly, ground incursions, naval shelling, cyberattacks, or other operations conducted by US ground operatives will not qualify.\n\nThe resolution source will be a consensus of credible reporting.",
-   "category": "World",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-strikes-iran-by-october-3-2sVnIHq3sjqF.jpg",
-   "asOfDate": "2026-02-21T09:31:17Z",
-   "closedDate": "2026-02-28T09:31:17Z"
-  },
-  {
-   "id": "pr-553866",
-   "question": "Will the San Antonio Spurs win the 2026 NBA Finals?",
-   "description": "This market will resolve to “Yes” if the San Antonio Spurs win the 2026 NBA Finals. Otherwise, this market will resolve to “No”.\n\nThis market will resolve to “No” if it becomes impossible for this team to win the 2026 NBA Finals based off the rules of the NBA.\n\nThe resolution source for this market will be information from the NBA.",
+   "id": "pr-2069635",
+   "question": "Will Lionel Messi be the top goalscorer at the 2026 FIFA World Cup?",
+   "description": "This market will resolve to the player who scores the most goals through all main tournament rounds of the 2026 FIFA World Cup competition.\n\nIn the event of a tie, this market will resolve according to the official leader as determined by FIFA rules. If multiple leaders are announced then this market will resolve to the player who scored fewer goals from penalty kicks. If a tie still persists, this market will resolve to the player whose listed last name comes first alphabetically.\n\nIf the 2026 FIFA World Cup is cancelled, postponed after August 2, 2026, 11:59 PM ET, or there is no leader declared within that timeframe, the corresponding market will resolve to “Other”.\n\nThe resolution source for this market will be official information from FIFA; however, a consensus of credible reporting may also be used.",
    "category": "Sports",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/nba-finals-points-leader-7g2ZEZvMXxLb.jpg",
-   "asOfDate": "2026-06-07T06:36:06Z",
-   "closedDate": "2026-06-14T06:36:06Z"
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/2026-fifa-world-cup-top-goalscorer-g8rHBY_mzgM7.jpg",
+   "asOfDate": "2026-07-13T00:00:00Z",
+   "closedDate": "2026-07-20T00:00:00Z"
   },
   {
-   "id": "pr-566189",
-   "question": "Will Chelsea win the 2025–26 English Premier League?",
-   "description": "This is a polymarket on whether the listed club will win the 2025–26 English Premier League.\n\nThis market will resolve to \"Yes\" if the listed club is officially crowned the winner of the 2025–26 English Premier League. Otherwise, it will resolve to \"No\".\n\nIf at any point it becomes impossible for the listed club to win the league (e.g. they are mathematically eliminated), the market will resolve to \"No\".\n\nIf the 2025–26 English Premier League season is canceled or not completed by October 1, 2026, this market will resolve to \"Other\".\n\nThe primary resolution source will be official information from the English Premier League. A consensus of credible reporting may also be used.",
+   "id": "pr-2069638",
+   "question": "Will Kylian Mbappe be the top goalscorer at the 2026 FIFA World Cup?",
+   "description": "This market will resolve to the player who scores the most goals through all main tournament rounds of the 2026 FIFA World Cup competition.\n\nIn the event of a tie, this market will resolve according to the official leader as determined by FIFA rules. If multiple leaders are announced then this market will resolve to the player who scored fewer goals from penalty kicks. If a tie still persists, this market will resolve to the player whose listed last name comes first alphabetically.\n\nIf the 2026 FIFA World Cup is cancelled, postponed after August 2, 2026, 11:59 PM ET, or there is no leader declared within that timeframe, the corresponding market will resolve to “Other”.\n\nThe resolution source for this market will be official information from FIFA; however, a consensus of credible reporting may also be used.",
    "category": "Sports",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-chelsea-win-the-202526-english-premier-league-pZV3BcmAKk11.jpg",
-   "asOfDate": "2026-03-14T23:28:27Z",
-   "closedDate": "2026-03-21T23:28:27Z"
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/2026-fifa-world-cup-top-goalscorer-g8rHBY_mzgM7.jpg",
+   "asOfDate": "2026-07-13T00:00:00Z",
+   "closedDate": "2026-07-20T00:00:00Z"
   },
   {
-   "id": "pr-2063134",
-   "question": "Will Adanech Abiebie be the next Prime Minister of Ethiopia?",
-   "description": "General elections are scheduled to be held in Ethiopia on June 1, 2026.\n\nThis market will resolve to the next individual who officially assumes the office of Prime Minister of Ethiopia following the 2026 General elections.\n\nTo count for resolution, the individual must be officially appointed and sworn in as Prime Minister of Ethiopia. Any interim or caretaker Prime Minister will not count toward the resolution of this market.\n\nIf no such Prime Minister takes office by December 31, 2028, 11:59 PM ET, this market will resolve to “Other”.\n\nThe primary resolution source for this market will be official information from the Government of Ethiopia; however, a consensus of credible reporting may also be used.",
-   "category": "World",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-adanech-abiebie-be-the-next-prime-minister-of-ethiopia-7nUlSNmvB5IN.png",
-   "asOfDate": "2026-09-29T02:19:40Z",
-   "closedDate": "2026-10-06T02:19:40Z"
-  },
-  {
-   "id": "pr-2252244",
-   "question": "Will there be no change in Fed interest rates after the September 2026 meeting?",
-   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's September 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for September 15-16, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their September meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
-   "category": "Economy",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-   "asOfDate": "2026-09-09T20:02:43Z",
-   "closedDate": "2026-09-16T20:02:43Z"
-  },
-  {
-   "id": "pr-842029",
-   "question": "Will Poland win Eurovision 2026?",
-   "description": "This market will resolve to the country whose candidate for Eurovision 2026 wins.\n\nIf at any point it is impossible for the listed candidate to win Eurovision 2026 based on the rules of the competition (i.e. they are eliminated), this market may immediately resolve to \"No\".\n\nIf no winner is announced by July 31, 2026, 11:59 PM ET, this market will resolve \"Other\". All ties will be broken according to EBU's official Eurovision rules.\n\nThe primary resolution source for this market will be official information from Eurovision (https://eurovision.tv/), including live footage of Eurovision 2026, however a consensus of credible reporting will suffice.",
-   "category": "Culture",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-poland-win-eurovision-2026-Sf88eDID9h5x.png",
-   "asOfDate": "2026-05-10T03:32:52Z",
-   "closedDate": "2026-05-17T03:32:52Z"
-  },
-  {
-   "id": "pr-906974",
-   "question": "Will there be no change in Fed interest rates after the June 2026 meeting?",
-   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's June 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for June 16-17, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their June meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
-   "category": "Economy",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-   "asOfDate": "2026-06-10T21:07:28Z",
-   "closedDate": "2026-06-17T21:07:28Z"
+   "id": "pr-2470848",
+   "question": "Will Trump be in the WC Champions Photo?",
+   "description": "This market will resolve to “Yes” if Donald Trump is visibly in the frame for the winning team's official team photo following the 2026 FIFA World Cup Final. Otherwise, this market will resolve to “No”.\n\nIf Trump does not attend the 2026 FIFA World Cup Final, this market will resolve to “No”.\n\nIf the 2026 FIFA World Cup Final is cancelled or postponed beyond August 2, 2026, 11:59 PM ET, this market will resolve to “No”.\n\nThe resolution source for this market will be a consensus of credible reporting.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-trump-be-in-the-wc-champions-photo-20260608152527021-eJaeDFLpXz06.jpg",
+   "asOfDate": "2026-07-13T03:59:00Z",
+   "closedDate": "2026-07-20T03:59:00Z"
   },
   {
    "id": "pr-1654958",
@@ -80,71 +89,269 @@
    "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's July 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for July 28-29, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their July meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
    "category": "Economy",
    "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-   "asOfDate": "2026-07-22T20:06:41Z",
-   "closedDate": "2026-07-29T20:06:41Z"
+   "asOfDate": "2026-07-22T00:00:00Z",
+   "closedDate": "2026-07-29T00:00:00Z"
   },
   {
-   "id": "pr-1795527",
-   "question": "Russia x Ukraine ceasefire by May 31, 2026?",
-   "description": "This market will resolve to \"Yes\" if there is an official ceasefire agreement, defined as a publicly announced and mutually agreed halt in military engagement, between Russia and Ukraine by May 31, 2026, 11:59 PM ET.\n\nIf the agreement is officially reached before the resolution date, this market will resolve to \"Yes,\" regardless of whether the ceasefire officially starts afterward.\n\nOnly ceasefires which constitute a general pause in the conflict will qualify. Ceasefires which only apply to energy infrastructure, the Black Sea, or other similar agreements will not qualify.\n\nAny form of informal agreement will not be considered an official ceasefire. Humanitarian pauses will not count toward the resolution of this market.\n\nA peace deal or political framework will qualify if it includes a publicly announced and mutually agreed halt in military engagement, effective on a specific date. Frameworks or agreements that outline terms for a future peace but do not include an explicit, dated commitment to stop fighting will not count.\n\nThis market's resolution will be based on official announcements from both Russia and Ukraine; however, a wide consensus of credible media reporting stating an official ceasefire agreement between Russia and Ukraine has been reached will suffice.",
-   "category": "Politics",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/russia-x-ukraine-ceasefire-before-july-GSNGh26whPic.jpg",
-   "asOfDate": "2026-05-02T19:52:26Z",
-   "closedDate": "2026-05-09T19:52:26Z"
+   "id": "pr-1654959",
+   "question": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's July 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for July 28-29, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their July meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-07-22T00:00:00Z",
+   "closedDate": "2026-07-29T00:00:00Z"
   },
   {
-   "id": "pr-1994007",
-   "question": "Israel x Hezbollah ceasefire by April 18, 2026?",
-   "description": "This market will resolve to “Yes” if there is an official ceasefire agreement, defined as a publicly announced and mutually agreed halt in direct military engagement, between Israel and Hezbollah by the listed date, 11:59 PM ET.\n\nIf the agreement is officially reached before the resolution date, this market will resolve to “Yes,” regardless of whether the ceasefire officially takes effect after the resolution date.\n\nAny form of informal understanding, backchannel communication, de-escalation without an announced agreement, or unilateral pause in hostilities will not be considered an official ceasefire. Humanitarian pauses, limited operational pauses, or temporary tactical stand-downs will not count toward the resolution of this market.\n\nA broader peace deal, normalization agreement, or political framework will qualify only if it includes a publicly announced and mutually agreed halt in military engagement between the Israel and Hezbollah, effective on a specified date, or otherwise confirmed by an overwhelming consensus of credible reporting. Agreements that outline future negotiations or de-escalation measures without an explicit, dated commitment to stop fighting will not qualify.\n\nThis market’s resolution will be based on official statements from the Israeli Government and Hezbollah. However, a wide consensus of credible media reporting confirming that an official ceasefire agreement has been reached will suffice.",
+   "id": "pr-2555351",
+   "question": "Israel closes its airspace by July 31?",
+   "description": "This market will resolve to “Yes” if Israel initiates a major closure of its airspace by the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”. \n\nA “major closure” is defined as a broad closure, cancellation, or complete suspension of commercial aviation across the entirety of Israeli civilian airspace or a region encompassing a majority of Israeli civilian airspace, including commercial flights transiting, arriving in, and departing from that airspace. A qualifying closure must apply generally to all flights across Israel or a qualifying subset of Israeli airspace. Limited cancellations, delays, temporary ground stops or isolated regional closures will not qualify. Limited exceptions to a broad closure, however, will not disqualify such a closure from counting (e.g. exceptions for certain pre-approved flights may be permitted).\n\nWarnings, No-Fly-Zones, flight suspensions, or other flight restrictions imposed by airlines or countries other than Israel will not be sufficient for a “Yes” resolution.\n\nAirspace closures which occur solely due to weather conditions will not qualify.\n\nThe primary resolution source for this market will be official information from Israeli aviation authorities; however, a consensus of credible reporting may also be used.",
    "category": "World",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/israel+lebanon+dove+flags.png",
-   "asOfDate": "2026-04-14T00:28:28Z",
-   "closedDate": "2026-04-21T00:28:28Z"
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/israel-closes-its-airspace-by-F65UW1ZQCDQ_.jpg",
+   "asOfDate": "2026-07-25T03:59:00Z",
+   "closedDate": "2026-08-01T03:59:00Z"
   },
   {
-   "id": "pr-1823776",
-   "question": "Will Bitcoin reach $80,000 in April?",
+   "id": "pr-2730117",
+   "question": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in July?",
+   "description": "This market will resolve to \"Yes\" if, at any point after market creation and during a trading session of July 2026, any 1-minute candle for the Active Month of WTI Crude Oil futures has a final \"High\" or \"Low\" price equal to or beyond (above for ↑ High Prices, below for ↓ Low Prices) the listed price. Otherwise, this market will resolve to \"No\".\n\nPrices will be used exactly as published by Pyth, without rounding.\n\nIf the Active Month contract does not trade at all during the listed time frame, this market will resolve to \"No\".\n\nOnly prices achieved during an applicable trading session of the specified timeframe's business days will be considered. The trading session for a given business day typically begins at 6:00 PM ET on the prior calendar date. Under the standard schedule, trading is open from 6:00:00 PM ET Sunday through 5:00:00 PM ET Friday, with a daily break from 5:00:00 PM ET to 6:00:00 PM ET, except where modified by holiday or special-session hours.\n\nThe active month changes at the start of the second trading session prior to the nearest listed contract's last trading session. At that point, the next listed contract becomes the active month (i.e., for the final three trading sessions of the nearest listed contract, the contract for the next month is the active month).\n\nPer CME contract specifications for WTI Crude Oil (CL) futures, a contract's last trading day is three business days prior to the 25th calendar day of the month preceding the contract's delivery month (or four business days prior if the 25th calendar day is not a business day).\n\nFor example, if the 25th of the month is a Saturday, the last trading session for the nearest listed contract is the session for Tuesday the 21st, and the next listed contract becomes the active month at the start of the trading session for Friday the 17th (6:00 PM ET on Thursday), assuming a standard trading calendar.\n\nIf the relevant Pyth data is unavailable due to a system outage, data failure, or other technical",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/crude-oil-9a850ce2a2.png",
+   "asOfDate": "2026-07-25T03:59:59Z",
+   "closedDate": "2026-08-01T03:59:59Z"
+  },
+  {
+   "id": "pr-2758338",
+   "question": "Will Bitcoin reach $70,000 in July?",
    "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No.\"\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
    "category": "Crypto",
    "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
-   "asOfDate": "2026-04-24T07:17:54Z",
-   "closedDate": "2026-05-01T07:17:54Z"
+   "asOfDate": "2026-07-25T04:00:00Z",
+   "closedDate": "2026-08-01T04:00:00Z"
   },
   {
-   "id": "pr-649847",
-   "question": "Monad market cap (FDV) >$4B one day after launch?",
-   "description": "This market will resolve to \"Yes\" if the Fully Diluted Valuation of Monad's token is greater than $4,000,000,000 1 day after launch. Otherwise, the market will resolve to \"No.\"\n\nFor the purposes of this market \"locked\" tokens or non-swappable tokens will not be considered a launch.\n\n\"1 day after launch\" is defined as 24 hours after launch. The resolution source for this market is the most liquid price source available. If Monad doesn't launch a token by June 30, 2026, 11:59 PM ET, this market will resolve to \"No.\"",
-   "category": "Crypto",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/monad-market-cap-fdv-one-day-after-launch-x1c2OPi_BSut.jpg",
-   "asOfDate": "2025-11-21T00:33:23Z",
-   "closedDate": "2025-11-28T00:33:23Z"
-  },
-  {
-   "id": "pr-2159863",
-   "question": "Will Trump say \"Iran\" during events with Xi Jinping?",
-   "description": "Donald Trump is scheduled to meet with Xi Jinping from May 14 to May 15, 2026 (https://www.cnn.com/2026/05/04/china/china-us-talks-iran-intl-hnk). \n\nThis market will resolve to \"Yes\" if Donald Trump says the listed term during his appearance at events featuring Xi Jinping from May 14 through May 15, 2026 (Beijing Time). Otherwise, the market will resolve to \"No\".\n\nPlural and possessive forms of the listed term will count toward the resolution of this market regardless of context; however, other forms will NOT count.\n\nInstances where the term is used in a compound word will count regardless of context (e.g. joyful is not a compound word for \"joy,\" however \"killjoy\" is a compounding of the words \"kill\" and \"joy\").\n\nIf this market requires a specified number of mentions of a person’s first or last name, a full-name mention will count as one mention (e.g., if a market is about “Joe / Biden 5+ times,” a mention of “Joe Biden” will count once).\n\nAI-generated audio or video will not count toward this market's resolution.\n\nThis market is explicitly about events featuring both Donald Trump and Xi Jinping from May 14 through May 15, 2026 (Beijing Time). All such events featuring both on these dates count. Speeches, events, or comments which feature one named individual but not the other, will not qualify toward this market's resolution. If the events contain a Q&A, it will count toward the resolution of this market.\n\nIf this visit is definitively cancelled, or otherwise is not aired by May 31, 2026, 11:59 PM ET, this market will resolve to \"No\".\n\nThe resolution source will be video of the events. Only remarks which are broadcast or streamed live will count toward this market's resolution.",
-   "category": "Politics",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/what-will-trump-say-during-bilateral-events-with-xi-jinping-TsWC6jBEZ6CO.jpg",
-   "asOfDate": "2026-05-16T00:41:11Z",
-   "closedDate": "2026-05-23T00:41:11Z"
-  },
-  {
-   "id": "pr-1517835",
-   "question": "Trump announces end of military operations against Iran by April 30th?",
-   "description": "This market will resolve to \"Yes\" if President Trump, the US government, or the military publicly and officially announce that their military operations against Iran, initiated on February 28, 2026, have concluded by the listed date (ET). Otherwise, this market will resolve to “No”.\n\nQualifying statements must clearly indicate that the operation has ended. Informal announcements, statements from unnamed sources or leaks will not qualify. \n\nWritten public statements from Donald Trump (e.g. posts from his personal Truth Social account), will count. Videos posted on his social media accounts will also qualify for a \"Yes\" resolution.\n\nThe primary resolution source for this market will be official statements from the US government and/or its official representatives; however, a consensus of credible reporting may also be used.",
-   "category": "Politics",
-   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/trump-announces-end-of-military-operations-against-iran-before-july-KQddUiSdAUpe.jpg",
-   "asOfDate": "2026-04-24T06:42:30Z",
-   "closedDate": "2026-05-01T06:42:30Z"
-  },
-  {
-   "id": "pr-2132768",
-   "question": "Will Bitcoin reach $150,000 in May?",
+   "id": "pr-2758339",
+   "question": "Will Bitcoin reach $67,500 in July?",
    "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No.\"\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
    "category": "Crypto",
    "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
-   "asOfDate": "2026-05-25T06:20:59Z",
-   "closedDate": "2026-06-01T06:20:59Z"
+   "asOfDate": "2026-07-25T04:00:00Z",
+   "closedDate": "2026-08-01T04:00:00Z"
+  },
+  {
+   "id": "pr-599305",
+   "question": "Will Abdul El-Sayed win the 2026 Michigan Democratic Primary?",
+   "description": "This market will resolve according to the winner of the Democratic Primary for United States Senator from Michigan.\n\nIf no 2026 Michigan Democratic Senate Primary takes place, this market will resolve to \"Other\".\n\nThe resolution source for this market will be the first announcement of the results from the Michigan Democratic party, however an overwhelming consensus of credible reporting may suffice.",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-abdul-el-sayed-win-the-2026-michigan-democratic-primary-xVDS3V1P24E6.jpg",
+   "asOfDate": "2026-07-28T00:00:00Z",
+   "closedDate": "2026-08-04T00:00:00Z"
+  },
+  {
+   "id": "pr-2663611",
+   "question": "US-Iran 60 day negotiation period extended?",
+   "description": "On June 14, 2026, the United States and Iran announced a written diplomatic agreement (the MOU), including a 60-day negotiation period toward a “final deal”, extendable by mutual consent.\n\nThis market will resolve to “Yes” if both the United States and Iran publicly and officially announce an extension of the 60-day negotiation period initiated by the MOU between market creation and August 20, 2026, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nA qualifying announcement must be a declarative statement of a present extension of the 60-day negotiation period, a previously-unannounced prior extension of the 60-day negotiation period, or definitive agreement to extend the 60-day negotiation period.\n\nA qualifying announcement must clearly and unambiguously identify an extension of the 60-day negotiation period initiated by the MOU. Statements that merely allude to, reference, or describe an extension, without clearly communicating it, do not qualify. However, the announcement need not use specific terminology or reference the MOU by name.\n\nA qualifying announcement must be made through official channels, by an individual acting in an official capacity. Statements made incidentally or informally in a context not intended for official communication do not qualify.\n\nThe extension must be mutually announced by the United States and the Islamic Republic of Iran by the specified date, 11:59 PM ET. Mutual announcement means that taken together, the announcements from the United States and the Islamic Republic of Iran directly indicate that both parties have agreed to extend the 60-day negotiation period, or have recognized a definitive extension of the period.\n\nThe following do not qualify as official announcements: \n- Anonymous, unattributed, or leaked statements not confirmed as official; \n- Statements by persons not authorized to speak for the United States or Iran;\n- Third-party speculation, analysis, or predictions that the United States or Iran will announce ",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-iran-60-day-negotiation-period-extended-byptptpt-20260624041226371-PQeKwYW3ZgF_.jpg",
+   "asOfDate": "2026-08-13T23:59:00Z",
+   "closedDate": "2026-08-20T23:59:00Z"
+  },
+  {
+   "id": "pr-2896080",
+   "question": "Will Darline Graham Nordone be the new republican nominee for Senate in South Carolina?",
+   "description": "This market will resolve according to the winner of the special Republican Primary for United States Senator from South Carolina, including any potential runoff.\n\nIf no 2026 special South Carolina Republican Senate Primary takes place by November 2, 2026, 11:59 PM ET, this market will resolve according to the candidate who is the official Republican nominee to contest the November 3, 2026 South Carolina U.S. Senate election.\n\nIf the results of the special primary are not definitively known, or if there is no Republican nominee to contest the November 3, 2026 South Carolina U.S. Senate election, by November 2, 2026, 11:59 PM ET, this market will resolve to \"Other\".\n\nThe resolution source for this market will be the first announcement of the results from the South Carolina Republican party, however an overwhelming consensus of credible reporting may suffice.",
+   "category": "Politics",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-person-f-be-the-new-republican-nominee-for-senate-in-south-carolina-2026071-NNTTcyLXAb_b.jpg",
+   "asOfDate": "2026-08-18T23:59:00Z",
+   "closedDate": "2026-08-25T23:59:00Z"
+  },
+  {
+   "id": "pr-3257336",
+   "question": "Will Bitcoin reach $82,500 in August?",
+   "description": "This market will immediately resolve to \"Yes\" if any Binance 1 minute candle for BTC/USDT during the month specified in the title (from 00:00 AM ET on the first day to 11:59 PM ET on the last), has a final High price equal to or greater than the price specified in the title. Otherwise, this market will resolve to \"No.\"\n\nThe resolution source for this market is Binance, specifically the BTC/USDT High prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on \"1m\" for one-minute candles selected on the top bar.\n\nPlease note that the outcome of this market depends solely on the price data from the Binance BTC/USDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.",
+   "category": "Crypto",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/BTC+fullsize.png",
+   "asOfDate": "2026-08-25T04:00:00Z",
+   "closedDate": "2026-09-01T04:00:00Z"
+  },
+  {
+   "id": "pr-1088472",
+   "question": "Will Carlos Alcaraz win the 2026 Men's US Open?",
+   "description": "The 2026 U.S. Open tennis tournament is scheduled for August 23 - September 13, 2026.\n\nThis market will resolve to the player that wins the 2026 U.S. Open Men’s Singles Tournament.\n\nIf at any point it becomes impossible for a listed player to win the 2026 U.S. Open Men’s Singles Tournament per the rules of the tournament, the corresponding market will resolve to “No”.\n\nIf the 2026 U.S. Open Men’s Singles Tournament is cancelled, postponed after October 31, 2026, or there is otherwise no winner declared within that timeframe, this market will resolve to “Other”.\n\nThe primary resolution source will be official information from the U.S. Open (https://www.usopen.org/index.html); however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/2026-mens-us-open-winner-tennis-oSTkkDpgQu-b.png",
+   "asOfDate": "2026-09-06T00:00:00Z",
+   "closedDate": "2026-09-13T00:00:00Z"
+  },
+  {
+   "id": "pr-1088475",
+   "question": "Will Alexander Zverev win the 2026 Men's US Open?",
+   "description": "The 2026 U.S. Open tennis tournament is scheduled for August 23 - September 13, 2026.\n\nThis market will resolve to the player that wins the 2026 U.S. Open Men’s Singles Tournament.\n\nIf at any point it becomes impossible for a listed player to win the 2026 U.S. Open Men’s Singles Tournament per the rules of the tournament, the corresponding market will resolve to “No”.\n\nIf the 2026 U.S. Open Men’s Singles Tournament is cancelled, postponed after October 31, 2026, or there is otherwise no winner declared within that timeframe, this market will resolve to “Other”.\n\nThe primary resolution source will be official information from the U.S. Open (https://www.usopen.org/index.html); however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/2026-mens-us-open-winner-tennis-oSTkkDpgQu-b.png",
+   "asOfDate": "2026-09-06T00:00:00Z",
+   "closedDate": "2026-09-13T00:00:00Z"
+  },
+  {
+   "id": "pr-2252244",
+   "question": "Will there be no change in Fed interest rates after the September 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's September 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for September 15-16, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their September meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-09-09T00:00:00Z",
+   "closedDate": "2026-09-16T00:00:00Z"
+  },
+  {
+   "id": "pr-2252245",
+   "question": "Will the Fed increase interest rates by 25 bps after the September 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's September 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for September 15-16, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their September meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+   "asOfDate": "2026-09-09T00:00:00Z",
+   "closedDate": "2026-09-16T00:00:00Z"
+  },
+  {
+   "id": "pr-1130016",
+   "question": "Will New People (NL) gain the most seats in the next Russian parliamentary election?",
+   "description": "Parliamentary elections are to be scheduled to be held in Russia in September 2026.\n\nThis market will resolve according to the political party that gains the greatest number of seats in the next Russian State Duma election, compared to before the election.\n\nIf the results are not known definitively by September 30, 2027, 11:59 PM ET, this market will resolve to \"Other\".\n\nIn the event of a tie between multiple parties for the most seats gained, this market will resolve in favor of the party that received a greater number of valid votes. In the event that results in a tie, this market will resolve in favor of the party whose listed abbreviation appears first in alphabetical order.\n\nThis market's resolution will be based solely on the number of seats gained by the named party in the State Duma of the Federal Assembly of the Russian Federation.\n\nThis market will resolve based on the results of this election, as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results reported by Russian government sources such as the Central Election Commission of the Russian Federation.",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-new-people-nl-win-the-most-seats-in-the-next-russian-parliamentary-election-rzG2Gs5Yw0wW.png",
+   "asOfDate": "2026-09-13T23:59:00Z",
+   "closedDate": "2026-09-20T23:59:00Z"
+  },
+  {
+   "id": "pr-3128887",
+   "question": "US announces end of Iranian blockade by September 30, 2026?",
+   "description": "On July 13, 2026, Trump announced the United States would reinstate its naval blockade of Iran, targeting Iranian ships and customers.\n\nThis market will resolve to “Yes” if the United States government, or an authorized representative of the United States government, publicly and officially announces the end, termination, lifting, or suspension of the United States’ naval blockade on Iranian ships and ships of Iranian customers, between market creation and the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement qualifies if it communicates that the United States will generally cease blocking vessel traffic for Iranian ships and customers, including an announcement that the blockade will not take effect at all, even if some restrictions remain (for example, an imposition of fees). An announcement does not qualify if it reflects only a limited or partial change that stops short of a general end or suspension of the blockade, for example, an exemption for a specific vessel, cargo, or port.\n\nA qualifying announcement must be a declarative statement of the United States government’s present termination or suspension of the blockade, previously-unannounced prior termination or suspension of the blockade, or definitive decision to terminate or suspend the blockade.\n\nA qualifying announcement must clearly and unambiguously identify the end or suspension of the blockade. Statements that merely allude to, reference, or describe an end to the blockade, without clearly communicating it, do not qualify. The announcement need not use specific terminology or reference the end of a blockade by name; an announcement of a resumption of prior obligations, the maintenance of a status quo, or a return to a previously agreed baseline qualifies, provided the substantive policy of ending or suspending the blockade is clearly and unambiguously communicated.\n\nA qualifying announcement must be made through official channels, by an individual acting in an",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
+   "asOfDate": "2026-09-24T03:59:00Z",
+   "closedDate": "2026-10-01T03:59:00Z"
+  },
+  {
+   "id": "pr-1365861",
+   "question": "Will Flávio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+   "description": "A presidential election is scheduled to take place in Brazil on October 4, 2026.\n\nThis market will resolve according to the listed candidate who receives the second-most valid votes in the first round of this election.\n\nThe named candidates will be primarily ranked by the number of valid votes received in the specified election. If two or more candidates are tied on valid votes, ties will be broken by alphabetical order of the candidates' last names. This market will resolve to the candidate that occupies the second-highest finishing position after applying this ranking.\n\nIf the result of this election isn't known definitively by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election, as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Brazilian government, specifically the Superior Electoral Court (Tribunal Superior Eleitoral, TSE) (e.g., https://dadosabertos.tse.jus.br/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-flvio-bolsonaro-win-the-2026-brazilian-presidential-election-LUNiqIvy01pf.jpg",
+   "asOfDate": "2026-09-28T03:59:00Z",
+   "closedDate": "2026-10-05T03:59:00Z"
+  },
+  {
+   "id": "pr-4037599",
+   "question": "Will Lula win the most votes in the first round of the 2026 Brazil presidential election?",
+   "description": "A presidential election is scheduled to take place in Brazil on October 4, 2026.\n\nThis market will resolve according to the listed candidate who receives the most valid votes in the first round of this election.\n\nCandidates will be primarily ranked by order of valid votes won. If two or more candidates are tied for any position, ties will be broken by alphabetical order of the candidates’ listed full names as they appear in this market. This market will resolve to the candidate that occupies the highest finishing position after applying this ranking.\n\nIf the result of this election isn't known definitively by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election, as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Brazilian government, specifically the Superior Electoral Court (Tribunal Superior Eleitoral, TSE) (e.g., https://dadosabertos.tse.jus.br/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/brpres-lula-3d61b3284f.jpg",
+   "asOfDate": "2026-09-28T03:59:00Z",
+   "closedDate": "2026-10-05T03:59:00Z"
+  },
+  {
+   "id": "pr-4037600",
+   "question": "Will Flavio Bolsonaro win the most votes in the first round of the 2026 Brazil presidential election?",
+   "description": "A presidential election is scheduled to take place in Brazil on October 4, 2026.\n\nThis market will resolve according to the listed candidate who receives the most valid votes in the first round of this election.\n\nCandidates will be primarily ranked by order of valid votes won. If two or more candidates are tied for any position, ties will be broken by alphabetical order of the candidates’ listed full names as they appear in this market. This market will resolve to the candidate that occupies the highest finishing position after applying this ranking.\n\nIf the result of this election isn't known definitively by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election, as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Brazilian government, specifically the Superior Electoral Court (Tribunal Superior Eleitoral, TSE) (e.g., https://dadosabertos.tse.jus.br/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/brpres-flavio-bolsonaro-59c58483a6.jpg",
+   "asOfDate": "2026-09-28T03:59:00Z",
+   "closedDate": "2026-10-05T03:59:00Z"
+  },
+  {
+   "id": "pr-4906127",
+   "question": "US announces end of Iranian blockade by October 15, 2026?",
+   "description": "On July 13, 2026, Trump announced the United States would reinstate its naval blockade of Iran, targeting Iranian ships and customers.\n\nThis market will resolve to “Yes” if the United States government, or an authorized representative of the United States government, publicly and officially announces the end, termination, lifting, or suspension of the United States’ naval blockade on Iranian ships and ships of Iranian customers, between market creation and the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nAn announcement qualifies if it communicates that the United States will generally cease blocking vessel traffic for Iranian ships and customers, including an announcement that the blockade will not take effect at all, even if some restrictions remain (for example, an imposition of fees). An announcement does not qualify if it reflects only a limited or partial change that stops short of a general end or suspension of the blockade, for example, an exemption for a specific vessel, cargo, or port.\n\nA qualifying announcement must be a declarative statement of the United States government’s present termination or suspension of the blockade, previously-unannounced prior termination or suspension of the blockade, or definitive decision to terminate or suspend the blockade.\n\nA qualifying announcement must clearly and unambiguously identify the end or suspension of the blockade. Statements that merely allude to, reference, or describe an end to the blockade, without clearly communicating it, do not qualify. The announcement need not use specific terminology or reference the end of a blockade by name; an announcement of a resumption of prior obligations, the maintenance of a status quo, or a return to a previously agreed baseline qualifies, provided the substantive policy of ending or suspending the blockade is clearly and unambiguously communicated.\n\nA qualifying announcement must be made through official channels, by an individual acting in an",
+   "category": "Economy",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us-announces-blockade-on-iran-byptptpt-20260622191049039-hE3ZTZ51JJy3.jpg",
+   "asOfDate": "2026-10-09T03:59:00Z",
+   "closedDate": "2026-10-16T03:59:00Z"
+  },
+  {
+   "id": "pr-4824600",
+   "question": "Will Aleksandar Vučić – United Serbia win the most seats in the 2026 Serbian parliamentary election?",
+   "description": "Parliamentary elections to elect the 250 members of the National Assembly of Serbia are scheduled to take place on October 25, 2026.\n\nThis market will resolve to the electoral list that wins the greatest number of seats in the National Assembly of Serbia as a result of this election.\n\nElectoral lists will be primarily ranked by the number of seats won in the specified election. If two or more lists are tied on seats, ties will be broken by the total number of valid votes received, with higher vote totals ranking higher. If lists remain tied, ties will be broken by alphabetical order of the listed names. This market will resolve to the list that occupies the highest finishing position after applying this ranking.\n\nThis market's resolution will be based solely on the number of seats won by the named electoral list, as it appears on the ballot and official proclamations, regardless of which parties make up the list or how its members later organize themselves in the National Assembly.\n\nIf the results of the specified election are not definitively known by March 31, 2027, 11:59 PM ET, this market will resolve to \"Other\".\n\nThis market will resolve based on the results of the elections, as indicated by a consensus of credible reporting. In the case of ambiguity, this market will resolve solely based on the results as reported by the Republic Electoral Commission of Serbia (https://www.rik.parlament.gov.rs/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/srb26-sns-fb8c4a9d4e.jpg",
+   "asOfDate": "2026-10-18T23:59:00Z",
+   "closedDate": "2026-10-25T23:59:00Z"
+  },
+  {
+   "id": "pr-4824602",
+   "question": "Will Student List – Students Win win the most seats in the 2026 Serbian parliamentary election?",
+   "description": "Parliamentary elections to elect the 250 members of the National Assembly of Serbia are scheduled to take place on October 25, 2026.\n\nThis market will resolve to the electoral list that wins the greatest number of seats in the National Assembly of Serbia as a result of this election.\n\nElectoral lists will be primarily ranked by the number of seats won in the specified election. If two or more lists are tied on seats, ties will be broken by the total number of valid votes received, with higher vote totals ranking higher. If lists remain tied, ties will be broken by alphabetical order of the listed names. This market will resolve to the list that occupies the highest finishing position after applying this ranking.\n\nThis market's resolution will be based solely on the number of seats won by the named electoral list, as it appears on the ballot and official proclamations, regardless of which parties make up the list or how its members later organize themselves in the National Assembly.\n\nIf the results of the specified election are not definitively known by March 31, 2027, 11:59 PM ET, this market will resolve to \"Other\".\n\nThis market will resolve based on the results of the elections, as indicated by a consensus of credible reporting. In the case of ambiguity, this market will resolve solely based on the results as reported by the Republic Electoral Commission of Serbia (https://www.rik.parlament.gov.rs/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/srb26-students-abc5bce458.jpg",
+   "asOfDate": "2026-10-18T23:59:00Z",
+   "closedDate": "2026-10-25T23:59:00Z"
+  },
+  {
+   "id": "pr-601819",
+   "question": "Will Luiz Inácio Lula da Silva win the 2026 Brazilian presidential election?",
+   "description": "A presidential election is scheduled to take place in Brazil on October 4, 2026.\n\nThis market will resolve according to the listed candidate that wins this election.\n\nThis market includes any potential second round. If the result of this election isn't known by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Brazilian government, specifically the Superior Electoral Court (Tribunal Superior Eleitoral, TSE) (e.g., https://dadosabertos.tse.jus.br/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election-reTil6nEVB1J.jpg",
+   "asOfDate": "2026-10-19T03:59:00Z",
+   "closedDate": "2026-10-26T03:59:00Z"
+  },
+  {
+   "id": "pr-601826",
+   "question": "Will Flávio Bolsonaro win the 2026 Brazilian presidential election?",
+   "description": "A presidential election is scheduled to take place in Brazil on October 4, 2026.\n\nThis market will resolve according to the listed candidate that wins this election.\n\nThis market includes any potential second round. If the result of this election isn't known by June 30, 2027, 11:59 PM ET, the market will resolve to \"Other\".\n\nThis market will resolve based on the result of the election as indicated by a consensus of credible reporting. If there is ambiguity, this market will resolve based solely on the official results as reported by the Brazilian government, specifically the Superior Electoral Court (Tribunal Superior Eleitoral, TSE) (e.g., https://dadosabertos.tse.jus.br/).",
+   "category": "World",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-flvio-bolsonaro-win-the-2026-brazilian-presidential-election-LUNiqIvy01pf.jpg",
+   "asOfDate": "2026-10-19T03:59:00Z",
+   "closedDate": "2026-10-26T03:59:00Z"
+  },
+  {
+   "id": "pr-608540",
+   "question": "Will Kylian Mbappé win the 2026 Ballon d'Or?",
+   "description": "This market will resolve according to the winner of the 2026 Ballon d’Or.\n\nIf no 2026 Ballon d’Or winner is declared by December 31, 2026, 11:59 PM ET, this market will resolve to \"Other\".\n\nThe primary resolution source for this market is official information from France Football (https://www.francefootball.fr/).",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/ballon-dor-winner-2025-vTCj-1ZkJzga.jpg",
+   "asOfDate": "2026-10-20T03:59:00Z",
+   "closedDate": "2026-10-27T03:59:00Z"
+  },
+  {
+   "id": "pr-608547",
+   "question": "Will Harry Kane win the 2026 Ballon d'Or?",
+   "description": "This market will resolve according to the winner of the 2026 Ballon d’Or.\n\nIf no 2026 Ballon d’Or winner is declared by December 31, 2026, 11:59 PM ET, this market will resolve to \"Other\".\n\nThe primary resolution source for this market is official information from France Football (https://www.francefootball.fr/).",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/ballon-dor-winner-2025-vTCj-1ZkJzga.jpg",
+   "asOfDate": "2026-10-20T03:59:00Z",
+   "closedDate": "2026-10-27T03:59:00Z"
+  },
+  {
+   "id": "pr-2589812",
+   "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 27-28, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": null,
+   "asOfDate": "2026-10-22T03:59:00Z",
+   "closedDate": "2026-10-29T03:59:00Z"
+  },
+  {
+   "id": "pr-2589813",
+   "question": "Will the Fed increase interest rates by 25 bps after the October 2026 meeting?",
+   "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 27-28, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+   "category": "Economy",
+   "imageUrl": null,
+   "asOfDate": "2026-10-22T03:59:00Z",
+   "closedDate": "2026-10-29T03:59:00Z"
+  },
+  {
+   "id": "pr-1235549",
+   "question": "Will the Tampa Bay Rays win the 2026 World Series?",
+   "description": "This market will resolve according to the team that wins the 2026 MLB World Series. \n\nIf at any point it becomes impossible for a listed team to win the 2026 MLB World Series per the rules of MLB (e.g., they are eliminated in the playoffs), the corresponding market will resolve to “No”.\n\nIf the 2026 MLB season is cancelled, postponed after December 31, 2026 ET, or there is otherwise no winner declared within that timeframe, this market will resolve to “Other”.\n\nThe primary resolution source will be official information from MLB (https://www.mlb.com/); however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/whatever-36cb809aa2.jpg",
+   "asOfDate": "2026-10-24T23:55:00Z",
+   "closedDate": "2026-10-31T23:55:00Z"
+  },
+  {
+   "id": "pr-1235568",
+   "question": "Will the Milwaukee Brewers win the 2026 World Series?",
+   "description": "This market will resolve according to the team that wins the 2026 MLB World Series. \n\nIf at any point it becomes impossible for a listed team to win the 2026 MLB World Series per the rules of MLB (e.g., they are eliminated in the playoffs), the corresponding market will resolve to “No”.\n\nIf the 2026 MLB season is cancelled, postponed after December 31, 2026 ET, or there is otherwise no winner declared within that timeframe, this market will resolve to “Other”.\n\nThe primary resolution source will be official information from MLB (https://www.mlb.com/); however, a consensus of credible reporting may also be used.",
+   "category": "Sports",
+   "imageUrl": "https://polymarket-upload.s3.us-east-2.amazonaws.com/whatever-36cb809aa2.jpg",
+   "asOfDate": "2026-10-24T23:55:00Z",
+   "closedDate": "2026-10-31T23:55:00Z"
   }
  ]
 }

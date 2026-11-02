@@ -1,7 +1,7 @@
 {
  "modelVersion": "lr-crowd-2026-11-01",
  "level": "model",
- "generatedAt": "2026-10-31T20:10:08Z",
+ "generatedAt": "2026-11-02T17:13:24Z",
  "metrics": {
   "testBrier": 0.0891,
   "crowdBrier": 0.089,
@@ -30,114 +30,114 @@
    ]
   },
   "pm-562828": {
-   "probability": 0.7043,
-   "explanation": [
-    "The AI agrees with the crowd's price (70%)"
-   ]
-  },
-  "pm-630964": {
-   "probability": 0.3471,
-   "explanation": [
-    "The AI raises the crowd's price from 30% to 35%",
-    "Markets priced around 30% have resolved YES more often than that"
-   ]
-  },
-  "pm-562830": {
-   "probability": 0.2895,
-   "explanation": [
-    "The AI raises the crowd's price from 24% to 29%",
-    "Markets priced around 24% have resolved YES more often than that"
-   ]
-  },
-  "pm-630963": {
-   "probability": 0.7043,
-   "explanation": [
-    "The AI agrees with the crowd's price (70%)"
-   ]
-  },
-  "pm-5686980": {
-   "probability": 0.7129,
+   "probability": 0.7216,
    "explanation": [
     "The AI agrees with the crowd's price (72%)"
    ]
   },
-  "pm-630806": {
-   "probability": 0.2493,
+  "pm-630964": {
+   "probability": 0.2993,
    "explanation": [
-    "The AI raises the crowd's price from 20% to 25%",
+    "The AI raises the crowd's price from 24% to 30%",
+    "Markets priced around 24% have resolved YES more often than that"
+   ]
+  },
+  "pm-562830": {
+   "probability": 0.2696,
+   "explanation": [
+    "The AI raises the crowd's price from 22% to 27%",
+    "Markets priced around 22% have resolved YES more often than that"
+   ]
+  },
+  "pm-630963": {
+   "probability": 0.7477,
+   "explanation": [
+    "The AI agrees with the crowd's price (76%)"
+   ]
+  },
+  "pm-5686980": {
+   "probability": 0.7654,
+   "explanation": [
+    "The AI agrees with the crowd's price (78%)"
+   ]
+  },
+  "pm-630806": {
+   "probability": 0.2595,
+   "explanation": [
+    "The AI raises the crowd's price from 20% to 26%",
     "Markets priced around 20% have resolved YES more often than that"
    ]
   },
   "pm-562794": {
-   "probability": 0.3377,
+   "probability": 0.3282,
    "explanation": [
-    "The AI raises the crowd's price from 28% to 34%",
+    "The AI raises the crowd's price from 28% to 33%",
     "Markets priced around 28% have resolved YES more often than that"
    ]
   },
   "pm-562793": {
-   "probability": 0.7129,
+   "probability": 0.7303,
    "explanation": [
-    "The AI agrees with the crowd's price (72%)"
+    "The AI agrees with the crowd's price (74%)"
    ]
   },
   "pm-629691": {
-   "probability": 0.6807,
+   "probability": 0.6321,
    "explanation": [
-    "The AI agrees with the crowd's price (68%)"
+    "The AI raises the crowd's price from 62% to 63%"
    ]
   },
   "pm-630805": {
-   "probability": 0.7922,
+   "probability": 0.7832,
    "explanation": [
-    "The AI lowers the crowd's price from 80% to 79%"
+    "The AI lowers the crowd's price from 80% to 78%"
    ]
   },
   "pm-648383": {
-   "probability": 0.3187,
+   "probability": 0.309,
    "explanation": [
-    "The AI raises the crowd's price from 26% to 32%",
+    "The AI raises the crowd's price from 26% to 31%",
     "Markets priced around 26% have resolved YES more often than that"
    ]
   },
   "pm-5447182": {
-   "probability": 0.8817,
+   "probability": 0.9398,
    "explanation": [
-    "The AI lowers the crowd's price from 90% to 88%",
-    "Markets priced around 90% have resolved YES less often than that"
+    "The AI lowers the crowd's price from 96% to 94%",
+    "Markets priced around 96% have resolved YES less often than that"
    ]
   },
   "pm-628940": {
-   "probability": 0.0289,
+   "probability": 0.0272,
    "explanation": [
     "The AI raises the crowd's price from 1% to 3%",
     "Markets priced around 1% have resolved YES more often than that"
    ]
   },
   "pm-628941": {
-   "probability": 0.975,
+   "probability": 0.9777,
    "explanation": [
-    "The AI agrees with the crowd's price (98%)"
+    "The AI agrees with the crowd's price (99%)"
    ]
   },
   "pm-943539": {
-   "probability": 0.2018,
+   "probability": 0.1853,
    "explanation": [
-    "The AI raises the crowd's price from 15% to 20%",
-    "Markets priced around 15% have resolved YES more often than that"
+    "The AI raises the crowd's price from 14% to 19%",
+    "Markets priced around 14% have resolved YES more often than that"
    ]
   },
   "pm-634976": {
-   "probability": 0.7216,
+   "probability": 0.7303,
    "explanation": [
-    "The AI agrees with the crowd's price (72%)"
+    "The AI agrees with the crowd's price (74%)"
    ]
   },
   "pm-629690": {
-   "probability": 0.3657,
+   "probability": 0.4292,
    "explanation": [
-    "The AI raises the crowd's price from 32% to 37%",
-    "Markets priced around 32% have resolved YES more often than that"
+    "The AI raises the crowd's price from 38% to 43%",
+    "Markets priced around 38% have resolved YES more often than that"
    ]
   }
  }
