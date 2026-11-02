@@ -7,12 +7,12 @@ import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
 import useDocumentTitle from "../../hooks/useDocumentTitle.js";
 import useRequest from "../../hooks/useRequest.js";
+import { getPractice, revealPractice } from "../../data/index.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatDate } from "../../lib/format.js";
 import useCalls from "../calls/useCalls.js";
 import CallItForm from "./CallItForm.jsx";
 import RevealPanel from "./RevealPanel.jsx";
-import { getSamplePractice, revealSamplePractice } from "./sampleMarketData.js";
 import "./MarketDetailPage.css";
 import "./PracticeDetailPage.css";
 
@@ -29,7 +29,7 @@ export default function PracticeDetailPage() {
   const controllerRef = useRef(null);
 
   useEffect(() => {
-    run((signal) => getSamplePractice(id, { signal }));
+    run((signal) => getPractice(id, { signal }));
   }, [id, run]);
 
   // Leaving the page cancels a reveal that is still loading
@@ -51,7 +51,7 @@ export default function PracticeDetailPage() {
 
     try {
       // The answer is only fetched now, after you've committed
-      const { data } = await revealSamplePractice(id, probability, { signal: controller.signal });
+      const { data } = await revealPractice(id, probability, { signal: controller.signal });
       // Saved only after a successful reveal, so a failure never leaves a half-saved call
       const result = makeCall({
         marketId: id,
@@ -77,7 +77,8 @@ export default function PracticeDetailPage() {
     if (attempt) runReveal(attempt.probability, attempt.reason);
   }
 
-  if (practice.status === "error" && practice.error?.code === "NOT_FOUND") {
+  // A malformed id in the URL (VALIDATION_ERROR) is just as much "not found" to the visitor
+  if (practice.status === "error" && ["NOT_FOUND", "VALIDATION_ERROR"].includes(practice.error?.code)) {
     return (
       <EmptyState
         title="Practice market not found"
@@ -126,9 +127,9 @@ export default function PracticeDetailPage() {
             </div>
           </div>
           <p className="practice-detail__rewind">
-            You're back on <time dateTime={market.asOfDate}>{formatDate(market.asOfDate)}</time>. This market
-            closed on <time dateTime={market.closedDate}>{formatDate(market.closedDate)}</time>: what did you
-            think would happen?
+            You're back on <time dateTime={market.asOfDate}>{formatDate(market.asOfDate)}</time>. This market is
+            due to close on <time dateTime={market.closedDate}>{formatDate(market.closedDate)}</time>: what do
+            you think will happen?
           </p>
         </header>
 

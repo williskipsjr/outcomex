@@ -5,13 +5,13 @@ import EmptyState from "../../components/EmptyState.jsx";
 import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
 import useRequest from "../../hooks/useRequest.js";
+import { listPractice } from "../../data/index.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { DEFAULT_VIEW, parseViewParams, toSearchParams } from "../../lib/viewParams.js";
 import useCalls from "../calls/useCalls.js";
 import CategoryChips from "../dashboard/CategoryChips.jsx";
 import MarketCard from "../dashboard/MarketCard.jsx";
 import MarketGrid from "../dashboard/MarketGrid.jsx";
-import { loadSamplePractice } from "./samplePractice.js";
 import "./PracticeListPage.css";
 
 const SKELETON_COUNT = 6;
@@ -33,7 +33,7 @@ export default function PracticeListPage() {
   }
 
   useEffect(() => {
-    run((signal) => loadSamplePractice(signal));
+    run((signal) => listPractice({ signal }));
   }, [run]);
 
   function renderContent() {

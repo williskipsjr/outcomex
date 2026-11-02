@@ -6,6 +6,7 @@ import ErrorState from "../../components/ErrorState.jsx";
 import Skeleton from "../../components/Skeleton.jsx";
 import useDocumentTitle from "../../hooks/useDocumentTitle.js";
 import useRequest from "../../hooks/useRequest.js";
+import { getMarket, getPrediction } from "../../data/index.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatDate, formatPercent, formatTimeLeft, formatVolume } from "../../lib/format.js";
 import useCalls from "../calls/useCalls.js";
@@ -13,7 +14,6 @@ import useSettings from "../settings/useSettings.js";
 import CallItForm from "./CallItForm.jsx";
 import PriceChart from "./PriceChart.jsx";
 import RevealPanel from "./RevealPanel.jsx";
-import { getSampleMarket, getSamplePrediction } from "./sampleMarketData.js";
 import "./MarketDetailPage.css";
 
 export default function MarketDetailPage() {
@@ -30,8 +30,8 @@ export default function MarketDetailPage() {
   const { run: runPrediction } = prediction;
 
   useEffect(() => {
-    runMarket((signal) => getSampleMarket(id, { signal }));
-    runPrediction((signal) => getSamplePrediction(id, { signal }));
+    runMarket((signal) => getMarket(id, { signal }));
+    runPrediction((signal) => getPrediction(id, { signal }));
   }, [id, runMarket, runPrediction]);
 
   // useRequest keeps old data while loading; when moving to another market
@@ -58,7 +58,8 @@ export default function MarketDetailPage() {
     if (!result.ok) setCallError(result.error);
   }
 
-  if (market.status === "error" && market.error?.code === "NOT_FOUND") {
+  // A malformed id in the URL (VALIDATION_ERROR) is just as much "not found" to the visitor
+  if (market.status === "error" && ["NOT_FOUND", "VALIDATION_ERROR"].includes(market.error?.code)) {
     return (
       <EmptyState
         title="Market not found"
