@@ -5,6 +5,7 @@ import EmptyState from "../../components/EmptyState.jsx";
 import { formatDate, formatPercent } from "../../lib/format.js";
 import { brierScore, compareForecasts, MIN_CALLS_FOR_SUMMARY } from "../../lib/scoring.js";
 import useCalls from "./useCalls.js";
+import useResolutionCheck from "./useResolutionCheck.js";
 import "./MyCallsPage.css";
 
 const TABS = [
@@ -37,6 +38,7 @@ function downloadJson(text, filename) {
 
 export default function MyCallsPage() {
   const { calls, exportCalls, clearCalls } = useCalls();
+  const resolutionCheck = useResolutionCheck();
   const [tab, setTab] = useState("all");
 
   if (calls.length === 0) {
@@ -86,6 +88,15 @@ export default function MyCallsPage() {
       <p className="my-calls__counts num">
         {calls.length} {calls.length === 1 ? "call" : "calls"} · {resolvedCount} resolved
       </p>
+
+      {resolutionCheck.failed && (
+        <p className="my-calls__check-failed" role="status">
+          Couldn't check results.{" "}
+          <Button variant="ghost" onClick={resolutionCheck.retry}>
+            Retry
+          </Button>
+        </p>
+      )}
 
       {comparison.enoughData ? (
         <div className="my-calls__summary">

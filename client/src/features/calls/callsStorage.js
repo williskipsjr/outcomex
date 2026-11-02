@@ -83,3 +83,13 @@ export function createCall(input, { now = new Date(), makeId = () => crypto.rand
     resolution: input.resolution ?? null,
   };
 }
+
+// Markets to ask about: live calls with no result yet. Ids that aren't real
+// Polymarket ids (from old test data, say) are left out, because the data layer
+// would reject the whole batch.
+export function pendingLiveMarketIds(calls) {
+  const ids = calls
+    .filter((call) => call.mode === "live" && !call.resolution && /^pm-\d+$/.test(call.marketId))
+    .map((call) => call.marketId);
+  return [...new Set(ids)];
+}
