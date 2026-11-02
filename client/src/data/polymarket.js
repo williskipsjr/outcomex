@@ -21,7 +21,10 @@ const CLOB = "https://clob.polymarket.com";
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
-const TTL = { markets: 60 * SECOND, search: 30 * SECOND, market: 60 * SECOND, history: 5 * MINUTE, statuses: 60 * SECOND };
+// markets is a little under the dashboard's 60 s auto-refresh: the cache clock
+// starts when a response arrives, so at exactly 60 s the old copy would still
+// count as fresh and every other refresh would do nothing
+const TTL = { markets: 50 * SECOND, search: 30 * SECOND, market: 60 * SECOND, history: 5 * MINUTE, statuses: 60 * SECOND };
 
 // Our range -> CLOB interval and fidelity (minutes between points)
 const HISTORY_PARAMS = {
@@ -179,7 +182,7 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
     return token;
   }
 
-  function loadHistory(id, range, signal) {
+  function loadHistory(id, range, signal, { persist = true } = {}) {
     return cache.get(
       cacheKey("getHistory", id, range),
       TTL.history,
@@ -193,7 +196,7 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
         }
         return { range, points: normalizeHistory(response) };
       },
-      { signal, source },
+      { signal, source, persist },
     );
   }
 
@@ -232,7 +235,9 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
     let stale = false;
     const lines = await mapWithLimit(unique, SPARKLINE_CONCURRENCY, async (id) => {
       try {
-        const { data, meta } = await loadHistory(id, "1w", signal);
+        // Charts are decoration: a burst of them must not push the market list
+        // out of the stale store
+        const { data, meta } = await loadHistory(id, "1w", signal, { persist: false });
         stale ||= meta.stale;
         return [id, sparklineFrom(data.points)];
       } catch (error) {

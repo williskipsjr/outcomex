@@ -61,14 +61,14 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
     }
   }
 
-  function remember(key, value, ttlMs) {
+  function remember(key, value, ttlMs, persist) {
     const storedAt = now();
     memory.delete(key); // re-insert so Map order stays oldest-first
     memory.set(key, { value, storedAt, ttlMs });
     if (memory.size > MAX_MEMORY_ENTRIES) {
       memory.delete(memory.keys().next().value);
     }
-    writeStored(key, value, storedAt);
+    if (persist) writeStored(key, value, storedAt);
     return storedAt;
   }
 
@@ -125,8 +125,10 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
 
   // key: a string that identifies the request (function + arguments)
   // load(signal): does the real work and resolves to the normalised value
+  // persist: false skips the sessionStorage copy, for data that isn't worth a
+  // stale fallback and would only push out what is (the store keeps 40 entries)
   // Resolves to { data, meta } or rejects with a DataError.
-  async function get(key, ttlMs, load, { signal, source }) {
+  async function get(key, ttlMs, load, { signal, source, persist = true }) {
     if (signal?.aborted) throw abortedError();
 
     const cached = memory.get(key);
@@ -137,7 +139,7 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
     try {
       const entry = join(key, async (sharedSignal) => {
         const value = await load(sharedSignal);
-        return { value, storedAt: remember(key, value, ttlMs) };
+        return { value, storedAt: remember(key, value, ttlMs, persist) };
       });
       const { value, storedAt } = await waitFor(key, entry, signal);
       return { data: value, meta: { fetchedAt: toIso(storedAt), stale: false, cache: "miss", source } };

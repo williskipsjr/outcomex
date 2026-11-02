@@ -1,6 +1,6 @@
 # OutcomeX data contract
 
-**Version 1.0** · owned by the Backend / Data Engineer · file contracts (§6) co-owned with the AI/ML Engineer
+**Version 1.1** · owned by the Backend / Data Engineer · file contracts (§6) co-owned with the AI/ML Engineer
 
 This is the agreement between the React app and the data layer in `client/src/data`. The frontends build against it, the data layer returns exactly these shapes from real sources and from mock fixtures, and the ML pipeline writes the static files in §6. If this file and the code disagree, this file wins and the code is a bug.
 
@@ -12,6 +12,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 |---|---|---|---|
 | 1.0 | 30 Oct 2026 | First version, from master plan Appendix A, checked against live Gamma and CLOB responses | — |
 | 1.0 | 30 Oct 2026 | Added optional `Market.weekChange` and `Market.sparkline`, and function D11 `getSparklines` | The dashboard cards already show a weekly change and a mini chart (Kalshi-style redesign). Gamma gives the change for free; the chart needs one CLOB call per market, so it is a separate, cached function the page calls only for cards it shows |
+| 1.1 | 2 Nov 2026 | `asOfDate` is 7 days before the *scheduled* end, and `closedDate` is the scheduled end. D1's cache is 50 s | Anchoring on the actual close leaked the outcome (`docs/ml/evaluation.md`). A 60 s cache meant the dashboard's 60 s refresh often did nothing |
 
 ## 1. Conventions
 
@@ -36,7 +37,7 @@ Changes follow the contract-change process (master plan §11.5): open an issue, 
 
 | Id | Function | Purpose and source | Main user | Cache | Scope |
 |---|---|---|---|---|---|
-| D1 | `listMarkets({ limit, signal })` | Open yes/no markets, busiest in the last 24 h first, at most 3 per event. Gamma `/markets`. Filtering, sorting and local search happen in the UI | FE1 | 60 s | MVP |
+| D1 | `listMarkets({ limit, signal })` | Open yes/no markets, busiest in the last 24 h first, at most 3 per event. Gamma `/markets`. Filtering, sorting and local search happen in the UI | FE1 | 50 s (just under the dashboard's 60 s refresh) | MVP |
 | D2 | `searchMarkets({ q, limit, signal })` | Open yes/no markets matching a query. Gamma `/public-search` | FE1 | 30 s | MVP |
 | D3 | `getMarket(id, { signal })` | One market with its description and rules. Gamma `/markets/{id}` | FE2 | 60 s | MVP |
 | D4 | `getHistory(id, range, { signal })` | Crowd probability over time. CLOB `/prices-history` on the YES token | FE2 | 5 min | MVP |
@@ -122,8 +123,8 @@ How the data layer derives it from `predictions.json`:
 |---|---|---|---|
 | `id` | string | Practice id | `pr-558938` |
 | `question`, `description`, `category`, `imageUrl` | as in Market | Same meaning as for live markets | — |
-| `asOfDate` | ISO string | The moment we "travel back" to: 7 days before close | `2026-07-13T01:24:43Z` |
-| `closedDate` | ISO string | When the market closed | `2026-07-20T01:24:43Z` |
+| `asOfDate` | ISO string | The moment we "travel back" to: 7 days before the market's scheduled end | `2026-06-21T00:00:00Z` |
+| `closedDate` | ISO string | When the market was **scheduled** to close. Not the actual close: an early close would hint at the answer | `2026-06-28T00:00:00Z` |
 
 `Reveal`:
 
@@ -133,7 +134,7 @@ How the data layer derives it from `predictions.json`:
 | `outcome` | `"YES"` \| `"NO"` | What happened | `NO` |
 | `crowdProbabilityAsOf` | number | Crowd price at `asOfDate` | `0.182` |
 | `ai` | `{ available, probability, modelVersion }` | Out-of-sample AI number, if any | `{ available: false, probability: null, modelVersion: null }` |
-| `resolvedAt` | ISO string | Resolution time | `2026-07-20T01:24:43Z` |
+| `resolvedAt` | ISO string | When trading actually stopped. Only revealed after the call | `2026-06-28T04:14:20Z` |
 
 ## 4. Mapping from Polymarket
 
