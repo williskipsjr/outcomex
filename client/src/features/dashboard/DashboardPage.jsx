@@ -50,13 +50,22 @@ export default function DashboardPage() {
   // Prices move: reload every minute while the tab is open (old cards stay visible)
   useAutoRefresh(loadMarkets, AUTO_REFRESH_MS);
 
+  // Your saved calls decide which cards show the "called" variant
+  const { getCall } = useCalls();
+
   // Card charts need one Polymarket call per market, so the data layer gives
   // them separately (D11, cached 5 min). A failure here is quiet: the cards
   // still show the percentage and the weekly change, just without a chart.
   const sparklines = useRequest();
   const { run: runSparklines } = sparklines;
+  // Only markets whose crowd number is visible: in blind mode, with no calls,
+  // this makes no chart requests at all.
   // A string, so the effect only re-runs when the set of ids really changes
-  const chartIds = (loadedMarkets ?? []).slice(0, SPARKLINE_LIMIT).map((market) => market.id).join(",");
+  const chartIds = (loadedMarkets ?? [])
+    .filter((market) => !blindMode || getCall(market.id) !== null)
+    .slice(0, SPARKLINE_LIMIT)
+    .map((market) => market.id)
+    .join(",");
 
   useEffect(() => {
     if (chartIds === "") return;
@@ -85,9 +94,6 @@ export default function DashboardPage() {
   function clearView() {
     setSearchParams({});
   }
-
-  // Your saved calls decide which cards show the "called" variant
-  const { getCall } = useCalls();
 
   // Remote search: a second, separate request with its own state machine.
   // The debounce means one request when typing stops, not one per key, and
@@ -183,6 +189,12 @@ export default function DashboardPage() {
           </div>
         )}
       </header>
+
+      {meta?.stale && (
+        <p className="dashboard__stale" role="status">
+          Showing saved data from {formatTimeAgo(meta.fetchedAt, now)}. Live prices are temporarily unavailable.
+        </p>
+      )}
 
       {/* Home page sections, all derived from the same loaded list */}
       {markets && (

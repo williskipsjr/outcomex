@@ -58,7 +58,8 @@ export default function MarketDetailPage() {
     if (!result.ok) setCallError(result.error);
   }
 
-  if (market.status === "error" && market.error?.code === "NOT_FOUND") {
+  // A malformed id in the URL (VALIDATION_ERROR) is just as much "not found" to the visitor
+  if (market.status === "error" && ["NOT_FOUND", "VALIDATION_ERROR"].includes(market.error?.code)) {
     return (
       <EmptyState
         title="Market not found"

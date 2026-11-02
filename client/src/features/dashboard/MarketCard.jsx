@@ -116,7 +116,7 @@ export default function MarketCard({ market, variant, call = null }) {
       <footer className="market-card__meta">
         {isPractice ? (
           <>
-            <span>Closed {formatDate(market.closedDate)}</span>
+            <span>Due to close {formatDate(market.closedDate)}</span>
             <span>Resolved</span>
           </>
         ) : (

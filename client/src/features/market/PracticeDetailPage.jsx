@@ -77,7 +77,8 @@ export default function PracticeDetailPage() {
     if (attempt) runReveal(attempt.probability, attempt.reason);
   }
 
-  if (practice.status === "error" && practice.error?.code === "NOT_FOUND") {
+  // A malformed id in the URL (VALIDATION_ERROR) is just as much "not found" to the visitor
+  if (practice.status === "error" && ["NOT_FOUND", "VALIDATION_ERROR"].includes(practice.error?.code)) {
     return (
       <EmptyState
         title="Practice market not found"
@@ -126,9 +127,9 @@ export default function PracticeDetailPage() {
             </div>
           </div>
           <p className="practice-detail__rewind">
-            You're back on <time dateTime={market.asOfDate}>{formatDate(market.asOfDate)}</time>. This market
-            closed on <time dateTime={market.closedDate}>{formatDate(market.closedDate)}</time>: what did you
-            think would happen?
+            You're back on <time dateTime={market.asOfDate}>{formatDate(market.asOfDate)}</time>. This market is
+            due to close on <time dateTime={market.closedDate}>{formatDate(market.closedDate)}</time>: what do
+            you think will happen?
           </p>
         </header>
 
