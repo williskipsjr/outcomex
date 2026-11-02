@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getPriceChange, toSparklinePoints } from "./sparkline.js";
+import { getMarketChange, getPriceChange, toSparklinePoints } from "./sparkline.js";
 
 describe("toSparklinePoints", () => {
   it("needs at least two prices", () => {
@@ -34,5 +34,18 @@ describe("getPriceChange", () => {
   it("returns null without enough history", () => {
     expect(getPriceChange([0.5])).toBeNull();
     expect(getPriceChange(undefined)).toBeNull();
+  });
+});
+
+describe("getMarketChange", () => {
+  it("prefers Polymarket's own weekly change, in points", () => {
+    expect(getMarketChange({ weekChange: 0.03, sparkline: [0.1, 0.9] })).toBe(3);
+    expect(getMarketChange({ weekChange: -0.125, sparkline: null })).toBe(-12.5);
+    expect(getMarketChange({ weekChange: 0, sparkline: [0.1, 0.9] })).toBe(0);
+  });
+
+  it("falls back to the chart, then to nothing", () => {
+    expect(getMarketChange({ weekChange: null, sparkline: [0.42, 0.47] })).toBe(5);
+    expect(getMarketChange({ weekChange: null, sparkline: null })).toBe(null);
   });
 });

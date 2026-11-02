@@ -8,6 +8,8 @@ import useAutoRefresh from "../../hooks/useAutoRefresh.js";
 import useDebouncedValue from "../../hooks/useDebouncedValue.js";
 import useNow from "../../hooks/useNow.js";
 import useRequest from "../../hooks/useRequest.js";
+import useSparklines from "../../hooks/useSparklines.js";
+import { listMarkets, searchMarkets } from "../../data/index.js";
 import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatTimeAgo } from "../../lib/format.js";
 import { applyView } from "../../lib/filters.js";
@@ -21,29 +23,30 @@ import MarketCards from "./MarketCards.jsx";
 import MarketGrid from "./MarketGrid.jsx";
 import MarketRow from "./MarketRow.jsx";
 import RemoteResults from "./RemoteResults.jsx";
-import { loadSampleMarkets } from "./sampleMarkets.js";
-import { searchSampleMarkets } from "./sampleSearch.js";
 import TopMovers from "./TopMovers.jsx";
 import "./DashboardPage.css";
 
 const SKELETON_COUNT = 8;
+const MARKET_LIMIT = 100;
+// Each chart is one request, so only the first ones on the page get one
+const MAX_CHARTS = 60;
 const AUTO_REFRESH_MS = 60 * 1000;
 // Search Polymarket too once the query is long enough and few loaded markets match
 const REMOTE_MIN_QUERY = 3;
 const REMOTE_MAX_LOCAL_MATCHES = 5;
 
 export default function DashboardPage() {
-  const { status, data: markets, meta, error, run, retry } = useRequest();
+  const { status, data: loadedMarkets, meta, error, run, retry } = useRequest();
   const { blindMode } = useSettings();
   const [searchParams, setSearchParams] = useSearchParams();
   const now = useNow();
 
   function loadMarkets() {
-    run((signal) => loadSampleMarkets(signal));
+    run((signal) => listMarkets({ limit: MARKET_LIMIT, signal }));
   }
 
   useEffect(() => {
-    run((signal) => loadSampleMarkets(signal));
+    run((signal) => listMarkets({ limit: MARKET_LIMIT, signal }));
   }, [run]);
 
   // Prices move: reload every minute while the tab is open (old cards stay visible)
@@ -54,6 +57,28 @@ export default function DashboardPage() {
   const view = parseViewParams(searchParams, { blindMode });
   // The box shows exactly what was typed (spaces included); filtering uses the trimmed view.q
   const searchText = searchParams.get("q") ?? "";
+
+  // Your saved calls decide which cards show the "called" variant
+  const { getCall } = useCalls();
+
+  // Charts load in the background, and only for markets whose crowd number is
+  // visible: in blind mode, with no calls, this makes no extra requests at all
+  const chartIds = loadedMarkets
+    ? [
+        ...new Set(
+          [
+            ...getFeatured(loadedMarkets),
+            ...getClosingSoon(loadedMarkets, 4, now),
+            ...getMostTraded(loadedMarkets),
+            ...applyView(loadedMarkets, view),
+          ]
+            .filter((market) => !blindMode || getCall(market.id) !== null)
+            .map((market) => market.id),
+        ),
+      ].slice(0, MAX_CHARTS)
+    : [];
+  const sparklines = useSparklines(chartIds);
+  const markets = loadedMarkets?.map((market) => ({ ...market, sparkline: sparklines[market.id] ?? null })) ?? null;
   const visibleMarkets = markets ? applyView(markets, view) : [];
 
   // Merge one change into the current view and write it back to the URL.
@@ -65,9 +90,6 @@ export default function DashboardPage() {
   function clearView() {
     setSearchParams({});
   }
-
-  // Your saved calls decide which cards show the "called" variant
-  const { getCall } = useCalls();
 
   // Remote search: a second, separate request with its own state machine.
   // The debounce means one request when typing stops, not one per key, and
@@ -86,7 +108,7 @@ export default function DashboardPage() {
       resetRemote();
       return;
     }
-    runRemote((signal) => searchSampleMarkets({ q: debouncedQuery, signal }));
+    runRemote((signal) => searchMarkets({ q: debouncedQuery, signal }));
   }, [shouldSearchRemote, debouncedQuery, runRemote, resetRemote]);
 
   // Don't show a market twice if it is already in the loaded list
@@ -163,6 +185,12 @@ export default function DashboardPage() {
           </div>
         )}
       </header>
+
+      {meta?.stale && (
+        <p className="dashboard__stale" role="status">
+          Showing saved data from {formatTimeAgo(meta.fetchedAt, now)}. Live prices are temporarily unavailable.
+        </p>
+      )}
 
       {/* Home page sections, all derived from the same loaded list */}
       {markets && (

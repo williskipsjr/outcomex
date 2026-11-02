@@ -30,3 +30,13 @@ export function getPriceChange(prices) {
   const change = (prices[prices.length - 1] - prices[0]) * 100;
   return Math.round(change * 10) / 10;
 }
+
+// A market's change over the last week, in points. Polymarket's own number
+// comes with the market for free; the chart's first and last price are the
+// fallback for markets where it is missing.
+export function getMarketChange(market) {
+  if (typeof market.weekChange === "number") {
+    return Math.round(market.weekChange * 1000) / 10;
+  }
+  return getPriceChange(market.sparkline);
+}
