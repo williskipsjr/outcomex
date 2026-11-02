@@ -275,7 +275,12 @@ export async function getStatuses(ids, { signal } = {}) {
       return unique
         .map((id) => all.find((market) => market.id === id))
         .filter(Boolean)
-        .map((market) => ({ id: market.id, status: market.status, outcome: market.outcome }));
+        .map((market) => ({
+          id: market.id,
+          status: market.status,
+          outcome: market.outcome,
+          resolvedAt: market.status === "open" ? null : market.endDate,
+        }));
     },
     signal,
   );

@@ -158,8 +158,8 @@ describe("getStatuses", () => {
     const closedId = `pm-${raw.closedMarket.id}`;
     const { data } = await api.getStatuses(["pm-665374", closedId, "pm-123"]);
     expect(data).toEqual([
-      { id: "pm-665374", status: "open", outcome: null },
-      { id: closedId, status: "resolved", outcome: "NO" },
+      { id: "pm-665374", status: "open", outcome: null, resolvedAt: null },
+      { id: closedId, status: "resolved", outcome: "NO", resolvedAt: "2026-10-29T19:47:10Z" },
     ]);
     expect(calls.length).toBe(2);
   });

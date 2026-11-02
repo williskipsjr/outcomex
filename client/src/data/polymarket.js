@@ -8,6 +8,7 @@ import {
   normalizeSearch,
   sparklineFrom,
   statusOf,
+  toIso,
   yesTokenIdOf,
 } from "./normalize.js";
 import { checkLimit, checkMarketId, checkMarketIds, checkQuery, checkRange } from "./validate.js";
@@ -223,7 +224,7 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
         ]);
         const byId = new Map();
         for (const raw of [...expectArray(open, "getStatuses"), ...expectArray(closed, "getStatuses")]) {
-          byId.set(`pm-${raw.id}`, { id: `pm-${raw.id}`, ...statusOf(raw) });
+          byId.set(`pm-${raw.id}`, { id: `pm-${raw.id}`, ...statusOf(raw), resolvedAt: toIso(raw.closedTime) });
         }
         return unique.filter((id) => byId.has(id)).map((id) => byId.get(id));
       },
