@@ -130,6 +130,14 @@ describe("createCache", () => {
     await expect(cache.get("k", 1000, down, { source })).rejects.toMatchObject({ code: "UPSTREAM_TIMEOUT" });
   });
 
+  it("keeps no stale copy of data marked persist: false", async () => {
+    const { cache, storage } = setup();
+    await cache.get("chart", 1000, async () => [1, 2], { source, persist: false });
+    expect(storage.getItem("outcomex.v1.cache")).toBe(null);
+    await cache.get("markets", 1000, async () => ["m"], { source });
+    expect(Object.keys(JSON.parse(storage.getItem("outcomex.v1.cache")))).toEqual(["markets"]);
+  });
+
   it("survives broken or missing storage", async () => {
     const broken = {
       getItem: () => "{not json",
