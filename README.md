@@ -54,7 +54,7 @@ Then open http://localhost:5173.
 The app reads live data from Polymarket. To work offline with the fixtures in `client/src/mocks` instead:
 
 ```bash
-VITE_USE_MOCKS=true npm run dev
+npm run dev:mock
 ```
 
 See `client/src/data/README.md` for the failure switch and the other debug options.
