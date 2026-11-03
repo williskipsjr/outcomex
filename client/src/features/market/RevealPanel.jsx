@@ -1,6 +1,7 @@
 import Button from "../../components/Button.jsx";
 import ProbabilityBar from "../../components/ProbabilityBar.jsx";
 import Spinner from "../../components/Spinner.jsx";
+import { formatDate } from "../../lib/format.js";
 import { describeDifference } from "../../lib/reveal.js";
 import { accuracyFromBrier, brierScore } from "../../lib/scoring.js";
 import "./RevealPanel.css";
@@ -42,6 +43,13 @@ function AiRow({ ai, outcome }) {
       <>
         <ProbabilityBar who="ai" label="AI" value={prediction.probability} />
         <Score probability={prediction.probability} outcome={outcome} />
+        {/* Live AI numbers are worked out once, from the crowd's price on that day,
+            so say which day: the live crowd price above may have moved since */}
+        {prediction.generatedAt && (
+          <p className="reveal__meta">
+            Estimated on {formatDate(prediction.generatedAt)}, from the crowd's price that day
+          </p>
+        )}
         {prediction.modelVersion && <p className="reveal__meta">Model: {prediction.modelVersion}</p>}
         {prediction.explanation?.length > 0 && (
           <ul className="reveal__reasons">
