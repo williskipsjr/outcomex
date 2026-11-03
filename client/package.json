@@ -10,7 +10,8 @@
     "build:mock": "vite build --mode mock",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:contracts": "node ../scripts/check-contracts.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",
