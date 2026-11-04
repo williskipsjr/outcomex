@@ -29,6 +29,7 @@ Run everything from `ml/`. Each step is a script; notebooks are only for explori
 | 5. Train + evaluate (G2) | `python -m src.train`, then `--test` once | `reports/validation.json`, `reports/evaluation.json`, `reports/figures/` | Done (ML-06). G2 run 2: Level A, a recalibrated crowd (test Brier 0.0891 vs crowd 0.0890). Run 1 invalid (leak) |
 | 6. Practice files | `python -m src.practice` (`--mocks`, `--install`) | `output/practice-*.json`, `reports/practice.json`, `reports/practice-review.csv` | v1 done: 39 questions, 41% YES, each with an out-of-sample AI number. 36 already approved by hand, 3 new to review. Installed in the app |
 | 7. Predictions | `python -m src.predict` (`--mocks`, `--install`) | `output/predictions.json`, `output/model.json` | Done (ML-07): about 200 live markets scored (scheduled end 1–21 days away). Installed in the app. **Re-run with `--install` daily**: prices move |
+| 8. Crowd calibration | `python -m src.calibration` | `reports/crowd-calibration.json`, `reports/figures/crowd-calibration.png` | Done (ML-08). Model card: `docs/ml/model-card.md` |
 
 `data/` is git-ignored and never committed. Both collect steps skip files that are already on disk, so a run that was interrupted (or rate-limited) just continues where it stopped. Collecting from scratch takes about 10 minutes, because the scripts pause between requests to be polite to a free API.
 

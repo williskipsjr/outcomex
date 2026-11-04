@@ -3,6 +3,7 @@
     python -m src.train            # validation only: fit on train, compare on validation
     python -m src.train --test     # the one-time test evaluation that decides gate G2
     python -m src.train --choose lr_full --reason "..."   # record a human override first, if any
+    python -m src.train --replot   # redraw the test chart from the saved results; scores nothing
 
 The test split is the newest 15% of event groups. --test refuses to run if
 reports/evaluation.json already exists: the number we report is the first
@@ -232,7 +233,7 @@ def plot_calibration(rows_by_name, path, title):
 
     fig, ax = plt.subplots(figsize=(4.6, 4.6), dpi=150)
     ax.plot([0, 1], [0, 1], color="#9ca3af", linewidth=1, linestyle="--", label="perfect")
-    styles = {"crowd": ("#1d4ed8", "o"), "model": ("#6d28d9", "s")}
+    styles = {"crowd": ("#1d4ed8", "o"), "AI": ("#6d28d9", "s")}
     for name, rows in rows_by_name.items():
         color, marker = styles.get(name, ("#6d28d9", "s"))
         pts = [(r["mean_forecast"], r["yes_rate"], r["count"]) for r in rows if r["count"]]
@@ -251,12 +252,26 @@ def plot_calibration(rows_by_name, path, title):
     plt.close(fig)
 
 
+def draw_test_chart(report, figures):
+    plot_calibration(
+        {"crowd": report["calibration"]["crowd"], "AI": report["calibration"]["model"]},
+        figures / "test-calibration.png",
+        f"Test calibration: crowd vs AI ({report['test']['model']['n']} markets)",
+    )
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--test", action="store_true", help="the one-time test evaluation (gate G2)")
     parser.add_argument("--choose", choices=list(CANDIDATES), help="override the rule's choice, BEFORE the test run")
     parser.add_argument("--reason", help="why the rule is overridden; stored in reports/validation.json")
+    parser.add_argument("--replot", action="store_true", help="redraw the test chart from the saved results; scores nothing")
     args = parser.parse_args(argv)
+
+    if args.replot:
+        report = json.loads((config.REPORTS_DIR / "evaluation.json").read_text(encoding="utf-8"))
+        draw_test_chart(report, config.REPORTS_DIR / "figures")
+        return
 
     if args.choose:
         # A human decision, written down before the test split is touched
@@ -283,9 +298,9 @@ def main(argv=None):
         (config.REPORTS_DIR / "validation.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
         chosen = report["chosen"]
         plot_calibration(
-            {"crowd": report["validation_calibration"]["crowd"], "model": report["validation_calibration"][chosen]},
+            {"crowd": report["validation_calibration"]["crowd"], "AI": report["validation_calibration"][chosen]},
             figures / "validation-calibration.png",
-            f"Validation calibration: crowd vs {chosen}",
+            "Validation calibration: crowd vs AI",
         )
         for name, values in report["validation"].items():
             print(f"{name:<22} {values}")
@@ -302,11 +317,7 @@ def main(argv=None):
     validation_report = json.loads((config.REPORTS_DIR / "validation.json").read_text(encoding="utf-8"))
     report, _, _ = test_run(table, validation_report)
     out.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    plot_calibration(
-        {"crowd": report["calibration"]["crowd"], "model": report["calibration"]["model"]},
-        figures / "test-calibration.png",
-        f"Test calibration: crowd vs {report['model']}",
-    )
+    draw_test_chart(report, figures)
     print(json.dumps({k: report[k] for k in ["model", "test", "model_minus_crowd", "g2"]}, indent=2))
 
 
