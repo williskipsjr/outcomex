@@ -247,8 +247,9 @@ export default function AboutPage() {
         </p>
         <ul className="about__list">
           <li>
-            It only gives a number for markets that end within 21 days, because that's the only
-            kind of market it was tested on. Everywhere else you'll see "AI not available".
+            It only gives a number for markets that end within 21 days. It was tested a week
+            before each market's scheduled end, so we don't trust it on markets that end much
+            later. Everywhere else you'll see "AI not available".
           </li>
           <li>
             The numbers are worked out once, from the crowd's price that day, and the reveal says
@@ -257,7 +258,8 @@ export default function AboutPage() {
           <li>It doesn't read the news, and it doesn't know anything the crowd doesn't.</li>
           <li>
             Our first test run was thrown out because its timing let the outcome leak in. The
-            rules for the second run were written down before any result was computed.{" "}
+            second run used many of the same newest markets, with corrected inputs, and its rules
+            were written down before any result was computed.{" "}
             <a href={EVALUATION_URL} target="_blank" rel="noreferrer">
               Read the full evaluation
             </a>
@@ -282,8 +284,8 @@ export default function AboutPage() {
             page.
           </li>
           <li>
-            Practice mode leaves out questions about deaths, violence and tragedies, and a person
-            reads every practice question before it ships.
+            Practice mode leaves out questions about deaths and tragedies, and violence against
+            private people, and a person reads every practice question before it ships.
           </li>
           <li>
             OutcomeX is a student project for Full Stack Development 1 at IIIT Dharwad.{" "}
