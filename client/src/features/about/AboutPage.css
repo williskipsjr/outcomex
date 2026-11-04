@@ -1,0 +1,64 @@
+/* One readable column: long text is hard to follow at full dashboard width */
+.about {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.about__hero {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-brand) 16%, transparent), transparent 55%),
+    var(--color-surface);
+}
+
+.about__eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-brand);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about__title {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.about__lede {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.about__section {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.about__section > h2 {
+  margin-top: 0;
+}
+
+.about__section p {
+  max-width: 70ch;
+}
+
+.about__steps {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.about__steps li::marker {
+  color: var(--color-brand);
+  font-weight: 700;
+}
