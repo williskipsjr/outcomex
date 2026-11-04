@@ -42,6 +42,28 @@ function ScoringExample() {
   );
 }
 
+// From the one-time G2 test run (docs/ml/evaluation.md, run 2). The test set
+// is used once, so these are a fixed past result, not live data.
+const TEST_RESULT = {
+  n: 117,
+  rows: [
+    { who: "AI", brier: 0.0891 },
+    { who: "Crowd", brier: 0.089 },
+    { who: "Always 50%", brier: 0.25 },
+  ],
+};
+// What the recalibration does to a few crowd prices (same doc)
+const RECALIBRATION = [
+  { crowd: 2, ai: 4 },
+  { crowd: 10, ai: 15 },
+  { crowd: 30, ai: 35 },
+  { crowd: 50, ai: 53 },
+  { crowd: 70, ai: 70 },
+  { crowd: 90, ai: 88 },
+  { crowd: 98, ai: 97 },
+];
+const EVALUATION_URL = "https://github.com/williskipsjr/outcomex/blob/main/docs/ml/evaluation.md";
+
 // Sections follow the master plan's S6 screen: how it works, scoring, data
 // sources, the AI layer and its track record, disclaimers.
 export default function AboutPage() {
@@ -135,6 +157,75 @@ export default function AboutPage() {
           lock your call, but anyone could read it with the browser's developer tools. That's fine
           for a practice game: the "call first" check is a convenience, not security.
         </p>
+      </section>
+
+      <section className="about__section" aria-labelledby="about-ai">
+        <h2 id="about-ai">The AI and its track record</h2>
+        <p>
+          The AI is <strong>the crowd's price, gently recalibrated</strong>. It learned from 713
+          resolved Polymarket markets how a price a week before the scheduled end relates to
+          what actually happened. It pulls very confident prices slightly toward the middle.
+        </p>
+        <table className="about__table">
+          <caption>What the AI does to the crowd's price</caption>
+          <tbody>
+            <tr>
+              <th scope="row">Crowd</th>
+              {RECALIBRATION.map(({ crowd }) => (
+                <td key={crowd} className="num">
+                  {crowd}%
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th scope="row">AI</th>
+              {RECALIBRATION.map(({ crowd, ai }) => (
+                <td key={crowd} className="num">
+                  {ai}%
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          We tested it once, on the {TEST_RESULT.n} newest markets it had never seen, scored a
+          week before each one's scheduled end:
+        </p>
+        <table className="about__table">
+          <caption>Brier score on {TEST_RESULT.n} held-out markets (lower is better)</caption>
+          <tbody>
+            {TEST_RESULT.rows.map(({ who, brier }) => (
+              <tr key={who}>
+                <th scope="row">{who}</th>
+                <td className="num">{brier.toFixed(4)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p>
+          <strong>It is as accurate as the crowd, not more.</strong> A week before the end, the
+          crowd is hard to beat, and a model that only sees prices doesn't beat it. We show the AI
+          as a calibrated second opinion, with this track record next to it.
+        </p>
+        <ul className="about__list">
+          <li>
+            It only gives a number for markets that end within 21 days, because that's the only
+            kind of market it was tested on. Everywhere else you'll see "AI not available".
+          </li>
+          <li>
+            The numbers are worked out once, from the crowd's price that day, and the reveal says
+            which day.
+          </li>
+          <li>It doesn't read the news, and it doesn't know anything the crowd doesn't.</li>
+          <li>
+            Our first test run was thrown out because its timing let the outcome leak in. The
+            rules for the second run were written down before any result was computed.{" "}
+            <a href={EVALUATION_URL} target="_blank" rel="noreferrer">
+              Read the full evaluation
+            </a>
+            .
+          </li>
+        </ul>
       </section>
     </article>
   );

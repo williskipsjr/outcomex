@@ -73,10 +73,12 @@
   font-size: var(--font-size-sm);
 }
 
+/* nowrap: a narrow table would otherwise squeeze its caption into a column */
 .about__table caption {
   margin-bottom: var(--space-2);
   color: var(--color-muted);
   text-align: left;
+  white-space: nowrap;
 }
 
 .about__table th,
@@ -120,6 +122,14 @@
 
 .about__facts dd {
   margin: 0;
+  color: var(--color-muted);
+}
+
+.about__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
   color: var(--color-muted);
 }
 
