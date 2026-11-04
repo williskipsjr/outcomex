@@ -98,6 +98,44 @@ export default function AboutPage() {
           fewer than that says more about luck than skill.
         </p>
       </section>
+
+      <section className="about__section" aria-labelledby="about-data">
+        <h2 id="about-data">Where the data comes from</h2>
+        <dl className="about__facts">
+          <div>
+            <dt>Live markets</dt>
+            <dd>
+              Polymarket's public APIs: questions, prices and search from Gamma, price history from
+              CLOB. Your browser asks them directly and refreshes every minute. OutcomeX only reads
+              this data.
+            </dd>
+          </div>
+          <div>
+            <dt>Practice questions</dt>
+            <dd>
+              Real Polymarket markets that have already resolved, prepared by our ML pipeline as
+              they looked 7 days before their scheduled end. They ship with the app as static
+              files.
+            </dd>
+          </div>
+          <div>
+            <dt>AI estimates</dt>
+            <dd>A static file made offline by our ML pipeline. More on that below.</dd>
+          </div>
+          <div>
+            <dt>Your calls</dt>
+            <dd>
+              Saved only in this browser. There's no account and no server, so nothing is sent to
+              us. You can export them from My Calls; clearing your browser data deletes them.
+            </dd>
+          </div>
+        </dl>
+        <p className="about__note">
+          <strong>Practice answers are in a public file.</strong> The app only loads it after you
+          lock your call, but anyone could read it with the browser's developer tools. That's fine
+          for a practice game: the "call first" check is a convenience, not security.
+        </p>
+      </section>
     </article>
   );
 }
