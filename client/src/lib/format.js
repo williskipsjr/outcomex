@@ -27,7 +27,8 @@ const compactDollars = new Intl.NumberFormat("en-US", {
 
 // 182340.5 -> "$182.3K"
 export function formatVolume(volume) {
-  return compactDollars.format(volume ?? 0);
+  if (!volume) return "$0";
+  return compactDollars.format(volume);
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;
