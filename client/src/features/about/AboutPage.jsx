@@ -66,8 +66,25 @@ const RECALIBRATION = [
 const REPO_URL = "https://github.com/williskipsjr/outcomex";
 const EVALUATION_URL = `${REPO_URL}/blob/main/docs/ml/evaluation.md`;
 
-// Sections follow the master plan's S6 screen: how it works, scoring, data
-// sources, the AI layer and its track record, disclaimers.
+// Sections follow the master plan's S6 screen. One list feeds both the
+// headings and the "On this page" links, so the two can't drift apart.
+const SECTIONS = {
+  how: { id: "about-how", title: "How it works" },
+  scoring: { id: "about-scoring", title: "How you're scored" },
+  data: { id: "about-data", title: "Where the data comes from" },
+  ai: { id: "about-ai", title: "The AI and its track record" },
+  smallPrint: { id: "about-small-print", title: "The small print" },
+};
+
+function Section({ id, title, children }) {
+  return (
+    <section className="about__section" aria-labelledby={id}>
+      <h2 id={id}>{title}</h2>
+      {children}
+    </section>
+  );
+}
+
 export default function AboutPage() {
   return (
     <article className="about">
@@ -79,10 +96,16 @@ export default function AboutPage() {
           say how likely something is, then compare your number with the crowd's price and an AI
           estimate, and you get a score once the answer is known.
         </p>
+        <nav className="about__toc" aria-label="On this page">
+          {Object.values(SECTIONS).map(({ id, title }) => (
+            <a key={id} href={`#${id}`}>
+              {title}
+            </a>
+          ))}
+        </nav>
       </header>
 
-      <section className="about__section" aria-labelledby="about-how">
-        <h2 id="about-how">How it works</h2>
+      <Section {...SECTIONS.how}>
         <ol className="about__steps">
           <li>
             <strong>Pick a question.</strong> Every live market is a real Polymarket question,
@@ -102,10 +125,9 @@ export default function AboutPage() {
             Practice questions are already answered, so those are scored straight away.
           </li>
         </ol>
-      </section>
+      </Section>
 
-      <section className="about__section" aria-labelledby="about-scoring">
-        <h2 id="about-scoring">How you're scored</h2>
+      <Section {...SECTIONS.scoring}>
         <p>
           Every call gets a <strong>Brier score</strong>: the square of how far your probability
           was from what happened, counting YES as 1 and NO as 0. 0 is perfect, 1 is the worst, and
@@ -121,10 +143,9 @@ export default function AboutPage() {
           only shows your averages once you have {MIN_CALLS_FOR_SUMMARY} resolved calls, because
           fewer than that says more about luck than skill.
         </p>
-      </section>
+      </Section>
 
-      <section className="about__section" aria-labelledby="about-data">
-        <h2 id="about-data">Where the data comes from</h2>
+      <Section {...SECTIONS.data}>
         <dl className="about__facts">
           <div>
             <dt>Live markets</dt>
@@ -160,10 +181,9 @@ export default function AboutPage() {
           for a practice game: the "call first" check is a convenience, not security.
         </p>
         <DataStatus />
-      </section>
+      </Section>
 
-      <section className="about__section" aria-labelledby="about-ai">
-        <h2 id="about-ai">The AI and its track record</h2>
+      <Section {...SECTIONS.ai}>
         <p>
           The AI is <strong>the crowd's price, gently recalibrated</strong>. It learned from 713
           resolved Polymarket markets how a price a week before the scheduled end relates to
@@ -244,10 +264,9 @@ export default function AboutPage() {
             .
           </li>
         </ul>
-      </section>
+      </Section>
 
-      <section className="about__section" aria-labelledby="about-small-print">
-        <h2 id="about-small-print">The small print</h2>
+      <Section {...SECTIONS.smallPrint}>
         <ul className="about__list">
           <li>
             <strong>No money of any kind.</strong> OutcomeX reads markets, it doesn't run one: there
@@ -274,7 +293,7 @@ export default function AboutPage() {
             .
           </li>
         </ul>
-      </section>
+      </Section>
     </article>
   );
 }
