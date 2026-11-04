@@ -63,7 +63,8 @@ const RECALIBRATION = [
   { crowd: 90, ai: 88 },
   { crowd: 98, ai: 97 },
 ];
-const EVALUATION_URL = "https://github.com/williskipsjr/outcomex/blob/main/docs/ml/evaluation.md";
+const REPO_URL = "https://github.com/williskipsjr/outcomex";
+const EVALUATION_URL = `${REPO_URL}/blob/main/docs/ml/evaluation.md`;
 
 // Sections follow the master plan's S6 screen: how it works, scoring, data
 // sources, the AI layer and its track record, disclaimers.
@@ -239,6 +240,36 @@ export default function AboutPage() {
             rules for the second run were written down before any result was computed.{" "}
             <a href={EVALUATION_URL} target="_blank" rel="noreferrer">
               Read the full evaluation
+            </a>
+            .
+          </li>
+        </ul>
+      </section>
+
+      <section className="about__section" aria-labelledby="about-small-print">
+        <h2 id="about-small-print">The small print</h2>
+        <ul className="about__list">
+          <li>
+            <strong>No money of any kind.</strong> OutcomeX reads markets, it doesn't run one: there
+            is no buying, selling, betting or coins, real or virtual.
+          </li>
+          <li>
+            <strong>Not financial advice.</strong> Every number here is an estimate of how likely
+            something is, not a recommendation to do anything.
+          </li>
+          <li>
+            <strong>Not affiliated with Polymarket.</strong> The questions, prices and images are
+            Polymarket's public data, and every live market links back to its Polymarket
+            page.
+          </li>
+          <li>
+            Practice mode leaves out questions about deaths, violence and tragedies, and a person
+            reads every practice question before it ships.
+          </li>
+          <li>
+            OutcomeX is a student project for Full Stack Development 1 at IIIT Dharwad.{" "}
+            <a href={REPO_URL} target="_blank" rel="noreferrer">
+              See the code on GitHub
             </a>
             .
           </li>
