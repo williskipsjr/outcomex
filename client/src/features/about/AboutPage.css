@@ -1,6 +1,9 @@
-/* One readable column: long text is hard to follow at full dashboard width */
+/* One readable column: long text is hard to follow at full dashboard width.
+   minmax(0, 1fr): without it the column grows to fit the widest table row,
+   and the whole page scrolls sideways on a phone instead of just the table. */
 .about {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-5);
   max-width: 860px;
   margin: 0 auto;
@@ -44,6 +47,14 @@
 }
 
 /* scroll-margin: a jump from "On this page" lands below the sticky header */
+/* Phones: thinner card padding leaves more room for the text */
+@media (max-width: 480px) {
+  .about__hero,
+  .about__section {
+    padding: var(--space-4);
+  }
+}
+
 .about__section > h2 {
   margin-top: 0;
   scroll-margin-top: 6rem;
