@@ -134,6 +134,17 @@ def score(model, raws, now):
     return predictions
 
 
+def demo_picks(predictions, raws, now, count=5):
+    """Markets that show the reveal well: a mid-range AI number, not closing today."""
+    picks = []
+    for raw in raws:
+        entry = predictions.get(f"pm-{raw['id']}")
+        days = (to_utc(raw["endDate"]).timestamp() - now) / DAY if raw.get("endDate") else 0
+        if entry and 0.15 <= entry["probability"] <= 0.85 and days >= 2:
+            picks.append((f"pm-{raw['id']}", entry["probability"], raw.get("question", "").strip()))
+    return picks[:count]
+
+
 def build_file(info, predictions, generated_at):
     return {
         "modelVersion": info["version"],
@@ -191,6 +202,10 @@ def main(argv=None):
         f"scored {len(predictions)} of {len(raws)} open yes/no markets with {info['version']} (level {file['level']}); "
         f"{in_range} end within {config.SCORE_MIN_DAYS}-{config.SCORE_MAX_DAYS} days, the rest show NOT_SCORED"
     )
+
+    print("good markets to demo:")
+    for market_id, probability, question in demo_picks(predictions, raws, now):
+        print(f"  {market_id}  AI {probability:.0%}  {question[:70]}")
 
     if args.mocks:
         mock_markets = json.loads((config.REPO_DIR / "client" / "src" / "mocks" / "markets.json").read_text(encoding="utf-8"))
