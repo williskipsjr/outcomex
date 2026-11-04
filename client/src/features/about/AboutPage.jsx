@@ -1,4 +1,5 @@
 import { accuracyFromBrier, brierScore, MIN_CALLS_FOR_SUMMARY } from "../../lib/scoring.js";
+import DataStatus from "./DataStatus.jsx";
 import "./AboutPage.css";
 
 // The worked example runs through the same functions as My Calls, so the
@@ -157,6 +158,7 @@ export default function AboutPage() {
           lock your call, but anyone could read it with the browser's developer tools. That's fine
           for a practice game: the "call first" check is a convenience, not security.
         </p>
+        <DataStatus />
       </section>
 
       <section className="about__section" aria-labelledby="about-ai">
