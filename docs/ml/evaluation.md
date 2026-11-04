@@ -81,7 +81,9 @@ Without the leak, the Sports and category effects that `lr_full` showed in run 1
 
 For the About page and the demo:
 
-> On 117 held-out markets, scored a week before their scheduled end, our AI and the crowd both scored a Brier score of 0.089 (always saying 50% scores 0.25). The AI is the crowd's price, gently recalibrated: it pulls very confident prices slightly toward the middle. It is as accurate as the crowd, not more. It only gives a number for markets that end within 21 days, because that's the only kind of market it was tested on.
+> On 117 held-out markets, scored a week before their scheduled end, our AI and the crowd both scored a Brier score of 0.089 (always saying 50% scores 0.25). The AI is the crowd's price, gently recalibrated: it pulls very confident prices slightly toward the middle. It is as accurate as the crowd, not more. It only gives a number for markets that end within 21 days. It was tested a week before each market's scheduled end, so we don't trust it on markets that end much later.
+
+*Corrected 4 Nov 2026: this used to say 1–21 days was "the only kind of market it was tested on". In fact it was tested exactly 7 days before the scheduled end, and 1–21 days is a range around that.*
 
 We never call it a prediction of the future, and never call it financial advice.
 
