@@ -87,11 +87,9 @@ For the About page and the demo:
 
 We never call it a prediction of the future, and never call it financial advice.
 
-### Next
+### Where this went
 
-- **ML-07:** `predictions.json` from exactly this model, only for live markets 1–21 days from their scheduled end.
-- **Practice v1:** the out-of-sample AI numbers for test-split questions.
-- **ML-08:** the model card.
+Live predictions and practice v1 are in the app, and the model card is in [model-card.md](model-card.md).
 
 ## Run 1 (invalid)
 
