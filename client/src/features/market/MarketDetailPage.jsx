@@ -14,6 +14,7 @@ import useSettings from "../settings/useSettings.js";
 import CallItForm from "./CallItForm.jsx";
 import PriceChart from "./PriceChart.jsx";
 import RevealPanel from "./RevealPanel.jsx";
+import { aiForCall } from "./savedAi.js";
 import "./MarketDetailPage.css";
 
 export default function MarketDetailPage() {
@@ -42,7 +43,13 @@ export default function MarketDetailPage() {
   const call = getCall(id, "live");
   // Blind mode: the crowd, AI and chart stay hidden until you've made your call
   const showsCrowd = !blindMode || call !== null;
-  const aiProbability = prediction.data?.available ? prediction.data.probability : null;
+  // useRequest keeps old data while loading, so check it's this market's prediction
+  const currentPrediction = prediction.data?.marketId === id ? prediction.data : null;
+  const aiProbability = call
+    ? (call.revealed.aiProbability ?? null)
+    : currentPrediction?.available
+      ? currentPrediction.probability
+      : null;
 
   function handleCall(probability, reason) {
     setCallError(null);
@@ -81,7 +88,10 @@ export default function MarketDetailPage() {
     );
   }
 
-  const ai = { status: prediction.status, prediction: prediction.data, onRetry: prediction.retry };
+  // Once you've called, show the AI number your call is scored against
+  const ai = call
+    ? { status: "success", prediction: aiForCall(call, currentPrediction) }
+    : { status: prediction.status, prediction: currentPrediction, onRetry: prediction.retry };
 
   return (
     <article className="market-detail">
