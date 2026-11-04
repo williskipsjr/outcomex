@@ -202,6 +202,21 @@ export default function AboutPage() {
             ))}
           </tbody>
         </table>
+        <figure className="about__figure">
+          {/* Copied from ml/reports/figures/test-calibration.png (690 × 690) */}
+          <img
+            src="/images/ai-test-calibration.png"
+            width="690"
+            height="690"
+            loading="lazy"
+            alt="Line chart of forecast probability against the share of markets that resolved YES, for the crowd and the AI on the 117 test markets. Both lines zigzag around the diagonal and stay close to each other."
+          />
+          <figcaption>
+            Calibration on the test markets: for each forecast range, how often YES really
+            happened. Perfect calibration is the dashed diagonal. With only a few markets in each
+            range the lines jump around, but the AI (purple) tracks the crowd (blue) closely.
+          </figcaption>
+        </figure>
         <p>
           <strong>It is as accurate as the crowd, not more.</strong> A week before the end, the
           crowd is hard to beat, and a model that only sees prices doesn't beat it. We show the AI
