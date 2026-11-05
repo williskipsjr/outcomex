@@ -1,15 +1,13 @@
-// Every screen turns a DataError into words through this one function, so the
-// app always explains the same problem the same way. The PM owns the final
-// wording (copy deck); these are the working versions.
-const MESSAGES = {
-  VALIDATION_ERROR: "That doesn't look right. Check it and try again.",
-  NOT_FOUND: "We couldn't find that market.",
-  RATE_LIMITED: "Too many requests. Try again in a moment.",
-  UPSTREAM_UNAVAILABLE: "Polymarket isn't responding right now.",
-  UPSTREAM_TIMEOUT: "Polymarket is taking too long to answer.",
-  INVALID_DATA: "We got data we couldn't read.",
-};
+import { isDataError } from "../data/errors.js";
 
+// Every screen turns an error into words through this one function, so the
+// app always explains the same problem the same way.
+//
+// The data layer already writes its messages for people, and they say exactly
+// what went wrong ("One of OutcomeX's data files is missing" rather than a
+// generic "Polymarket isn't responding"), so those are shown as they are.
+// Anything else (a bug in our own code) gets a plain fallback.
 export function getErrorMessage(error) {
-  return MESSAGES[error?.code] ?? "Something went wrong.";
+  if (isDataError(error) && error.message) return error.message;
+  return "Something went wrong.";
 }
