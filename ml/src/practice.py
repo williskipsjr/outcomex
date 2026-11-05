@@ -4,9 +4,6 @@
     python -m src.practice --mocks      # also refreshes client/src/mocks (mock mode)
     python -m src.practice --install    # also copies into client/public/data (the app)
 
-Only ship --install together with the frontend's practice swap: today's
-sample code in the app still reads the old practice-answers.json shape.
-
 Rules (ML role guide §7):
   - Questions come from the TEST split only, so their AI numbers (from the
     G2-evaluated model, trained on train + validation) are out-of-sample.
@@ -36,7 +33,7 @@ from .evaluate import load_markets
 CROWD_MIN, CROWD_MAX = 0.05, 0.95
 MAX_PER_GROUP = 2
 MIN_YES_SHARE, MAX_YES_SHARE = 0.4, 0.6
-TARGET_ITEMS = 50  # v0 needs at least 50 questions
+TARGET_ITEMS = 50  # what the selection aims for; the rules can leave fewer (docs/ml/model-card.md)
 DESCRIPTION_MAX_CHARS = 2000
 
 # Questions about deaths, violence or tragedies don't belong in a game

@@ -61,7 +61,7 @@ async function main() {
   }
 
   console.log("Loading sparklines…");
-  // getSparklines takes at most 50 ids, like the app will ask for them
+  // getSparklines takes at most 50 ids
   const sparklines = {};
   const ids = markets.map((market) => market.id);
   for (let start = 0; start < ids.length; start += 50) {
