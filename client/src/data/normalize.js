@@ -54,7 +54,7 @@ function yesIndexOf(raw) {
   return names.indexOf("yes");
 }
 
-export function yesPriceOf(raw) {
+function yesPriceOf(raw) {
   const index = yesIndexOf(raw);
   if (index === -1) return null;
   return toNumber(parseJsonList(raw.outcomePrices)?.[index]);

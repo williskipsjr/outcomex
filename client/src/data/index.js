@@ -11,7 +11,7 @@ import * as sources from "./sources.js";
 //
 // The contract for everything exported here is docs/contracts/data.md.
 
-export const USE_MOCKS = import.meta.env?.VITE_USE_MOCKS === "true";
+const USE_MOCKS = import.meta.env?.VITE_USE_MOCKS === "true";
 
 const real = { ...polymarket, ...files, ...sources };
 const api = USE_MOCKS ? mock : real;

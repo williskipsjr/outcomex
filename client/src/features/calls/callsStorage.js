@@ -5,9 +5,9 @@
 // migrate it, never silently reuse this key with a different shape.
 export const CALLS_STORAGE_KEY = "outcomex.v1.calls";
 
-export const MODES = ["live", "practice"];
-export const MIN_PROBABILITY = 0.01;
-export const MAX_PROBABILITY = 0.99;
+const MODES = ["live", "practice"];
+const MIN_PROBABILITY = 0.01;
+const MAX_PROBABILITY = 0.99;
 export const MAX_REASON_LENGTH = 140;
 
 function isValidProbability(value) {
