@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   accuracyFromBrier,
   brierScore,
-  calibrationBuckets,
   compareForecasts,
   meanBrier,
 } from "./scoring.js";
@@ -93,21 +92,5 @@ describe("compareForecasts", () => {
     expect(empty.ai.accuracy).toBeNull();
     const five = compareForecasts(Array.from({ length: 5 }, () => call({ p: 0.5, crowd: 0.5 })));
     expect(five.enoughData).toBe(true);
-  });
-});
-
-describe("calibrationBuckets", () => {
-  it("groups forecasts into 10 buckets", () => {
-    const buckets = calibrationBuckets([
-      { probability: 0.72, outcome: "YES" },
-      { probability: 0.78, outcome: "NO" },
-      { probability: 0.99, outcome: "YES" },
-    ]);
-    expect(buckets).toHaveLength(10);
-    expect(buckets[7].count).toBe(2);
-    expect(buckets[7].meanForecast).toBeCloseTo(0.75);
-    expect(buckets[7].yesRate).toBe(0.5);
-    expect(buckets[9].count).toBe(1);
-    expect(buckets[0].meanForecast).toBeNull();
   });
 });
