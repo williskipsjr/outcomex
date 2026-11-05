@@ -6,7 +6,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const iso = (time) => new Date(time).toISOString().replace(/\.\d{3}Z$/, "Z");
 
 // Dates relative to "now", so "closes in 3 days" stays true whenever the mocks run
-export function edgeCaseMarkets(now = Date.now()) {
+export function edgeCaseMarkets(now) {
   const base = {
     source: "polymarket",
     status: "open",
@@ -71,7 +71,7 @@ export const EDGE_CASE_DETAILS = {
 };
 
 // pm-900002 has a single point: the chart's "not enough data" state
-export function edgeCaseHistory(now = Date.now()) {
+export function edgeCaseHistory(now) {
   const one = [[Math.round(now / 1000) - 3600, 0.42]];
   return { "pm-900002": { "1d": one, "1w": one, "1m": one, all: one } };
 }

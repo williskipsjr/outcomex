@@ -25,10 +25,10 @@ function invalid(message) {
 }
 
 // Missing means "use the default"; present but wrong is an error, not a guess
-export function checkLimit(limit, { min = 1, max, fallback }) {
+export function checkLimit(limit, { max, fallback }) {
   if (limit === undefined || limit === null) return fallback;
-  if (!Number.isInteger(limit) || limit < min || limit > max) {
-    throw invalid(`limit must be a whole number from ${min} to ${max}.`);
+  if (!Number.isInteger(limit) || limit < 1 || limit > max) {
+    throw invalid(`limit must be a whole number from 1 to ${max}.`);
   }
   return limit;
 }
