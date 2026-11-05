@@ -1,5 +1,8 @@
 import { DataError, abortedError, errorFromStatus } from "./errors.js";
 
+// The one place the data layer calls fetch. Every request gets a timeout, one
+// retry for network errors and server errors, and is turned into either
+// parsed JSON or a DataError, so callers never see a raw fetch failure.
 const TIMEOUT_MS = 8000;
 const RETRY_DELAY_MS = 300;
 
