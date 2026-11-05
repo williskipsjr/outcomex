@@ -62,6 +62,8 @@
   --color-ai: #6d28d9;
   --color-up: #157a3a;
   --color-down: #b91c1c;
+  --color-yes: #166f35;
+  --color-no: #b91c1c;
   --color-brand: #047857;
   /* A tinted page under white cards, so each card stands out */
   --color-bg: #eef1f5;
@@ -85,6 +87,8 @@
     --color-ai: #6d28d9;
     --color-up: #157a3a;
     --color-down: #b91c1c;
+    --color-yes: #166f35;
+    --color-no: #b91c1c;
     --color-brand: #047857;
     /* A tinted page under white cards, so each card stands out */
     --color-bg: #eef1f5;
