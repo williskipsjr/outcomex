@@ -33,6 +33,10 @@ const REMOTE_MAX_LOCAL_MATCHES = 5;
 // getSparklines takes at most 50 ids; the first 50 (highest volume) get a chart
 const SPARKLINE_LIMIT = 50;
 
+// The home page (/): live Polymarket markets as cards, with search, category,
+// status and sort controls. The controls live in the URL (?q=...&sort=...), so a
+// refresh or a shared link shows the same view. Loads 100 markets, refreshes
+// them every minute, and searches Polymarket itself when few loaded ones match.
 export default function DashboardPage() {
   const { status, data: loadedMarkets, meta, error, run, retry } = useRequest();
   const { blindMode } = useSettings();

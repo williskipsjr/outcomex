@@ -21,6 +21,7 @@ function sortOptions(blindMode) {
   ];
 }
 
+// The search box, category chips and status and sort menus above the cards.
 // Controlled by the parent: it owns the view (from the URL) and decides how
 // each change is written back. This component only reports what the user did.
 export default function DashboardControls({ view, searchText, blindMode, onChange, onClear }) {
