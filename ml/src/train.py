@@ -18,7 +18,7 @@ Candidates, simplest first:
 
 Choice rule: take the lowest validation Brier, then step back to the simplest
 model that is not significantly worse than it (its bootstrap interval for the
-difference contains 0). Validation has only ~124 markets, so small gaps are noise.
+difference contains 0). Validation has only 79 markets, so small gaps are noise.
 """
 
 import argparse
