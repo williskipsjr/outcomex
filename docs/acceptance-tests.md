@@ -53,7 +53,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Owner** FE1 · **Must pass by** C1 · **Stories** US-01, US-14
 
-1. In DevTools, set the network to Offline, clear site data and open `/`.
+1. In DevTools, set the network to Offline, clear site data and open `/markets`.
 2. Set the network back to online and press Retry.
 
 **Expected:** an error message with Retry, not a blank page. Retry loads the markets without a page reload.
@@ -64,7 +64,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Owner** FE1 · **Must pass by** C1 · **Story** US-04
 
-1. Make sure blind mode is on (the default) and open `/`.
+1. Make sure blind mode is on (the default) and open `/markets`.
 2. Look at cards you haven't called. Open the sort menu.
 
 **Expected:** uncalled cards show "Call it to reveal" and no crowd number. "Most likely YES" and "Least likely YES" can't be picked, and a note explains why. A link with `?sort=prob-high` falls back to the default sort with the same note.
@@ -75,7 +75,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Owner** FE1 · **Must pass by** C1 · **Stories** US-02, US-03
 
-1. On `/`, pick two categories, set status to "Closing soon" and type a word.
+1. On `/markets`, pick two categories, set status to "Closing soon" and type a word.
 2. Count the cards. Press Clear filters.
 
 **Expected:** only cards matching all three are shown, and the count above the list matches them. Clear filters shows everything again.
@@ -86,7 +86,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Owner** FE1 · **Must pass by** C2 · **Story** US-02
 
-1. On `/`, type "trum", then quickly "trump election".
+1. On `/markets`, type "trum", then quickly "trump election".
 
 **Expected:** only results for "trump election" appear. Results for "trum" never flash, and no error appears for the cancelled request.
 
@@ -94,7 +94,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Owner** FE1 · **Must pass by** C1 · **Story** US-03
 
-1. On `/`, set a search, a category, a status and a sort.
+1. On `/markets`, set a search, a category, a status and a sort.
 2. Reload. Then copy the URL into a new tab.
 
 **Expected:** both show the same view. Editing the URL to a nonsense value (for example `?sort=banana`) falls back to the default, with no error.

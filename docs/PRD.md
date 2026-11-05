@@ -117,7 +117,7 @@ These were added during the build. None of them adds money, accounts or a server
 
 | Id | Screen | Route | Status |
 |---|---|---|---|
-| S1 | Dashboard (Live markets) | `/` | Built |
+| S1 | Dashboard (Live markets) | `/markets` (the home page at `/` introduces the app and links here) | Built |
 | S2 | Market detail | `/market/:id` | Built |
 | S3 | Practice list | `/practice` | Built (category filter only; the plan's status filter doesn't apply to resolved markets) |
 | S4 | Practice detail | `/practice/:id` | Built |
