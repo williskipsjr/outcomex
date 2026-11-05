@@ -48,11 +48,8 @@ export default function CallsProvider({ children }) {
 
   // Called by useResolutionCheck when Polymarket says markets have ended.
   // updates: [{ marketId, outcome, resolvedAt }]. Only live calls that are still open change.
-  // Returns how many calls were resolved, so the page can say so.
   function resolveCalls(updates) {
     const byMarket = new Map(updates.map((update) => [update.marketId, update]));
-    const count = calls.filter((call) => call.mode === "live" && !call.resolution && byMarket.has(call.marketId)).length;
-
     setCalls((current) =>
       current.map((call) => {
         const update = byMarket.get(call.marketId);
@@ -60,7 +57,6 @@ export default function CallsProvider({ children }) {
         return { ...call, resolution: { outcome: update.outcome, resolvedAt: update.resolvedAt } };
       }),
     );
-    return count;
   }
 
   // My Calls' Export button: the calls as readable JSON for the user to keep
