@@ -25,11 +25,11 @@ Course project for Full Stack Development 1, IIIT Dharwad.
 
 | Role | Name | GitHub |
 |---|---|---|
-| Product Manager | | |
-| AI/ML Engineer | | |
-| Frontend Engineer 1 | | |
-| Frontend Engineer 2 | | |
-| Backend / Data Engineer | | |
+| Product Manager | Ayman | [aymanweb3](https://github.com/aymanweb3) |
+| AI/ML Engineer | Muhammad Owais | [mdowais-39](https://github.com/mdowais-39) |
+| Frontend Engineer 1 | Willis Kipgen | [williskipsjr](https://github.com/williskipsjr) |
+| Frontend Engineer 2 | Shreyas | [shreyashell06](https://github.com/shreyashell06) |
+| Backend / Data Engineer | Prathyusha | [Prathyusha-dev-hash](https://github.com/Prathyusha-dev-hash) |
 
 ## How we work
 
