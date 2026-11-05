@@ -11,11 +11,13 @@ export default function Footer() {
         <a href="https://polymarket.com" target="_blank" rel="noreferrer">
           Polymarket
         </a>
-        . OutcomeX only reads public data: there is no buying, selling or betting here, and
-        nothing on this site is financial advice.
+        . OutcomeX only reads public data: there is no buying, selling or betting here, and nothing
+        on this site is financial advice.
       </p>
       <p>
         A Full Stack Development 1 course project, IIIT Dharwad · <Link to="/about">About</Link>
+        {" · "}
+        <Link to="/welcome">New here? Take the tour</Link>
       </p>
     </footer>
   );
