@@ -65,7 +65,7 @@ export default function PracticeListPage() {
       return (
         <EmptyState
           title="No practice markets yet"
-          message="New ones are added as live markets resolve. Try the live markets meanwhile."
+          message="There are no practice questions right now. Try the live markets meanwhile."
         />
       );
     }
