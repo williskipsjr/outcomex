@@ -18,9 +18,12 @@ export default function CallItForm({ onCall, busy = false, error = null, submitL
   // This is what really stops a double submit; the disabled button is only UX.
   const submittingRef = useRef(false);
 
+  // Derived on every render from `text`: { percent } when it's a whole number
+  // from 1 to 99, or { error } with a message to show under the box
   const parsed = parsePercentInput(text);
   const sliderValue = parsed.percent ?? 50;
 
+  // The slider and the number box both call this, so they always agree
   function changeValue(nextText) {
     setText(nextText);
     setTouched(true);
@@ -31,6 +34,8 @@ export default function CallItForm({ onCall, busy = false, error = null, submitL
     event.preventDefault(); // a <form> submit: Enter works and the page never reloads
     if (submittingRef.current || busy) return;
 
+    // Check the input before anything is saved. This is for a clear message;
+    // makeCall checks the probability again before storing the call.
     if (parsed.error) {
       setFieldError(parsed.error);
       return;
@@ -117,6 +122,7 @@ export default function CallItForm({ onCall, busy = false, error = null, submitL
         </p>
       )}
 
+      {/* Disabled until the user moves the slider or types, so nobody calls 50% by accident */}
       <Button type="submit" loading={busy} disabled={!touched}>
         {submitLabel}
       </Button>
