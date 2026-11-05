@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 from src.model import explain, gap_parts, percent
-from src.predict import build_file, check_file, demo_picks, in_horizon, is_scorable
+from src.predict import build_file, check_file, spot_check_picks, in_horizon, is_scorable
 from src.train import fit
 
 
@@ -78,7 +78,7 @@ class PredictionsFile(unittest.TestCase):
         self.assertFalse(in_horizon(at(60), now))
         self.assertFalse(in_horizon({"endDate": None}, now))
 
-    def test_demo_picks_are_mid_range_and_not_closing_today(self):
+    def test_spot_check_picks_are_mid_range_and_not_closing_today(self):
         now = 1_790_000_000
 
         def raw(market_id, days):
@@ -86,7 +86,7 @@ class PredictionsFile(unittest.TestCase):
             return {"id": market_id, "question": "Q?", "endDate": end.strftime("%Y-%m-%dT%H:%M:%SZ")}
 
         predictions = {"pm-1": {"probability": 0.4}, "pm-2": {"probability": 0.97}, "pm-3": {"probability": 0.4}}
-        picks = demo_picks(predictions, [raw(1, 5), raw(2, 5), raw(3, 1), raw(4, 5)], now)
+        picks = spot_check_picks(predictions, [raw(1, 5), raw(2, 5), raw(3, 1), raw(4, 5)], now)
         self.assertEqual([pick[0] for pick in picks], ["pm-1"])
 
     def test_scorable_matches_the_apps_rules(self):

@@ -4,7 +4,7 @@
     python -m src.predict --mocks      # also: client/src/mocks/predictions.json for mock mode
     python -m src.predict --install    # also: client/public/data/predictions.json (the app)
 
-Run it again whenever you want fresh numbers (daily during the demo period):
+Run it again whenever you want fresh numbers (daily while the app is in use):
 prices move, and a market missing from the file shows "AI not available"
 (reason NOT_SCORED) in the app.
 
@@ -134,8 +134,8 @@ def score(model, raws, now):
     return predictions
 
 
-def demo_picks(predictions, raws, now, count=5):
-    """Markets that show the reveal well: a mid-range AI number, not closing today."""
+def spot_check_picks(predictions, raws, now, count=5):
+    """A few markets worth opening in the app to check the output: a mid-range AI number, not closing today."""
     picks = []
     for raw in raws:
         entry = predictions.get(f"pm-{raw['id']}")
@@ -203,8 +203,8 @@ def main(argv=None):
         f"{in_range} end within {config.SCORE_MIN_DAYS}-{config.SCORE_MAX_DAYS} days, the rest show NOT_SCORED"
     )
 
-    print("good markets to demo:")
-    for market_id, probability, question in demo_picks(predictions, raws, now):
+    print("markets to check in the app:")
+    for market_id, probability, question in spot_check_picks(predictions, raws, now):
         print(f"  {market_id}  AI {probability:.0%}  {question[:70]}")
 
     if args.mocks:
