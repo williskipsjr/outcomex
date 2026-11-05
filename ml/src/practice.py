@@ -148,14 +148,15 @@ def check_files(practice_list, practice_answers):
 def out_of_sample_ai(chosen):
     """AI numbers from the G2-evaluated model (trained on train + validation)
     for the chosen test-split markets. Only at Level A; otherwise none."""
-    from .model import final_model, predict_rows
+    from .model import final_model
+    from .train import predict
 
     model, info = final_model()
     if info["level"] != "A":
         return {}, None
     features = pd.read_csv(config.INTERIM_DIR / "features.csv")
     rows = features[features["id"].isin(chosen["id"]) & (features["split"] == "test")]
-    probabilities = predict_rows(model, rows)
+    probabilities = predict(model, rows)
     return {int(i): round(float(p), 4) for i, p in zip(rows["id"], probabilities)}, info["version"]
 
 

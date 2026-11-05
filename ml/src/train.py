@@ -41,8 +41,8 @@ from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardSc
 
 from . import config
 from .evaluate import bootstrap_difference, brier, calibration, metrics
+from .polymarket import CATEGORIES
 
-CATEGORIES = ["Politics", "Sports", "Crypto", "Economy", "Tech & Science", "World", "Culture", "Other"]
 PRICE = ["crowd_logit", "move_1d", "move_7d", "volatility_14d", "range_14d", "hours_since_trade"]
 C_GRID = [0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]
 CLIP = (0.01, 0.99)

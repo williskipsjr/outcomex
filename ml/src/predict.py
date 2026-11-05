@@ -39,8 +39,9 @@ import requests
 from . import config
 from .features import features_at
 from .http import HttpError, get_json
-from .model import explain, final_model, predict_rows
+from .model import explain, final_model
 from .polymarket import category_of, to_utc, yes_index, yes_token_id
+from .train import predict
 
 LIST_PAGES = 5
 DAY = 86400
@@ -127,7 +128,7 @@ def score(model, raws, now):
     if not rows:
         return {}
     frame = pd.DataFrame(rows)
-    probabilities = predict_rows(model, frame)
+    probabilities = predict(model, frame)
     predictions = {}
     for row, p in zip(rows, probabilities):
         predictions[row["id"]] = {"probability": round(float(p), 4), "explanation": explain(model, row)}
