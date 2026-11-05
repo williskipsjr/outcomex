@@ -27,7 +27,7 @@ Tested in a real browser, on 5 Nov 2026 on branch `feat/finish-ml-role`, except 
 
 ## Findings
 
-1. **Misleading error message.** When our own answers file is missing, the page says "Polymarket isn't responding right now", because `client/src/lib/errorMessages.js` turns the error code into generic text. The data layer has the accurate message ("One of OutcomeX's data files is missing"). This is a frontend file, so it's raised with its owner, not changed here. It matters for the demo, which breaks a data file on purpose.
+1. **Misleading error message.** When our own answers file is missing, the page says "Polymarket isn't responding right now", because `client/src/lib/errorMessages.js` turns the error code into generic text. The data layer has the accurate message ("One of OutcomeX's data files is missing"). **Fixed on 5 Nov:** the page now shows the data layer's own message.
 
 ## Not covered here
 
