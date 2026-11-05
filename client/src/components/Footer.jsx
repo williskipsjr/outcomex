@@ -17,7 +17,7 @@ export default function Footer() {
       <p>
         A Full Stack Development 1 course project, IIIT Dharwad · <Link to="/about">About</Link>
         {" · "}
-        <Link to="/welcome">New here? Take the tour</Link>
+        <Link to="/">New here? Take the tour</Link>
       </p>
     </footer>
   );

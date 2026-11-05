@@ -58,7 +58,7 @@ export default function MyCallsPage() {
           message="Make a call on a live market, or try Practice mode to get scored straight away."
           action={
             <div className="my-calls__empty-links">
-              <Link to="/">Live markets</Link>
+              <Link to="/markets">Live markets</Link>
               <Link to="/practice">Practice</Link>
             </div>
           }

@@ -15,7 +15,7 @@ export default function NotFoundPage() {
         message={`We couldn't find ${pathname}. It may have moved, or the link has a typo.`}
         action={
           <div className="not-found__links">
-            <Link to="/">Live markets</Link>
+            <Link to="/markets">Live markets</Link>
             <Link to="/practice">Practice</Link>
           </div>
         }
