@@ -26,13 +26,11 @@ Start with the [PRD](PRD.md): what OutcomeX is, what it was planned to deliver a
 | [ml/model-card.md](ml/model-card.md) | What the AI is, what it may and may not be used for |
 | [ml/news-sources.md](ml/news-sources.md) | Can a news source work from the browser? (stretch S1) |
 
-## Testing and demo
+## Testing
 
 | Document | What it answers |
 |---|---|
 | [testing/data-failure-tests.md](testing/data-failure-tests.md) | What happens when a data source or file fails |
-| [demo/runbook-data-and-ml.md](demo/runbook-data-and-ml.md) | How to prepare the data and the AI for a demo |
-| [demo/slides-ai-and-data.md](demo/slides-ai-and-data.md) | Slide content for the AI and data part of the demo |
 
 ## Not here yet
 

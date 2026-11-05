@@ -42,5 +42,5 @@ It passes, but narrowly: **the AI ties the crowd, it doesn't beat it.** Full det
 ## Consequences
 
 - The reveal shows an AI probability for live markets 1–21 days from their scheduled end, and "AI not available" for the rest.
-- What we say about the AI, on the About page and in the demo: it is **as accurate as the crowd, not more**; it doesn't read the news; it only gives a number for markets ending within 21 days, because it was tested a week before each market's end. The PM and the ML engineer agree every sentence.
-- Because prices move, `predictions.json` has to be regenerated before releases and demos.
+- What the About page says about the AI: it is **as accurate as the crowd, not more**; it doesn't read the news; it only gives a number for markets ending within 21 days, because it was tested a week before each market's end. The PM and the ML engineer agree every sentence.
+- Because prices move, `predictions.json` has to be regenerated for each release.
