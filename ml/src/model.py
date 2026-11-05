@@ -15,7 +15,8 @@ import numpy as np
 import pandas as pd
 
 from . import config
-from .train import describe_model, fit, predict
+from .features import logit
+from .train import describe_model, fit
 
 # Bump when the model is retrained. It is shown in the app and in the reports.
 MODEL_VERSION = "lr-crowd-2026-11-01"
@@ -62,11 +63,6 @@ def percent(p):
     return f"{round(p * 100)}%"
 
 
-def logit(p):
-    p = min(max(p, 1e-6), 1 - 1e-6)
-    return float(np.log(p / (1 - p)))
-
-
 def gap_parts(model, row):
     """Split (AI log-odds - crowd log-odds) into one part per reason. The parts
     add up exactly to the gap, because the model is linear in log-odds:
@@ -80,7 +76,7 @@ def gap_parts(model, row):
     names = [n.split("__", 1)[1] for n in model.named_steps["features"].get_feature_names_out()]
     weights = dict(zip(names, model.named_steps["model"].coef_[0] * z))
     intercept = float(model.named_steps["model"].intercept_[0])
-    crowd_logit = logit(min(max(row["crowd"], 0.01), 0.99))
+    crowd_logit = logit(row["crowd"])
 
     parts = {
         "recalibration": intercept + weights.pop("crowd_logit") - crowd_logit,
@@ -122,7 +118,7 @@ def explain(model, row):
     so a sentence can never contradict the number next to it.
     """
     parts, gap = gap_parts(model, row)
-    ai = 1 / (1 + np.exp(-(logit(min(max(row["crowd"], 0.01), 0.99)) + gap)))
+    ai = 1 / (1 + np.exp(-(logit(row["crowd"]) + gap)))
     ai = min(max(ai, 0.01), 0.99)
     if abs(ai - row["crowd"]) < 0.01:
         return [f"The AI agrees with the crowd's price ({percent(row['crowd'])})"]
@@ -133,8 +129,3 @@ def explain(model, row):
     reasons.sort(key=lambda item: -abs(item[1]))
     lines += [_reason(name, effect, row) for name, effect in reasons[:2]]
     return lines
-
-
-def predict_rows(model, rows):
-    """rows: DataFrame with the feature columns and category -> probabilities."""
-    return predict(model, rows)
