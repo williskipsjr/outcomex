@@ -14,6 +14,10 @@ import MarketCard from "../dashboard/MarketCard.jsx";
 import MarketGrid from "../dashboard/MarketGrid.jsx";
 import "./PracticeListPage.css";
 
+// The practice list (/practice): questions that have already resolved, from
+// practice-list.json. Each card opens a practice call that is scored at once.
+// Has its own loading, error, empty and "no matches for these categories" states.
+
 const SKELETON_COUNT = 6;
 
 export default function PracticeListPage() {
