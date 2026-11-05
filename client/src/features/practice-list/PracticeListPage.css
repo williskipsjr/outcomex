@@ -6,6 +6,7 @@
   background:
     radial-gradient(circle at 100% 0%, rgb(245 158 11 / 0.14), transparent 55%),
     var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 /* Amber = "you" in our colour system, and practice is all about your calls */

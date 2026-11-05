@@ -36,6 +36,8 @@
   --radius: 12px;
   --radius-sm: 6px;
   --shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  /* Hovered cards */
+  --shadow-lift: 0 4px 16px rgb(0 0 0 / 0.4);
 
   /* Type */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -54,42 +56,46 @@
 
 /* Light theme chosen in settings */
 :root[data-theme="light"] {
-  /* Darker data colours so text in them passes 4.5:1 contrast on white */
-  --color-you: #b45309;
+  /* Darker data colours so text in them passes 4.5:1 contrast on the light page and cards */
+  --color-you: #a84c06;
   --color-crowd: #1d4ed8;
   --color-ai: #6d28d9;
-  --color-up: #15803d;
+  --color-up: #157a3a;
   --color-down: #b91c1c;
   --color-brand: #047857;
-  --color-bg: #f8fafc;
+  /* A tinted page under white cards, so each card stands out */
+  --color-bg: #eef1f5;
   --color-surface: #ffffff;
-  --color-surface-raised: #f1f5f9;
-  --color-border: #e2e8f0;
+  --color-surface-raised: #f1f4f8;
+  --color-border: #d5dbe3;
   --color-text: #0f172a;
-  --color-muted: #64748b;
+  --color-muted: #556274;
   --color-focus: #2563eb;
-  --shadow: 0 1px 3px rgb(15 23 42 / 0.12);
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 2px 8px rgb(15 23 42 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(15 23 42 / 0.08), 0 8px 24px rgb(15 23 42 / 0.1);
   color-scheme: light;
 }
 
 /* Light theme from the system, unless the user chose dark */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    /* Darker data colours so text in them passes 4.5:1 contrast on white */
-    --color-you: #b45309;
+    /* Darker data colours so text in them passes 4.5:1 contrast on the light page and cards */
+    --color-you: #a84c06;
     --color-crowd: #1d4ed8;
     --color-ai: #6d28d9;
-    --color-up: #15803d;
+    --color-up: #157a3a;
     --color-down: #b91c1c;
     --color-brand: #047857;
-    --color-bg: #f8fafc;
+    /* A tinted page under white cards, so each card stands out */
+    --color-bg: #eef1f5;
     --color-surface: #ffffff;
-    --color-surface-raised: #f1f5f9;
-    --color-border: #e2e8f0;
+    --color-surface-raised: #f1f4f8;
+    --color-border: #d5dbe3;
     --color-text: #0f172a;
-    --color-muted: #64748b;
+    --color-muted: #556274;
     --color-focus: #2563eb;
-    --shadow: 0 1px 3px rgb(15 23 42 / 0.12);
+    --shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 2px 8px rgb(15 23 42 / 0.06);
+    --shadow-lift: 0 2px 4px rgb(15 23 42 / 0.08), 0 8px 24px rgb(15 23 42 / 0.1);
     color-scheme: light;
   }
 }

@@ -3,6 +3,7 @@
   border: 1px solid var(--color-border);
   border-radius: 16px;
   background: var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 .price-chart__head {

@@ -102,6 +102,7 @@
   border: 1px solid var(--color-you);
   border-radius: 12px;
   background: var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 .market-detail__locked strong {
@@ -126,6 +127,7 @@
   border: 1px solid var(--color-border);
   border-radius: 12px;
   background: var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 .market-detail__rules summary {
