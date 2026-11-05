@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CallsContext } from "./callsContext.js";
 import { CALLS_STORAGE_KEY, createCall, parseStoredCalls, validateNewCall } from "./callsStorage.js";
 
+// localStorage can throw (e.g. blocked in some private windows), so reading it
+// is wrapped: no storage simply means no saved calls.
 function readStorage() {
   try {
     return localStorage.getItem(CALLS_STORAGE_KEY);
@@ -27,6 +29,8 @@ export default function CallsProvider({ children }) {
     }
   }, [calls]);
 
+  // Your call on one market, or null. Live and practice calls are kept apart,
+  // so the same question can be called once in each mode.
   function getCall(marketId, mode = "live") {
     return calls.find((call) => call.marketId === marketId && call.mode === mode) ?? null;
   }
@@ -42,7 +46,9 @@ export default function CallsProvider({ children }) {
     return { ok: true, call };
   }
 
+  // Called by useResolutionCheck when Polymarket says markets have ended.
   // updates: [{ marketId, outcome, resolvedAt }]. Only live calls that are still open change.
+  // Returns how many calls were resolved, so the page can say so.
   function resolveCalls(updates) {
     const byMarket = new Map(updates.map((update) => [update.marketId, update]));
     const count = calls.filter((call) => call.mode === "live" && !call.resolution && byMarket.has(call.marketId)).length;
@@ -57,6 +63,7 @@ export default function CallsProvider({ children }) {
     return count;
   }
 
+  // My Calls' Export button: the calls as readable JSON for the user to keep
   function exportCalls() {
     return JSON.stringify(calls, null, 2);
   }
