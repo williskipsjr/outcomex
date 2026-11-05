@@ -1,8 +1,11 @@
 import { formatPercent } from "../lib/format.js";
 import "./ProbabilityBar.css";
 
-// value: 0 to 1 · who: you | crowd | ai
+// One labelled bar, e.g. "Crowd 64%". The reveal stacks three of them (You,
+// Crowd, AI) so the numbers can be compared at a glance.
+// value: 0 to 1 · who: you | crowd | ai (sets the colour)
 export default function ProbabilityBar({ value, who = "crowd", label }) {
+  // Keep the bar inside its track even if a value is slightly out of range
   const clamped = Math.min(Math.max(value, 0), 1);
 
   return (

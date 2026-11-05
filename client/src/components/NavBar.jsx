@@ -3,6 +3,10 @@ import useSettings from "../features/settings/useSettings.js";
 import Toggle from "./Toggle.jsx";
 import "./NavBar.css";
 
+// The top bar on every page: the page links plus the two app-wide settings.
+// NavLink adds the "active" class to the link of the page you are on.
+// Blind mode and the theme live in SettingsProvider, so changing them here
+// updates every page at once and is remembered in the browser.
 export default function NavBar() {
   const { blindMode, setBlindMode, theme, setTheme } = useSettings();
 
