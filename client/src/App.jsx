@@ -1,4 +1,4 @@
-import { Outlet, Routes, Route } from "react-router-dom";
+import { Navigate, Outlet, Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import NavBar from "./components/NavBar.jsx";
 import CallsRepairNotice from "./features/calls/CallsRepairNotice.jsx";
@@ -32,24 +32,29 @@ function AppShell() {
   );
 }
 
+// The home page. The dashboard used to live at / and keeps its view in the
+// query string, so an old link like /?cat=Crypto goes on to /markets?cat=Crypto.
+function Home() {
+  const { search } = useLocation();
+  if (search) return <Navigate to={`/markets${search}`} replace />;
+  return (
+    <TitledPage title="Forecast blind">
+      <LandingPage />
+    </TitledPage>
+  );
+}
+
 // The list of pages (routes). Each URL maps to one page component. TitledPage
 // sets the browser tab title for pages whose title doesn't depend on data; the
-// market pages set their own from the question. The welcome page brings its
-// own nav and footer, so it sits outside the app's frame.
+// market pages set their own from the question. The home page brings its own
+// nav and footer, so it sits outside the app's frame.
 export default function App() {
   return (
     <Routes>
-      <Route
-        path="/welcome"
-        element={
-          <TitledPage title="Welcome">
-            <LandingPage />
-          </TitledPage>
-        }
-      />
+      <Route path="/" element={<Home />} />
       <Route element={<AppShell />}>
         <Route
-          path="/"
+          path="/markets"
           element={
             <TitledPage title="Live markets">
               <DashboardPage />

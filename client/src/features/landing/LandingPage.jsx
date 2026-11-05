@@ -4,10 +4,9 @@ import { MAX_REASON_LENGTH } from "../calls/callsStorage.js";
 import useReveal from "./useReveal.js";
 import "./LandingPage.css";
 
-// The welcome page at /welcome: what OutcomeX is, for someone who hasn't used
-// it yet. It sits outside the app's nav bar and footer (see App.jsx) and every
-// button leads to a real page or a section of this one. The dashboard stays
-// at /, so no existing link changes.
+// The home page at /: what OutcomeX is, for someone who hasn't used it yet.
+// It sits outside the app's nav bar and footer (see App.jsx) and every button
+// leads to a real page or a section of this one. The app starts at /markets.
 
 const REPO_URL = "https://github.com/williskipsjr/outcomex";
 const EVALUATION_URL = `${REPO_URL}/blob/main/docs/ml/evaluation.md`;
@@ -127,13 +126,13 @@ export default function LandingPage() {
       </a>
 
       <header className="landing-nav">
-        <Link to="/welcome" className="landing-nav__brand" aria-label="OutcomeX, welcome page">
+        <Link to="/" className="landing-nav__brand" aria-label="OutcomeX, home">
           <Logo />
         </Link>
         <nav aria-label="Welcome page">
           <ul className="landing-nav__links">
             <li>
-              <Link to="/">Explore</Link>
+              <Link to="/markets">Explore</Link>
             </li>
             <li>
               <a href="#how">How it works</a>
@@ -146,7 +145,7 @@ export default function LandingPage() {
             </li>
           </ul>
         </nav>
-        <Link to="/" className="landing-btn landing-btn--small">
+        <Link to="/markets" className="landing-btn landing-btn--small">
           Open the app
           <Arrow />
         </Link>
@@ -156,7 +155,6 @@ export default function LandingPage() {
         <section className="landing-hero" aria-labelledby="landing-title">
           <div className="landing-hero__arc" aria-hidden="true" />
           <div className="landing-hero__inner">
-            <p className="landing-eyebrow landing-rise">Blind forecasting on live markets</p>
             <h1 id="landing-title" className="landing-hero__title landing-rise">
               Think beyond <br />
               the crowd.
@@ -167,7 +165,7 @@ export default function LandingPage() {
               question resolves.
             </p>
             <div className="landing-hero__actions landing-rise">
-              <Link to="/" className="landing-btn">
+              <Link to="/markets" className="landing-btn">
                 Explore markets
                 <Arrow />
               </Link>
@@ -272,7 +270,7 @@ export default function LandingPage() {
                 Questions and prices straight from Polymarket, refreshed every minute while the page
                 is open.
               </p>
-              <Link to="/" className="landing-card__link">
+              <Link to="/markets" className="landing-card__link">
                 Browse live markets <Arrow />
               </Link>
             </article>
@@ -373,7 +371,7 @@ export default function LandingPage() {
             </h2>
             <p>No sign-up and no money. Your calls stay in your own browser.</p>
             <div className="landing-hero__actions">
-              <Link to="/" className="landing-btn">
+              <Link to="/markets" className="landing-btn">
                 Explore OutcomeX
                 <Arrow />
               </Link>
@@ -394,7 +392,7 @@ export default function LandingPage() {
           <nav aria-label="Footer">
             <ul className="landing-footer__links">
               <li>
-                <Link to="/">Live markets</Link>
+                <Link to="/markets">Live markets</Link>
               </li>
               <li>
                 <Link to="/practice">Practice</Link>

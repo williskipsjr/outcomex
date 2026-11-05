@@ -80,7 +80,7 @@ export default function MarketDetailPage() {
       <EmptyState
         title="Market not found"
         message="It may have closed or the link is wrong."
-        action={<Link to="/">Back to live markets</Link>}
+        action={<Link to="/markets">Back to live markets</Link>}
       />
     );
   }
@@ -104,7 +104,7 @@ export default function MarketDetailPage() {
 
   return (
     <article className="market-detail">
-      <Link className="market-detail__back" to="/">
+      <Link className="market-detail__back" to="/markets">
         ← Live markets
       </Link>
 

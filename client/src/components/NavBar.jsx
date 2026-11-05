@@ -18,7 +18,7 @@ export default function NavBar() {
       <nav aria-label="Main">
         <ul className="nav-bar__links">
           <li>
-            <NavLink to="/" end className="nav-bar__link">
+            <NavLink to="/markets" className="nav-bar__link">
               Live
             </NavLink>
           </li>
