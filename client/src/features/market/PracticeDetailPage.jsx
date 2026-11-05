@@ -16,6 +16,9 @@ import RevealPanel from "./RevealPanel.jsx";
 import "./MarketDetailPage.css";
 import "./PracticeDetailPage.css";
 
+// A practice market (/practice/:id): a question that has already resolved,
+// shown as it looked 7 days before it ended. You call it, and only then is
+// its answer loaded, so you get the outcome and your score straight away.
 export default function PracticeDetailPage() {
   const { id } = useParams();
   const { getCall, makeCall } = useCalls();
@@ -99,6 +102,7 @@ export default function PracticeDetailPage() {
     );
   }
 
+  // A practice call stores the AI's number with it, so the reveal is rebuilt from the call
   const outcome = call?.resolution?.outcome ?? null;
   const aiProbability = call?.revealed.aiProbability ?? null;
   const ai = {

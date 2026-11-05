@@ -8,12 +8,14 @@ import { getErrorMessage } from "../../lib/errorMessages.js";
 import { formatDate, formatPercent } from "../../lib/format.js";
 import "./PriceChart.css";
 
+// The time ranges the chart can show (the buttons above it)
 const RANGES = [
   { value: "1d", label: "1D" },
   { value: "1w", label: "1W" },
   { value: "1m", label: "1M" },
   { value: "all", label: "All" },
 ];
+// Drawing area in SVG units, with room on the left and bottom for the axis labels
 const BOX = { width: 600, height: 240, left: 44, right: 8, top: 12, bottom: 28 };
 const GRID = [0, 0.25, 0.5, 0.75, 1];
 
@@ -32,6 +34,7 @@ export default function PriceChart({ marketId, yourCall = null, aiProbability = 
   const points = data?.points ?? [];
   const { y, plotLeft, plotRight } = chartGeometry(BOX);
   const summary = summarizeSeries(points);
+  // The chart is a picture, so screen readers get the same facts as one sentence
   const label = summary
     ? `Crowd probability of YES, ${RANGES.find((r) => r.value === range).label}: ` +
       `started at ${formatPercent(summary.start)}, now ${formatPercent(summary.end)}, ` +

@@ -17,6 +17,10 @@ import RevealPanel from "./RevealPanel.jsx";
 import { aiForCall } from "./savedAi.js";
 import "./MarketDetailPage.css";
 
+// A live market (/market/:id): the question, the call form, then after you call
+// the reveal and the price chart. Loads the market from Polymarket and the AI
+// estimate from predictions.json. Shows a skeleton while loading, "Market not
+// found" for a bad id, and an error with Try again if Polymarket fails.
 export default function MarketDetailPage() {
   const { id } = useParams();
   const { blindMode } = useSettings();
@@ -51,6 +55,7 @@ export default function MarketDetailPage() {
       ? currentPrediction.probability
       : null;
 
+  // makeCall checks the call and saves it; if it is refused the form shows why
   function handleCall(probability, reason) {
     setCallError(null);
     const result = makeCall({
