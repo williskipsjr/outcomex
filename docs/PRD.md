@@ -26,7 +26,6 @@ OutcomeX reads market data; it does not run a market. There is no buying, sellin
 |---|---|---|
 | **The curious student** follows the news and has opinions on elections, sport and crypto | To find out whether their instincts are any good | Live questions, a blind call, then a comparison with the crowd |
 | **The forecasting learner** wants to get better, not just feel right | Fast feedback and a score that rewards being calibrated, not lucky | Practice mode on already-resolved markets, scored straight away with the Brier score |
-| **The demo audience** (professor and classmates) | To judge the logic, robustness and teamwork | Clear states for loading, errors and missing data, and an honest About page |
 
 ### 2.3 Product principles
 
@@ -38,7 +37,7 @@ OutcomeX reads market data; it does not run a market. There is no buying, sellin
 
 ## 3. Goals and non-goals
 
-### 3.1 Goals for the demo (C3, Sun 22 Nov; final demo Sat 5 Dec)
+### 3.1 Goals for v1.0 (MVP by C3, Sun 22 Nov; v1.0 on Sat 5 Dec)
 
 - A first-time visitor can find a market, make a blind call and see You vs Crowd vs AI without help.
 - Practice mode gives an instant, explained score.
@@ -87,7 +86,7 @@ Status words used in this document:
 |---|---|---|---|
 | P1-1 | Live calls update automatically when their market resolves | When My Calls opens, pending live calls are checked with Polymarket and scored if their market has resolved. A failed check shows a small retry link | Built |
 | P1-2 | Dashboard refreshes prices every 60 s and pauses while the tab is hidden | Refreshes every 60 s, pauses while the tab is hidden, and keeps the old cards on screen while it reloads. A Refresh button does the same on demand | Built |
-| P1-3 | Public static deployment with an offline demo fallback | The offline fallback works (`npm run build:mock`). Hosting settings for a static deploy (page refreshes on any route) are in the repository, but there is no public URL yet | Prepared |
+| P1-3 | Public static deployment with an offline fallback | The offline fallback works (`npm run build:mock`). Hosting settings for a static deploy (page refreshes on any route) are in the repository, but there is no public URL yet | Prepared |
 
 ### 4.3 Stretch (P2, only after C3)
 
@@ -160,7 +159,7 @@ The AI is **the crowd's price, gently recalibrated**. Both evidence gates passed
 - **It is as accurate as the crowd, not more.** It doesn't read the news and knows nothing the crowd doesn't.
 - It only gives a number for markets that end within 21 days, because it was tested a week before each market's scheduled end. Everywhere else the app says "AI not available".
 
-Every sentence about the AI on the About page and in the demo is agreed between the PM and the ML engineer. The full evidence is in [ml/evaluation.md](ml/evaluation.md) and [ml/model-card.md](ml/model-card.md).
+Every sentence about the AI on the About page is agreed between the PM and the ML engineer. The full evidence is in [ml/evaluation.md](ml/evaluation.md) and [ml/model-card.md](ml/model-card.md).
 
 ## 7. Product decisions
 
@@ -180,14 +179,14 @@ Every sentence about the AI on the About page and in the demo is agreed between 
 |---|---|---|---|
 | First call | A first-time user makes a call in under 60 s, without help | Usability test (PM-11), stopwatch | Not measured yet (test planned 19–21 Nov) |
 | Practice task | 5 of 5 testers finish a practice call and read their score | Usability test | Not measured yet |
-| Robustness | Zero console errors on the demo path; every torture test degrades gracefully | AT-22, bug bash | 16 failure cases checked on 5 Nov, all handled ([testing/data-failure-tests.md](testing/data-failure-tests.md)); AT-22 not run yet |
+| Robustness | Zero console errors on the main path; every torture test degrades gracefully | AT-22, bug bash | 16 failure cases checked on 5 Nov, all handled ([testing/data-failure-tests.md](testing/data-failure-tests.md)); AT-22 not run yet |
 | Accessibility | Lighthouse accessibility ≥ 90 on every page; full keyboard path | AT-18, Lighthouse | 100 on About (mobile) and Practice (light theme); other pages and the keyboard pass not recorded yet |
 | Honesty of AI claims | Every AI number on screen has a published track record (n, Brier vs crowd) | About page review with ML | Met: the About page shows n = 117 and the Brier scores, and links the full evaluation |
 | Team process | Every member authors ≥ 5 merged PRs and reviews ≥ 5 | GitHub Insights at C4 | Measured at C4 |
 
 ## 9. Known limitations
 
-- **AI coverage is small and goes out of date.** The AI only scores markets 1–21 days from their scheduled end, and only on the day the file was made. On 5 Nov only 5 of the 100 dashboard markets had an AI number. The ML engineer re-runs the predictions before releases and demos.
+- **AI coverage is small and goes out of date.** The AI only scores markets 1–21 days from their scheduled end, and only on the day the file was made. On 5 Nov only 5 of the 100 dashboard markets had an AI number. The predictions are made again for each release.
 - **One misleading message.** When one of our own data files is missing, the page says "Polymarket isn't responding right now" instead of naming the missing file (finding 1 in [testing/data-failure-tests.md](testing/data-failure-tests.md)). Raised with the frontend owner.
 - **Offline images.** In the offline build, market photos come from Polymarket's servers and won't load; the cards keep their size.
 - **Practice answers can be read** with the browser's developer tools (see 6.1).
@@ -202,7 +201,7 @@ Every sentence about the AI on the About page and in the demo is agreed between 
 | C2 · Real data | Sun 15 Nov | Real data by default; search, history and practice on real files; G2 recorded |
 | C3 · MVP feature-complete | Sun 22 Nov | Every P0 merged; AT-01 to AT-22 pass on `main`; usability test done |
 | C4 · Release candidate | Sun 29 Nov | Torture, keyboard and 375 px passes; Lighthouse ≥ 90 everywhere; deployed URL and offline mode work |
-| C5 · v1.0 + demo ready | Sat 5 Dec | `v1.0` tag with release notes; two rehearsals; README, decision records and model card final |
+| C5 · v1.0 | Sat 5 Dec | `v1.0` tag with release notes; README, decision records and model card final |
 
 Releases use `v0.x` tags until the final `v1.0`. No release has been tagged yet.
 
@@ -210,7 +209,7 @@ Releases use `v0.x` tags until the final `v1.0`. No release has been tagged yet.
 
 - Copy deck (PM-07) and the scoring hand-check sheet (PM-08) that AT-16 uses.
 - Checkpoint reports from C1 onward, in `docs/checkpoints/`.
-- Usability test (PM-11), bug bash (PM-12), demo script (PM-13) and final README / release notes (PM-14).
+- Usability test (PM-11), bug bash (PM-12) and final README / release notes (PM-14).
 
 ## Changelog
 

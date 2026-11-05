@@ -36,7 +36,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 | AT-19 | 375 px: no sideways scrolling, every action reachable | FE1 + FE2 | C3 | Partly | About page only (4 Nov) |
 | AT-20 | Polymarket down + saved copy → data with "out of date" banner | BE + FE1 | C2 | Yes | ✅ 2 Nov, failure tests |
 | AT-21 | Light and dark themes readable (WCAG AA) | FE1 | C3 | Yes | Partly: Lighthouse 100 on Practice (light) and About (mobile), 5 Nov |
-| AT-22 | Demo path with zero console errors | PM | C3 | — | None yet |
+| AT-22 | Main path with zero console errors | PM | C3 | — | None yet |
 
 ---
 
@@ -247,7 +247,7 @@ Run the app with `cd client && npm run dev` (live data) or `npm run dev:mock` (o
 
 **Recorded:** 5 Nov 2026: Lighthouse accessibility 100 on the Practice page in the light theme (PR #28), and 100 on the About page on mobile (PR #26). The light palette was adjusted in PR #28 so that every text colour passes on the page and on cards. Other pages: none yet.
 
-## AT-22 · Clean demo path
+## AT-22 · Clean main path
 
 **Owner** PM · **Must pass by** C3 · **Stories** all
 

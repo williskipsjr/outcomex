@@ -28,5 +28,4 @@ The ML engineer's news-source check ([ml/news-sources.md](../ml/news-sources.md)
 ## Consequences
 
 - The About page says the AI "doesn't read the news", which stays true.
-- The demo explains the cut in one line: the source didn't work from the browser, and we chose not to add a server for it.
 - If a free source that works from the browser appears later, S1 can be reopened with a new decision record.
