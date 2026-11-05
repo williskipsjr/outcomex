@@ -18,7 +18,7 @@ export const CATEGORIES = [
 export const RANGES = ["1d", "1w", "1m", "all"];
 
 const MARKET_ID = /^pm-\d+$/;
-const PRACTICE_ID = /^pr-\d+$/;
+export const PRACTICE_ID = /^pr-\d+$/;
 
 function invalid(message) {
   return new DataError("VALIDATION_ERROR", message);

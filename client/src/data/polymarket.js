@@ -3,8 +3,8 @@ import { DataError } from "./errors.js";
 import { fetchJson } from "./http.js";
 import {
   normalizeHistory,
+  normalizeMarket,
   normalizeMarketDetail,
-  normalizeMarkets,
   normalizeSearch,
   sparklineFrom,
   statusOf,
@@ -125,7 +125,7 @@ export function createPolymarketApi({ fetchImpl = (...args) => globalThis.fetch(
         for (const raw of rawList) {
           const event = raw.events?.[0]?.slug ?? raw.id;
           if ((perEvent.get(event) ?? 0) >= MAX_PER_EVENT) continue;
-          const [market] = normalizeMarkets([raw]);
+          const market = normalizeMarket(raw);
           if (!market || market.status !== "open") continue;
           perEvent.set(event, (perEvent.get(event) ?? 0) + 1);
           markets.push(market);

@@ -1,14 +1,13 @@
 import { cacheKey, createCache } from "./cache.js";
 import { DataError } from "./errors.js";
 import { fetchJson } from "./http.js";
-import { CATEGORIES, checkCategory, checkLimit, checkMarketId, checkPracticeId, checkProbability } from "./validate.js";
+import { CATEGORIES, PRACTICE_ID, checkCategory, checkLimit, checkMarketId, checkPracticeId, checkProbability } from "./validate.js";
 
 // Services over the static files the ML pipeline writes into public/data:
 // D5 getPrediction, D6 listPractice, D7 getPractice, D8 revealPractice.
 // Each file is fetched once, its shape is checked, and it is kept 5 minutes.
 
 const FILE_TTL = 5 * 60 * 1000;
-const PRACTICE_ID = /^pr-\d+$/;
 
 function invalidFile(name, problem) {
   console.error(`[data] ${name}: ${problem}`);

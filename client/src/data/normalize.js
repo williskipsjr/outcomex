@@ -193,7 +193,7 @@ export function normalizeMarketDetail(raw, context = {}) {
 }
 
 // Normalises a list, skipping anything that isn't a readable yes/no market
-export function normalizeMarkets(rawList, context = {}) {
+function normalizeMarkets(rawList, context = {}) {
   const markets = [];
   for (const raw of rawList) {
     const market = normalizeMarket(raw, context);
