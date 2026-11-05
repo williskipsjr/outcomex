@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { SettingsContext } from "./settingsContext.js";
 
+// Holds the two app-wide settings and remembers them in localStorage:
+//   blindMode  hide crowd numbers on markets you haven't called yet (on by default)
+//   theme      system | light | dark
 const STORAGE_KEY = "outcomex.v1.settings";
 const THEMES = ["system", "light", "dark"];
 const DEFAULT_SETTINGS = { blindMode: true, theme: "system" };
@@ -42,6 +45,7 @@ export default function SettingsProvider({ children }) {
     }
   }, [settings.theme]);
 
+  // Immutable updates: copy the settings object and change one field
   function setBlindMode(blindMode) {
     setSettings((current) => ({ ...current, blindMode }));
   }
