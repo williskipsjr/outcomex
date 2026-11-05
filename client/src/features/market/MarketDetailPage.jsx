@@ -17,6 +17,10 @@ import RevealPanel from "./RevealPanel.jsx";
 import { aiForCall } from "./savedAi.js";
 import "./MarketDetailPage.css";
 
+// Why a live market has no AI number: the model was only tested on markets
+// about a week from their end (docs/ml/evaluation.md), so it skips the rest
+const AI_MISSING_NOTE = "The AI only rates markets that close in 1 to 21 days.";
+
 // A live market (/market/:id): the question, the call form, then after you call
 // the reveal and the price chart. Loads the market from Polymarket and the AI
 // estimate from predictions.json. Shows a skeleton while loading, "Market not
@@ -95,8 +99,8 @@ export default function MarketDetailPage() {
 
   // Once you've called, show the AI number your call is scored against
   const ai = call
-    ? { status: "success", prediction: aiForCall(call, currentPrediction) }
-    : { status: prediction.status, prediction: currentPrediction, onRetry: prediction.retry };
+    ? { status: "success", prediction: aiForCall(call, currentPrediction), missingNote: AI_MISSING_NOTE }
+    : { status: prediction.status, prediction: currentPrediction, onRetry: prediction.retry, missingNote: AI_MISSING_NOTE };
 
   return (
     <article className="market-detail">
