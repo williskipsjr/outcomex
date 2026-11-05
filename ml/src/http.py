@@ -28,7 +28,6 @@ def _session():
 class HttpError(Exception):
     def __init__(self, status, url, body=""):
         super().__init__(f"HTTP {status} for {url}: {body[:120]}")
-        self.status = status
 
 
 def get_json(url, params=None, retries=5, timeout=20):

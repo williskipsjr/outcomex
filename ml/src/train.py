@@ -222,7 +222,7 @@ def test_run(table, validation_report):
         "g2": g2_decision(model_metrics, crowd_metrics, rows),
         "coefficients": describe_model(model, chosen),
     }
-    return report, model, p
+    return report
 
 
 def plot_calibration(rows_by_name, path, title):
@@ -236,9 +236,9 @@ def plot_calibration(rows_by_name, path, title):
     styles = {"crowd": ("#1d4ed8", "o"), "AI": ("#6d28d9", "s")}
     for name, rows in rows_by_name.items():
         color, marker = styles.get(name, ("#6d28d9", "s"))
-        pts = [(r["mean_forecast"], r["yes_rate"], r["count"]) for r in rows if r["count"]]
+        pts = [(r["mean_forecast"], r["yes_rate"]) for r in rows if r["count"]]
         if pts:
-            xs, ys, ns = zip(*pts)
+            xs, ys = zip(*pts)
             ax.plot(xs, ys, color=color, marker=marker, linewidth=1.4, label=name)
     ax.set_xlabel("forecast probability")
     ax.set_ylabel("share that resolved YES")
@@ -315,7 +315,7 @@ def main(argv=None):
         print(f"{out.relative_to(config.ML_DIR)} already exists: the test split has been used. Not running again.")
         return 1
     validation_report = json.loads((config.REPORTS_DIR / "validation.json").read_text(encoding="utf-8"))
-    report, _, _ = test_run(table, validation_report)
+    report = test_run(table, validation_report)
     out.write_text(json.dumps(report, indent=2), encoding="utf-8")
     draw_test_chart(report, figures)
     print(json.dumps({k: report[k] for k in ["model", "test", "model_minus_crowd", "g2"]}, indent=2))
