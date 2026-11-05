@@ -79,11 +79,16 @@ function AiRow({ ai, outcome }) {
       </div>
     );
   }
-  // Normal style, not an error: most markets simply have no AI number
-  return <p className="reveal__ai-note">AI not available for this market.</p>;
+  // Normal style, not an error: most markets simply have no AI number.
+  // missingNote (optional) says why, so it doesn't look like a fault.
+  return (
+    <p className="reveal__ai-note">
+      AI not available for this market.{ai.missingNote && ` ${ai.missingNote}`}
+    </p>
+  );
 }
 
-// you, crowd: probabilities 0-1 (crowd may be null) · ai: { status, prediction, onRetry }
+// you, crowd: probabilities 0-1 (crowd may be null) · ai: { status, prediction, onRetry, missingNote }
 // outcome: "YES" | "NO" when known, which adds a Brier score to each row
 export default function RevealPanel({ you, crowd, crowdLabel = "Crowd", ai, outcome = null }) {
   // One plain sentence comparing you with the crowd, e.g. "You are 20 points more
