@@ -37,7 +37,7 @@ const HISTORY_PARAMS = {
 
 // One big event (e.g. "2028 Democratic nominee") has 100+ yes/no markets, one
 // per candidate. Without a cap they would fill the whole dashboard.
-export const MAX_PER_EVENT = 3;
+const MAX_PER_EVENT = 3;
 
 // Gamma never returns more than 100 rows per request, whatever `limit` says
 const GAMMA_PAGE_SIZE = 100;

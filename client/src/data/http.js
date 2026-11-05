@@ -1,6 +1,6 @@
 import { DataError, abortedError, errorFromStatus } from "./errors.js";
 
-export const TIMEOUT_MS = 8000;
+const TIMEOUT_MS = 8000;
 const RETRY_DELAY_MS = 300;
 
 // Waits, but stops early (with ABORTED) if the caller cancels

@@ -12,8 +12,8 @@ export const CATEGORIES = [
   "Culture",
   "Other",
 ];
-export const STATUSES = ["open", "closing", "all"];
-export const SORTS = ["ending", "volume", "newest", "prob-high", "prob-low"];
+const STATUSES = ["open", "closing", "all"];
+const SORTS = ["ending", "volume", "newest", "prob-high", "prob-low"];
 export const DEFAULT_VIEW = { q: "", cat: [], status: "open", sort: "ending" };
 
 const MAX_QUERY_LENGTH = 80;
