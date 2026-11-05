@@ -33,7 +33,7 @@ function browserStorage() {
 }
 
 export function createCache({ storage = browserStorage(), now = () => Date.now() } = {}) {
-  const memory = new Map(); // key -> { value, storedAt, ttlMs }
+  const memory = new Map(); // key -> { value, storedAt }
   const inFlight = new Map(); // key -> { promise, controller, waiting }
 
   function readStored() {
@@ -61,10 +61,10 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
     }
   }
 
-  function remember(key, value, ttlMs, persist) {
+  function remember(key, value, persist) {
     const storedAt = now();
     memory.delete(key); // re-insert so Map order stays oldest-first
-    memory.set(key, { value, storedAt, ttlMs });
+    memory.set(key, { value, storedAt });
     if (memory.size > MAX_MEMORY_ENTRIES) {
       memory.delete(memory.keys().next().value);
     }
@@ -139,7 +139,7 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
     try {
       const entry = join(key, async (sharedSignal) => {
         const value = await load(sharedSignal);
-        return { value, storedAt: remember(key, value, ttlMs, persist) };
+        return { value, storedAt: remember(key, value, persist) };
       });
       const { value, storedAt } = await waitFor(key, entry, signal);
       return { data: value, meta: { fetchedAt: toIso(storedAt), stale: false, cache: "miss", source } };
@@ -152,17 +152,7 @@ export function createCache({ storage = browserStorage(), now = () => Date.now()
     }
   }
 
-  function clear() {
-    memory.clear();
-    inFlight.clear();
-    try {
-      storage?.removeItem(STORAGE_KEY);
-    } catch {
-      // nothing to clean up
-    }
-  }
-
-  return { get, clear };
+  return { get };
 }
 
 // One readable key per request, e.g. "getHistory:pm-665374:1w"

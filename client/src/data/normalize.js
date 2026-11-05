@@ -224,7 +224,6 @@ export function normalizeSearch(response) {
 // the last, so the chart keeps its true start and its current value
 export function downsample(items, max) {
   if (items.length <= max) return items;
-  if (max < 2) return items.slice(-max);
   const step = (items.length - 1) / (max - 1);
   return Array.from({ length: max }, (_, index) => items[Math.round(index * step)]);
 }
