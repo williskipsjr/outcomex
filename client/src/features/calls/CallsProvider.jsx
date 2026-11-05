@@ -31,10 +31,6 @@ export default function CallsProvider({ children }) {
     return calls.find((call) => call.marketId === marketId && call.mode === mode) ?? null;
   }
 
-  function hasCalled(marketId, mode = "live") {
-    return getCall(marketId, mode) !== null;
-  }
-
   // Returns { ok: true, call } or { ok: false, error }. Calls are locked once made.
   function makeCall(input) {
     const error = validateNewCall(input, calls);
@@ -72,7 +68,6 @@ export default function CallsProvider({ children }) {
   const value = {
     calls,
     getCall,
-    hasCalled,
     makeCall,
     resolveCalls,
     exportCalls,
