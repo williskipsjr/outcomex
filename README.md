@@ -67,3 +67,6 @@ Other commands, all run inside `client/`:
 | `npm test` | Runs the unit tests (Vitest) |
 | `npm run build` | Builds the production version into `client/dist` |
 | `npm run preview` | Serves the production build locally |
+| `npm run check:contracts` | Checks the JSON files in `client/public/data` against the data contract |
+
+The AI numbers in `client/public/data` are made offline by the Python pipeline in `ml/`. How to rebuild them is in [`ml/README.md`](ml/README.md).
