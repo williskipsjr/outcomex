@@ -19,7 +19,7 @@ Course project for Full Stack Development 1, IIIT Dharwad.
 |---|---|
 | `client/` | The React app |
 | `ml/` | Data collection, evaluation and model code (Python) |
-| `docs/` | PRD, user stories, wireframes, acceptance tests, decision records |
+| `docs/` | PRD, user stories, acceptance tests, decision records, the data contract, ML and testing reports. Start at [`docs/README.md`](docs/README.md) |
 
 ## Team
 
