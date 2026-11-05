@@ -1,3 +1,6 @@
+// How numbers and dates are shown on screen, in one place so every page
+// writes them the same way.
+
 // Probabilities are stored as decimals (0.71) and shown as percentages ("71%").
 export function formatPercent(probability) {
   if (probability === null || probability === undefined) {
