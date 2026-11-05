@@ -1,16 +1,25 @@
-# React + Vite
+# client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The OutcomeX web app: React 19, Vite and React Router, with plain CSS. How to run it is in the [root README](../README.md).
 
-Currently, two official plugins are available:
+## How `src/` is organised
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Folder | What lives there |
+|---|---|
+| `main.jsx`, `App.jsx` | Start-up (router and the two app-wide providers) and the list of pages |
+| `features/` | One folder per part of the product: `dashboard`, `market` (detail, call, reveal), `practice-list`, `calls` (My Calls and where calls are saved), `settings` (blind mode, theme), `about`. `kit` is a page of every shared component, only in development (`/kit`) |
+| `components/` | Small shared pieces with no data of their own: buttons, selects, error and empty states, skeletons, the nav bar |
+| `hooks/` | Reusable React logic: `useRequest` (the loading / success / error state of one request), auto-refresh, debounce |
+| `lib/` | Plain functions with no React: scoring, formatting, filters and sorting, chart maths. Most have a `.test.js` next to them |
+| `data/` | The only code that talks to the outside world (Polymarket and our JSON files). See [data/README.md](src/data/README.md) |
+| `mocks/` | Saved responses for offline mode (`npm run dev:mock`) |
+| `styles/` | Design tokens (colours, spacing, both themes) and base styles |
 
-## React Compiler
+## Rules the code follows
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Components never call `fetch`.** They ask the data layer, usually through `useRequest`, so every request has the same loading, error, retry and cancel behaviour.
+- **Calls are stored once.** `features/calls` keeps the list of calls; scores, summaries and "already called" badges are worked out from it, never saved separately.
+- **Nothing from outside is trusted.** The app has no server, so the checks a server would do happen here:
+  - `data/validate.js` checks every argument before a request is made (ids, search text, ranges, probabilities).
+  - `data/normalize.js` and `data/files.js` check every response and file before the app uses it, and turn anything broken into a `DataError`.
+  - `lib/callInput.js` checks what you type into the call box, and `features/calls/callsStorage.js` checks saved calls when they are loaded, keeping the good ones and dropping any that are broken.
