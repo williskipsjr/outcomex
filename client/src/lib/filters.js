@@ -27,8 +27,19 @@ function byProbability(direction) {
   };
 }
 
+// Soonest end date first. Markets already past their end date (still open,
+// waiting for their result) go after all the upcoming ones, so the top of
+// the list is what closes next.
+function endingSoonest(now) {
+  return (a, b) => {
+    const aPast = time(a.endDate) <= now;
+    const bPast = time(b.endDate) <= now;
+    if (aPast !== bPast) return aPast ? 1 : -1;
+    return time(a.endDate) - time(b.endDate);
+  };
+}
+
 const COMPARATORS = {
-  ending: (a, b) => time(a.endDate) - time(b.endDate),
   volume: (a, b) => b.volume - a.volume,
   newest: (a, b) => time(b.createdAt) - time(a.createdAt),
   "prob-high": byProbability(-1),
@@ -37,7 +48,8 @@ const COMPARATORS = {
 
 export function applyView(markets, view, now = Date.now()) {
   const query = view.q.toLowerCase();
-  const compare = COMPARATORS[view.sort] ?? COMPARATORS.ending;
+  // "ending" (also the default) depends on today's date, so it is built here
+  const compare = COMPARATORS[view.sort] ?? endingSoonest(now);
 
   return (
     markets
