@@ -8,12 +8,19 @@ import useCalls from "./useCalls.js";
 import useResolutionCheck from "./useResolutionCheck.js";
 import "./MyCallsPage.css";
 
+// My Calls (/me): every call you've made, your scores next to the crowd's and
+// the AI's, and Export / Clear all. Opening the page also asks Polymarket
+// whether any of your live markets have ended (useResolutionCheck).
+
+// Filter buttons above the table
 const TABS = [
   { value: "all", label: "All" },
   { value: "live", label: "Live" },
   { value: "practice", label: "Practice" },
 ];
 
+// One score box (You, Crowd or AI): the accuracy, then the Brier score and how
+// many calls it is based on, so a score is never shown without its sample size.
 function SummaryCard({ label, who, result }) {
   return (
     <div className={`my-calls__card my-calls__card--${who}`}>
@@ -41,6 +48,7 @@ export default function MyCallsPage() {
   const resolutionCheck = useResolutionCheck();
   const [tab, setTab] = useState("all");
 
+  // Empty state: nothing to score yet, so point to the two places to make a call
   if (calls.length === 0) {
     return (
       <section className="my-calls">
@@ -66,6 +74,7 @@ export default function MyCallsPage() {
     .filter((call) => tab === "all" || call.mode === tab)
     .toSorted((a, b) => b.createdAt.localeCompare(a.createdAt));
 
+  // Deleting everything can't be undone, so ask first
   function handleClear() {
     const sure = window.confirm(`Delete all ${calls.length} calls from this browser? This can't be undone.`);
     if (sure) clearCalls();
@@ -89,6 +98,8 @@ export default function MyCallsPage() {
         {calls.length} {calls.length === 1 ? "call" : "calls"} · {resolvedCount} resolved
       </p>
 
+      {/* The results check failed (e.g. Polymarket is down): say so and offer a retry.
+          The calls themselves are still shown. */}
       {resolutionCheck.failed && (
         <p className="my-calls__check-failed" role="status">
           Couldn't check results.{" "}
@@ -98,6 +109,7 @@ export default function MyCallsPage() {
         </p>
       )}
 
+      {/* Scores only appear after 5 resolved calls; fewer says more about luck than skill */}
       {comparison.enoughData ? (
         <div className="my-calls__summary">
           <SummaryCard label="You" who="you" result={comparison.you} />
@@ -147,6 +159,7 @@ export default function MyCallsPage() {
           </thead>
           <tbody>
             {visibleCalls.map((call) => {
+              // null until the market has ended; a practice call is resolved as soon as it is made
               const outcome = call.resolution?.outcome ?? null;
               const href = call.mode === "practice" ? `/practice/${call.marketId}` : `/market/${call.marketId}`;
               return (
