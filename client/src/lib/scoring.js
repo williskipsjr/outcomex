@@ -49,33 +49,3 @@ export function compareForecasts(calls) {
     enoughData: withCrowd.length >= MIN_CALLS_FOR_SUMMARY,
   };
 }
-
-// 10 buckets (0-10%, 10-20%, ...): average forecast vs how often YES happened
-export function calibrationBuckets(forecasts) {
-  const buckets = Array.from({ length: 10 }, (_, index) => ({
-    from: index / 10,
-    to: (index + 1) / 10,
-    count: 0,
-    meanForecast: null,
-    yesRate: null,
-  }));
-
-  const sums = buckets.map(() => ({ forecast: 0, yes: 0 }));
-  for (const { probability, outcome } of forecasts) {
-    // 1.0 would be bucket 10, which doesn't exist, so cap it at 9
-    const index = Math.min(Math.floor(probability * 10), 9);
-    buckets[index].count += 1;
-    sums[index].forecast += probability;
-    sums[index].yes += outcome === "YES" ? 1 : 0;
-  }
-
-  return buckets.map((bucket, index) =>
-    bucket.count === 0
-      ? bucket
-      : {
-          ...bucket,
-          meanForecast: sums[index].forecast / bucket.count,
-          yesRate: sums[index].yes / bucket.count,
-        },
-  );
-}
