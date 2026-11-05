@@ -45,7 +45,7 @@ Every function resolves to `{ data, meta }` or rejects with a `DataError` whose 
 npm run dev:mock
 ```
 
-It works the same on every OS: Vite's `--mode mock` loads `client/.env.mock`, which sets `VITE_USE_MOCKS=true`. `npm run build:mock` builds the offline demo version the same way.
+It works the same on every OS: Vite's `--mode mock` loads `client/.env.mock`, which sets `VITE_USE_MOCKS=true`. `npm run build:mock` builds the offline version the same way.
 
 Then, in DevTools:
 

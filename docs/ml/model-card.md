@@ -104,6 +104,6 @@ Run 1 anchored the as-of time on the *actual* close, which is earlier when a mar
 
 ## Keeping it current
 
-- **Refresh the numbers:** `cd ml && python -m src.predict --install`, before each demo, and daily once the app is in use. Then run `npm run check:contracts` from `client/`.
+- **Refresh the numbers:** `cd ml && python -m src.predict --install`, before each release, and daily once the app is in use. Then run `npm run check:contracts` from `client/`.
 - **Retraining** would change the model, so it needs a new evaluation and a new version.
 - **Reproducing everything:** see `ml/README.md`.
