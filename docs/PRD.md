@@ -187,7 +187,6 @@ Every sentence about the AI on the About page is agreed between the PM and the M
 ## 9. Known limitations
 
 - **AI coverage is small and goes out of date.** The AI only scores markets 1–21 days from their scheduled end, and only on the day the file was made. On 5 Nov only 5 of the 100 dashboard markets had an AI number. The predictions are made again for each release.
-- **One misleading message.** When one of our own data files is missing, the page says "Polymarket isn't responding right now" instead of naming the missing file (finding 1 in [testing/data-failure-tests.md](testing/data-failure-tests.md)). Raised with the frontend owner.
 - **Offline images.** In the offline build, market photos come from Polymarket's servers and won't load; the cards keep their size.
 - **Practice answers can be read** with the browser's developer tools (see 6.1).
 - **Your calls live in one browser.** Another device or a cleared browser starts empty; Export is the backup.
