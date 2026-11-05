@@ -34,10 +34,10 @@ Course project for Full Stack Development 1, IIIT Dharwad.
 ## How we work
 
 - `main` is protected. Nobody pushes to it directly.
-- Every change starts from a GitHub issue and gets its own branch, for example `feat/23-market-card`.
+- Every change gets its own branch, for example `feat/about-page` or `fix/ai-estimate-date`. Bugs found in review are tracked as GitHub issues.
 - Changes reach `main` through a pull request with at least one review.
 - Commit messages follow the Conventional Commits style, for example `feat(dashboard): add category filter`.
-- The product manager checks each feature against its acceptance test before it is merged.
+- Each feature has a browser check in [`docs/acceptance-tests.md`](docs/acceptance-tests.md), with the date it was last run.
 
 ## Running the project
 
