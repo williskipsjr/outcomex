@@ -9,6 +9,7 @@ import {
   normalizeMarketDetail,
   normalizeSearch,
   parseJsonList,
+  sourceUrlOf,
   sparklineFrom,
   statusOf,
   toIso,
@@ -128,12 +129,35 @@ describe("categoryOf", () => {
   });
 });
 
+describe("sourceUrlOf", () => {
+  it("opens the exact market inside a multi-market event", () => {
+    expect(sourceUrlOf("bitcoin-above-on-november-5-2026", "bitcoin-above-84k-on-november-5-2026")).toBe(
+      "https://polymarket.com/event/bitcoin-above-on-november-5-2026/bitcoin-above-84k-on-november-5-2026",
+    );
+  });
+
+  it("uses the plain event page when the event has one market", () => {
+    expect(sourceUrlOf("will-the-us-invade-iran-before-2027", "will-the-us-invade-iran-before-2027")).toBe(
+      "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+    );
+  });
+
+  // Gamma's /markets/{id} sends `events: []`, and /event/<market slug> is a 404
+  it("falls back to /market/ when the event isn't known", () => {
+    expect(normalizeMarket({ ...raw.openMarkets[0], events: [], slug: "spl-qad-fay-2026-11-05-draw" }).sourceUrl).toBe(
+      "https://polymarket.com/market/spl-qad-fay-2026-11-05-draw",
+    );
+    expect(sourceUrlOf(null, null)).toBe("https://polymarket.com");
+  });
+});
+
 describe("normalizeSearch", () => {
   it("flattens events and uses the event's tags and slug", () => {
     const markets = normalizeSearch(raw.search);
     expect(markets.length).toBe(2);
     expect(markets[0]).toMatchObject({ category: "Crypto", status: "open" });
-    expect(markets[0].sourceUrl).toBe(`https://polymarket.com/event/${raw.search.events[0].slug}`);
+    const [event] = raw.search.events;
+    expect(markets[0].sourceUrl).toBe(`https://polymarket.com/event/${event.slug}/${event.markets[0].slug}`);
   });
 
   it("drops closed markets and duplicates", () => {

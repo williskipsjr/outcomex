@@ -138,6 +138,20 @@ export function categoryOf(tags, question = "") {
 
 // ---- Markets ---------------------------------------------------------------
 
+// The market's page on Polymarket. An event can hold several markets (one per
+// price or team), and /event/<event>/<market> opens the right one. Gamma's
+// single-market endpoint leaves `events` empty, and /event/<market> is a
+// "Page not found", so without the event we use /market/<market>, which
+// Polymarket redirects to the right page.
+export function sourceUrlOf(eventSlug, marketSlug) {
+  if (eventSlug && marketSlug && eventSlug !== marketSlug) {
+    return `${POLYMARKET_URL}/event/${eventSlug}/${marketSlug}`;
+  }
+  if (eventSlug) return `${POLYMARKET_URL}/event/${eventSlug}`;
+  if (marketSlug) return `${POLYMARKET_URL}/market/${marketSlug}`;
+  return POLYMARKET_URL;
+}
+
 // raw: one Gamma market. context: what a search result knows about the event
 // it came from (its tags and slug), because those markets have neither.
 export function normalizeMarket(raw, context = {}) {
@@ -150,7 +164,6 @@ export function normalizeMarket(raw, context = {}) {
 
   const crowdProbability = yesPriceOf(raw);
   const eventSlug = context.eventSlug ?? raw.events?.[0]?.slug ?? null;
-  const slug = eventSlug ?? cleanText(raw.slug);
 
   return {
     id: `pm-${raw.id}`,
@@ -163,7 +176,7 @@ export function normalizeMarket(raw, context = {}) {
     ...statusOf(raw, crowdProbability),
     crowdProbability,
     volume: toNumber(raw.volumeNum) ?? toNumber(raw.volume) ?? 0,
-    sourceUrl: slug ? `${POLYMARKET_URL}/event/${slug}` : POLYMARKET_URL,
+    sourceUrl: sourceUrlOf(eventSlug, cleanText(raw.slug)),
     weekChange: toNumber(raw.oneWeekPriceChange),
     sparkline: null,
   };
