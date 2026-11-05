@@ -12,6 +12,9 @@ import AboutPage from "./features/about/AboutPage.jsx";
 import NotFoundPage from "./features/about/NotFoundPage.jsx";
 import KitPage from "./features/kit/KitPage.jsx";
 
+// The page layout and the list of pages (routes). Each URL maps to one page
+// component. TitledPage sets the browser tab title for pages whose title
+// doesn't depend on data; the market pages set their own from the question.
 export default function App() {
   return (
     <>
@@ -57,7 +60,10 @@ export default function App() {
               </TitledPage>
             }
           />
+          {/* A gallery of the shared components for checking styles while building.
+              Only in `npm run dev`: the built site has no /kit page. */}
           {import.meta.env.DEV && <Route path="/kit" element={<KitPage />} />}
+          {/* Any other URL: a friendly 404 with links back */}
           <Route
             path="*"
             element={
