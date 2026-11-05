@@ -6,6 +6,10 @@ import { describeDifference } from "../../lib/reveal.js";
 import { accuracyFromBrier, brierScore } from "../../lib/scoring.js";
 import "./RevealPanel.css";
 
+// The reveal shown after you call: your number, the crowd's and the AI's, side
+// by side. Used on live and practice markets. When the outcome is known each
+// row also gets its Brier score.
+
 // One score line under a row, only when the outcome is known (practice, resolved)
 function Score({ probability, outcome }) {
   if (!outcome || probability === null || probability === undefined) return null;
@@ -61,6 +65,8 @@ function AiRow({ ai, outcome }) {
       </>
     );
   }
+  // Level B fallback: if the model ever fails its evaluation, the ML pipeline
+  // writes momentum signals instead of a probability, and they are listed here
   if (prediction?.level === "signal") {
     return (
       <div className="reveal__ai-note reveal__ai-note--stack">
@@ -80,6 +86,8 @@ function AiRow({ ai, outcome }) {
 // you, crowd: probabilities 0-1 (crowd may be null) · ai: { status, prediction, onRetry }
 // outcome: "YES" | "NO" when known, which adds a Brier score to each row
 export default function RevealPanel({ you, crowd, crowdLabel = "Crowd", ai, outcome = null }) {
+  // One plain sentence comparing you with the crowd, e.g. "You are 20 points more
+  // confident in YES than the crowd."
   const sentence = describeDifference(you, crowd);
 
   return (
