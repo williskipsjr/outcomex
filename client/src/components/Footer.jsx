@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-// Disclaimer wording is a working version; the PM's copy deck has the final text
+// On every page: where the data comes from, and that OutcomeX is not a betting
+// or trading site and gives no financial advice.
 export default function Footer() {
   return (
     <footer className="footer">

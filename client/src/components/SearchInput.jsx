@@ -1,6 +1,8 @@
 import { useId } from "react";
 import "./SearchInput.css";
 
+// A labelled search box. useId gives the label and input a matching id, so
+// clicking the label focuses the box and screen readers read the label.
 // onChange receives the new text, not the event
 export default function SearchInput({ label, value, onChange, placeholder }) {
   const id = useId();

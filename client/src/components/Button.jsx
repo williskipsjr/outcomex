@@ -1,6 +1,9 @@
 import Spinner from "./Spinner.jsx";
 import "./Button.css";
 
+// The app's one button. variant: primary | secondary | ghost.
+// While `loading` is true the button is disabled and shows a spinner, so a
+// slow request can't be sent twice by clicking again.
 export default function Button({
   variant = "primary",
   type = "button",
