@@ -6,6 +6,9 @@ import { accuracyFromBrier, brierScore } from "../../lib/scoring.js";
 import { getMarketChange } from "../../lib/sparkline.js";
 import "./MarketCard.css";
 
+// One market on the dashboard or the practice list. What the card shows
+// depends on its variant, so blind mode never leaks the crowd's number.
+
 function LockIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
