@@ -42,7 +42,9 @@ export function formatTimeLeft(endDate, now = Date.now()) {
   const msLeft = new Date(endDate).getTime() - now;
 
   if (Number.isNaN(msLeft)) return "No end date";
-  if (msLeft <= 0) return "Closed";
+  // Past its end date but still on the open list: Polymarket hasn't settled
+  // the result yet (e.g. an election waiting for the official count)
+  if (msLeft <= 0) return "Awaiting result";
   if (msLeft < DAY_MS) return "Closes today";
 
   // Whole days left: 1.5 days away is "tomorrow", not "in 2 days"

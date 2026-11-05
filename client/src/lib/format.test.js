@@ -32,7 +32,7 @@ describe("formatTimeLeft", () => {
 
   it("handles today, the past and bad dates", () => {
     expect(formatTimeLeft("2026-10-28T20:00:00Z", NOW)).toBe("Closes today");
-    expect(formatTimeLeft("2026-10-01T00:00:00Z", NOW)).toBe("Closed");
+    expect(formatTimeLeft("2026-10-01T00:00:00Z", NOW)).toBe("Awaiting result");
     expect(formatTimeLeft("not a date", NOW)).toBe("No end date");
   });
 });
