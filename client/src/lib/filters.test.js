@@ -70,6 +70,15 @@ describe("applyView", () => {
     expect(ids(applyView(markets, view({ sort: "ending" }), NOW))).toEqual(["b", "c", "a"]);
   });
 
+  it("puts markets past their end date after the upcoming ones when sorting by ending", () => {
+    const markets = [
+      market({ id: "past", endDate: "2026-10-01T00:00:00Z" }),
+      market({ id: "later", endDate: "2026-12-01T00:00:00Z" }),
+      market({ id: "next", endDate: "2026-11-01T00:00:00Z" }),
+    ];
+    expect(ids(applyView(markets, view({ sort: "ending" }), NOW))).toEqual(["next", "later", "past"]);
+  });
+
   it("puts markets without a price last in both probability sorts", () => {
     const markets = [
       market({ id: "none", crowdProbability: null }),
