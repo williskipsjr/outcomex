@@ -85,6 +85,9 @@ function Section({ id, title, children }) {
   );
 }
 
+// The About page (/about): how OutcomeX works, how scoring works (with a worked
+// example), where the data comes from (with a live check), what the AI is and
+// how it was tested, and the small print.
 export default function AboutPage() {
   return (
     <article className="about">
