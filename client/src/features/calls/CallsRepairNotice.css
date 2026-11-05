@@ -10,6 +10,7 @@
   border: 1px solid var(--color-you);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 .calls-repair-notice p {

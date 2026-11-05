@@ -16,6 +16,7 @@
   background:
     radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--color-brand) 16%, transparent), transparent 55%),
     var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 .about__eyebrow {
@@ -44,6 +45,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
+  box-shadow: var(--shadow);
 }
 
 /* scroll-margin: a jump from "On this page" lands below the sticky header */

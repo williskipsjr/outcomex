@@ -4,6 +4,7 @@
   border-left: 4px solid var(--color-you);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
+  box-shadow: var(--shadow);
   color: var(--color-muted);
 }
 
