@@ -1,32 +1,31 @@
 {
  "modelVersion": "lr-crowd-2026-11-01",
  "level": "model",
- "generatedAt": "2026-11-04T20:37:44Z",
+ "generatedAt": "2026-11-07T06:51:40Z",
  "metrics": {
   "testBrier": 0.0891,
   "crowdBrier": 0.089,
   "n": 117
  },
  "predictions": {
+  "pm-6667468": {
+   "probability": 0.0211,
+   "explanation": [
+    "The AI raises the crowd's price from under 1% to 2%",
+    "Markets priced under 1% have resolved YES more often than that"
+   ]
+  },
+  "pm-5339986": {
+   "probability": 0.7743,
+   "explanation": [
+    "The AI lowers the crowd's price from 78% to 77%"
+   ]
+  },
   "pm-6282802": {
-   "probability": 0.1741,
+   "probability": 0.1146,
    "explanation": [
-    "The AI raises the crowd's price from 12% to 17%",
-    "Markets priced around 12% have resolved YES more often than that"
-   ]
-  },
-  "pm-6367378": {
-   "probability": 0.8768,
-   "explanation": [
-    "The AI lowers the crowd's price from 90% to 88%",
-    "Markets priced around 90% have resolved YES less often than that"
-   ]
-  },
-  "pm-6367373": {
-   "probability": 0.9659,
-   "explanation": [
-    "The AI lowers the crowd's price from 98% to 97%",
-    "Markets priced around 98% have resolved YES less often than that"
+    "The AI raises the crowd's price from 8% to 11%",
+    "Markets priced around 8% have resolved YES more often than that"
    ]
   }
  }
